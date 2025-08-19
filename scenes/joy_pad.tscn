@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=3 uid="uid://cnmggkcx0q1s7"]
+
+[ext_resource type="Script" uid="uid://crwaik4my8r76" path="res://scenes/joy_pad.gd" id="1_j57s1"]
+[ext_resource type="Texture2D" uid="uid://ci40s4lu5pbjg" path="res://assets/Menu/HUD.png" id="2_qvp2u"]
+[ext_resource type="PackedScene" uid="uid://xm02h8hrmfmi" path="res://scenes/knob.tscn" id="3_j57s1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_154w7"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(50, 210, 12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3bbm8"]
+radius = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7txrt"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(374, 6, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q316v"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(140, 252, 24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acwks"]
+size = Vector2(35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j57s1"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(140, 60, 24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfwdv"]
+size = Vector2(35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrbvk"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(140, 156, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xifss"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(140, 204, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14xxj"]
+atlas = ExtResource("2_qvp2u")
+region = Rect2(140, 108, 24, 24)
+
+[node name="JoyPad" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j57s1")
+metadata/_edit_horizontal_guides_ = [492.0, 160.0]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+pivot_offset = Vector2(24, -24)
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control"]
+position = Vector2(-6, -6)
+texture_normal = SubResource("AtlasTexture_154w7")
+shape = SubResource("CircleShape2D_3bbm8")
+action = "ui_cancel"
+visibility_mode = 1
+
+[node name="Control2" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = -56.0
+offset_right = 62.0
+offset_bottom = -56.0
+grow_vertical = 0
+pivot_offset = Vector2(-62, 56)
+
+[node name="TextureRect" type="TouchScreenButton" parent="Control2"]
+position = Vector2(-39, -39)
+scale = Vector2(1.5, 1.5)
+texture_normal = SubResource("AtlasTexture_7txrt")
+visibility_mode = 1
+
+[node name="Knob" parent="Control2" instance=ExtResource("3_j57s1")]
+scale = Vector2(1.5, 1.5)
+
+[node name="Control4" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -56.0
+offset_bottom = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(56, 56)
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="Control4"]
+position = Vector2(-32, 8)
+texture_normal = SubResource("AtlasTexture_q316v")
+shape = SubResource("RectangleShape2D_acwks")
+action = "attack"
+visibility_mode = 1
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control4"]
+position = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_j57s1")
+shape = SubResource("RectangleShape2D_kfwdv")
+action = "jump"
+visibility_mode = 1
+
+[node name="TouchScreenButton5" type="TouchScreenButton" parent="Control4"]
+position = Vector2(8, -32)
+texture_normal = SubResource("AtlasTexture_qrbvk")
+shape = SubResource("RectangleShape2D_kfwdv")
+action = "shoot"
+visibility_mode = 1
+
+[node name="TouchScreenButton6" type="TouchScreenButton" parent="Control4"]
+position = Vector2(-32, -32)
+texture_normal = SubResource("AtlasTexture_xifss")
+shape = SubResource("RectangleShape2D_kfwdv")
+action = "flash"
+visibility_mode = 1
+
+[node name="TouchScreenButton7" type="TouchScreenButton" parent="Control4"]
+position = Vector2(-72, 8)
+texture_normal = SubResource("AtlasTexture_14xxj")
+shape = SubResource("RectangleShape2D_kfwdv")
+action = "enter"
+visibility_mode = 1

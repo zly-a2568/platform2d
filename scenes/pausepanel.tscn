@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx2ln2keqwjdl"]
+
+[ext_resource type="Script" uid="uid://b5b4i8vmd46mu" path="res://scenes/pausepanel.gd" id="1_atgni"]
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="3_48igd"]
+[ext_resource type="Shader" uid="uid://dijf0k5wkr4kg" path="res://shaders/blur.gdshader" id="3_d6uqa"]
+[ext_resource type="PackedScene" uid="uid://dh4kgtq4yf48j" path="res://scenes/slider.tscn" id="3_dh7wr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwpda"]
+shader = ExtResource("3_d6uqa")
+shader_parameter/blur_amount = 2.5
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d6uqa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rwpda"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+
+[node name="pausepanel" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_48igd")
+script = ExtResource("1_atgni")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rwpda")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="V" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -58.0
+offset_right = 81.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_48igd")
+
+[node name="title" type="Label" parent="V"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("3_48igd")
+text = "暂停"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio" type="PanelContainer" parent="V"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../Actions")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_d6uqa")
+
+[node name="G" type="GridContainer" parent="V/Audio"]
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("3_48igd")
+columns = 2
+
+[node name="Volume" type="Label" parent="V/Audio/G"]
+layout_mode = 2
+theme = ExtResource("3_48igd")
+text = "主音量"
+
+[node name="Slider" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+layout_mode = 2
+
+[node name="Volume2" type="Label" parent="V/Audio/G"]
+layout_mode = 2
+theme = ExtResource("3_48igd")
+text = "音效"
+
+[node name="Slider2" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+layout_mode = 2
+bus = &"SFX"
+
+[node name="Volume3" type="Label" parent="V/Audio/G"]
+layout_mode = 2
+theme = ExtResource("3_48igd")
+text = "背景音乐"
+
+[node name="Slider3" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+layout_mode = 2
+bus = &"BGM"
+
+[node name="Actions" type="PanelContainer" parent="V"]
+layout_mode = 2
+size_flags_vertical = 2
+focus_neighbor_top = NodePath("../Audio")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rwpda")
+
+[node name="H" type="HBoxContainer" parent="V/Actions"]
+layout_mode = 2
+theme = ExtResource("3_48igd")
+alignment = 1
+
+[node name="Resume" type="Button" parent="V/Actions/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../Audio/G/Slider2")
+focus_neighbor_right = NodePath("../Quit")
+theme = ExtResource("3_48igd")
+text = "继续"
+flat = true
+
+[node name="Quit" type="Button" parent="V/Actions/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Resume")
+focus_neighbor_top = NodePath("../../../Audio/G/Slider2")
+theme = ExtResource("3_48igd")
+text = "退出"
+flat = true
+
+[connection signal="pressed" from="V/Actions/H/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="V/Actions/H/Quit" to="." method="_on_quit_pressed"]

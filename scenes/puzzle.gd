@@ -1,0 +1,2 @@
+class_name Puzzle
+extends CharacterBody2D

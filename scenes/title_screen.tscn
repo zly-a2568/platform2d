@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj0b7cwm84d7y"]
+
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://batb7erkde71v" path="res://scenes/title_screen.gd" id="1_sa3yf"]
+[ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="2_s4lrb"]
+[ext_resource type="PackedScene" uid="uid://cfuluqhqbxr1l" path="res://scenes/setting_panel.tscn" id="4_dc4i4"]
+[ext_resource type="PackedScene" uid="uid://cc0nc4xa5f6sw" path="res://scenes/joy_pad_editable.tscn" id="6_e54dn"]
+[ext_resource type="PackedScene" uid="uid://cx8p6bbp1kx6i" path="res://scenes/key_board_settings.tscn" id="7_3yumr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sa3yf"]
+shader = ExtResource("2_s4lrb")
+shader_parameter/blur_amount = 2.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+shader_parameter/mix_amount = 0.5
+shader_parameter/alpha = 1.0
+
+[node name="TitleScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_sa3yf")
+
+[node name="Panel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+material = SubResource("ShaderMaterial_sa3yf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -38.0
+offset_right = 24.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="New" type="Button" parent="Panel/Panel"]
+layout_mode = 2
+theme = ExtResource("1_fgkus")
+text = "新游戏"
+
+[node name="Start" type="Button" parent="Panel/Panel"]
+layout_mode = 2
+theme = ExtResource("1_fgkus")
+text = "开始"
+
+[node name="Exit" type="Button" parent="Panel/Panel"]
+layout_mode = 2
+theme = ExtResource("1_fgkus")
+text = "退出"
+
+[node name="Settings" type="Button" parent="Panel/Panel"]
+layout_mode = 2
+theme = ExtResource("1_fgkus")
+text = "设置"
+
+[node name="SettingPanel" parent="." instance=ExtResource("4_dc4i4")]
+visible = false
+
+[node name="JoyPadEditable" parent="." instance=ExtResource("6_e54dn")]
+visible = false
+
+[node name="KeyBoardSettings" parent="." instance=ExtResource("7_3yumr")]
+visible = false
+
+[connection signal="pressed" from="Panel/Panel/New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Panel/Panel/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/Panel/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Panel/Panel/Settings" to="." method="_on_settings_pressed"]

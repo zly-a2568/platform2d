@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfuluqhqbxr1l"]
+
+[ext_resource type="Script" uid="uid://dpaiykn5olrdy" path="res://scenes/setting_panel.gd" id="1_bbwy6"]
+[ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="1_xtyyo"]
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="2_i1njt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i1njt"]
+shader = ExtResource("1_xtyyo")
+shader_parameter/blur_amount = 4.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+shader_parameter/mix_amount = 0.5
+shader_parameter/alpha = 1.0
+
+[node name="SettingPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bbwy6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_i1njt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_i1njt")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "设置"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "鬼畜音效"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Button")
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "键位设置"
+
+[node name="Button" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../CheckButton")
+focus_neighbor_bottom = NodePath("../../Exit")
+text = "进入"
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "灵敏度"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 0.7
+max_value = 1.2
+step = 0.0
+value = 1.0
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../GridContainer/Button")
+text = "关闭"
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="drag_ended" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

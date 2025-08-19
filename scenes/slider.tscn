@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh4kgtq4yf48j"]
+
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_ndafo"]
+[ext_resource type="Script" uid="uid://ld0x25827d8o" path="res://scenes/slider.gd" id="2_nk2kr"]
+
+[node name="Slider" type="HSlider"]
+offset_right = 172.0
+offset_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_ndafo")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("2_nk2kr")

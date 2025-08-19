@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2uqsswiqmefx"]
+
+[ext_resource type="Script" uid="uid://lxoswkgnhn03" path="res://scenes/globals/sound_manager.gd" id="1_6w87p"]
+[ext_resource type="AudioStream" uid="uid://dehd4p7r5fg3y" path="res://assets/sfx/07_human_atk_sword_1.ogg" id="2_1g1t8"]
+[ext_resource type="AudioStream" uid="uid://diu6u0w45afn1" path="res://assets/sfx/attack1.mp3" id="2_u2w14"]
+[ext_resource type="AudioStream" uid="uid://dpih5hhgg5y5s" path="res://assets/sfx/flash.mp3" id="3_e0qya"]
+[ext_resource type="AudioStream" uid="uid://cl60n320hwxet" path="res://assets/sfx/hurt.mp3" id="3_ktobl"]
+[ext_resource type="AudioStream" uid="uid://dvmcdoalytna" path="res://assets/sfx/12_human_jump_3.ogg" id="3_uh6e2"]
+[ext_resource type="AudioStream" uid="uid://fiwxv5uapomn" path="res://assets/sfx/impactTin_medium_004.ogg" id="4_ms7c1"]
+[ext_resource type="AudioStream" uid="uid://cnx15qb62sfdx" path="res://assets/sfx/walk.mp3" id="4_n1l54"]
+[ext_resource type="AudioStream" uid="uid://bfl2lthaq8u1u" path="res://assets/sfx/impactGlass_heavy_004.ogg" id="5_mptlq"]
+[ext_resource type="AudioStream" uid="uid://db11ouhmn13i5" path="res://assets/bgm/game_over.mp3" id="10_64lrx"]
+[ext_resource type="AudioStream" uid="uid://bb7m8vtwymhlv" path="res://assets/sfx/fruit.mp3" id="11_nwrmn"]
+
+[node name="SoundManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_6w87p")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Attack" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_u2w14")
+bus = &"SFX"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_ktobl")
+bus = &"SFX"
+
+[node name="Walk" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_n1l54")
+bus = &"SFX"
+
+[node name="Flash" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_e0qya")
+bus = &"SFX"
+
+[node name="Slash" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_1g1t8")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_uh6e2")
+bus = &"SFX"
+
+[node name="Press" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_ms7c1")
+bus = &"SFX"
+
+[node name="Focus" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_mptlq")
+bus = &"SFX"
+
+[node name="GetFruit" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_nwrmn")
+bus = &"SFX"
+
+[node name="BGM" type="Node" parent="."]
+
+[node name="GameOver" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("10_64lrx")
+bus = &"BGM"
