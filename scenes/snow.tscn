@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqkt8wkjbdt8k"]
+
+[ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="1_2q3oo"]
+[ext_resource type="Script" uid="uid://0oxqhxdxv04y" path="res://scenes/snow.gd" id="1_n3rj0"]
+[ext_resource type="Texture2D" uid="uid://cu6c32wrv6c5l" path="res://assets/Background/world_tileset.png" id="3_jnldj"]
+[ext_resource type="TileSet" uid="uid://yk4sluf8s346" path="res://assets/Terrain/tile1.tres" id="4_t73fm"]
+[ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="5_qjmdr"]
+[ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="6_jnldj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmvj7"]
+atlas = ExtResource("3_jnldj")
+region = Rect2(48, 144, 16, 112)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t73fm"]
+distance = -251.0
+
+[node name="snow" type="Node2D"]
+script = ExtResource("1_n3rj0")
+
+[node name="player" parent="." instance=ExtResource("1_2q3oo")]
+
+[node name="PlayerCamera" type="Camera2D" parent="player"]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_fmvj7")
+stretch_mode = 1
+
+[node name="map" type="TileMap" parent="."]
+tile_set = ExtResource("4_t73fm")
+format = 2
+layer_0/tile_data = PackedInt32Array(393222, 458752, 3, 327686, 458752, 2, 262150, 458752, 2, 196614, 327680, 4, 393221, 393216, 3, 327685, 393216, 2, 262149, 393216, 2, 196613, 458752, 4, 393220, 393216, 3, 327684, 393216, 2, 262148, 393216, 2, 196612, 458752, 4, 393219, 393216, 3, 327683, 393216, 2, 262147, 393216, 2, 196611, 458752, 4, 393218, 393216, 3, 327682, 393216, 2, 262146, 393216, 2, 196610, 393216, 1, 393217, 393216, 3, 327681, 393216, 2, 262145, 393216, 2, 196609, 393216, 1, 393216, 393216, 3, 327680, 393216, 2, 262144, 393216, 2, 196608, 393216, 1, 458751, 393216, 3, 393215, 393216, 2, 327679, 393216, 2, 262143, 458752, 4, 458750, 393216, 3, 393214, 393216, 2, 327678, 393216, 2, 262142, 393216, 1, 458749, 327680, 3, 393213, 327680, 2, 327677, 327680, 2, 262141, 262144, 4, 196622, 524288, 4, 196623, 589824, 4, 196624, 655360, 4, 458778, 655360, 4, 458779, 589824, 4, 458780, 655360, 4, 196644, 655360, 4, 196645, 589824, 4, 196646, 655360, 4, 262133, 524288, 4, 262134, 589824, 4, 262135, 655360, 4, 131117, 655360, 4, 131118, 589824, 4, 131119, 655360, 4, 131135, 393216, 3, 65599, 458752, 4, 131134, 393216, 3, 65598, 458752, 4, 131133, 393216, 3, 65597, 393216, 1, 131132, 393216, 3, 65596, 393216, 1, 131131, 393216, 3, 65595, 393216, 1, 131130, 393216, 3, 65594, 393216, 1, 131129, 393216, 3, 65593, 458752, 4, 131128, 393216, 3, 65592, 393216, 1, 131127, 393216, 3, 65591, 393216, 1, 131126, 393216, 3, 65590, 458752, 4, 131125, 393216, 3, 65589, 458752, 4, 131124, 327680, 3, 65588, 458752, 4, 196669, 458752, 3, 196668, 393216, 3, 196667, 393216, 3, 196666, 393216, 3, 196665, 393216, 3, 196664, 393216, 3, 196663, 393216, 3, 196662, 393216, 3, 262204, 458752, 3, 262203, 393216, 3, 262202, 393216, 3, 262201, 393216, 3, 262200, 393216, 3, 262199, 327680, 3, 196661, 327680, 3, 131140, 458752, 3, 65604, 458752, 2, 68, 458752, 2, -65468, 458752, 2, -131004, 458752, 2, -196540, 327680, 4, 131139, 393216, 3, 65603, 393216, 2, 67, 393216, 2, -65469, 393216, 2, -131005, 393216, 2, -196541, 393216, 1, 131138, 393216, 3, 65602, 393216, 2, 66, 393216, 2, -65470, 393216, 2, -131006, 393216, 2, -196542, 393216, 1, 131137, 393216, 3, 65601, 393216, 2, 65, 393216, 2, -65471, 393216, 2, -131007, 393216, 2, -196543, 393216, 1, 131136, 393216, 3, 65600, 393216, 2, 64, 393216, 2, -65472, 393216, 2, -131008, 393216, 2, -196544, 458752, 4, 63, 327680, 2, -65473, 327680, 2, -131009, 327680, 2, -196545, 262144, 4, 196642, 524288, 4, 196643, 589824, 4, 131115, 524288, 4, 131116, 589824, 4, 458776, 524288, 4, 458777, 589824, 4, 65587, 524288, 4, 56, 524288, 2, 57, 524288, 2, 58, 524288, 0, 60, 262144, 5, 61, 589824, 0, 65580, 524288, 2, 65583, 524288, 0, 131088, 589824, 1, 131108, 524288, 0, 131110, 262144, 5, 196597, 589824, 2, 196598, 524288, 2, 393240, 524288, 0, 393241, 524288, 0, -262079, 589824, 2, -262078, 524288, 0, -262077, 524288, 2, 131072, 524288, 2, 131077, 524288, 0, 65536, 524288, 2, 196606, 589824, 1, 196607, 524288, 2, 131075, 589824, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_t73fm")
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="Portal" parent="Portals" instance=ExtResource("5_qjmdr")]
+position = Vector2(0, 38)
+target_world = "res://scenes/cooper.tscn"
+
+[node name="SavePoints" type="Node" parent="."]
+
+[node name="SavePoint" parent="SavePoints" instance=ExtResource("6_jnldj")]
+position = Vector2(43, 54)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

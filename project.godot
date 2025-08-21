@@ -16,7 +16,7 @@ run/main_scene="uid://dj0b7cwm84d7y"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 0.321569)
 boot_splash/image="uid://b8ip6i3rsct1b"
-config/icon="uid://blobjdffomm8i"
+config/icon="uid://b8ip6i3rsct1b"
 
 [autoload]
 
