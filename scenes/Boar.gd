@@ -100,7 +100,7 @@ func _on_walk_state_physics_processing(delta: float) -> void:
 
 
 func _on_run_state_physics_processing(delta: float) -> void:
-	if wall.is_colliding() or not floorchker.is_colliding():
+	if wall.is_colliding() or not floorchker.is_colliding() and is_on_floor():
 		direction*=-1
 	velocity.x = move_toward(velocity.x, MAX_SPEED * direction, acceleration * delta)
 	pass # Replace with function body.
@@ -109,7 +109,7 @@ func _on_run_state_physics_processing(delta: float) -> void:
 func _on_idle_state_physics_processing(delta: float) -> void:
 	velocity.x=0
 	animation_state.travel("idle")
-	if lock_turn:
+	if lock_turn and is_on_floor():
 		direction*=-1
 		lock_turn=false
 		

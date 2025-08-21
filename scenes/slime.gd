@@ -103,7 +103,7 @@ func _on_shoot_state_entered() -> void:
 func _on_idle_state_physics_processing(delta: float) -> void:
 	velocity.x=0
 	animation_state.travel("idle")
-	if lock_turn:
+	if lock_turn and is_on_floor():
 		direction*=-1
 		lock_turn=false
 		

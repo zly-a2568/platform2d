@@ -8,7 +8,7 @@ const AIR_ACCELERATION =3000
 const GRAVITY = 900
 const FLASH_SPEED =800
 const HURT_BACK_AMOUNT=700
-const WALL_JUMP_AMOUNT_X =800
+const WALL_JUMP_AMOUNT_X =600
 
 var knob_sensitivity:float
 var acceleration:float
@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			if not $StateChart/Root/Living/Intract/Hurting/Hurt.active:
 				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity,acceleration*delta*knob_sensitivity)
 			else:
-				velocity.x=move_toward(velocity.x,0,acceleration*delta)
+				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity/4,acceleration*delta)
 			direction=sign(dire)
 			if still:
 				still=false
