@@ -102,7 +102,7 @@ func load_keymap():
 		InputMap.action_add_event(action,input_event)
 
 func _process(delta):
-	if not message_list.is_empty() and not tween_started and current_scene!="":
+	if not message_list.is_empty():
 		if message_started:
 			return
 		message_started=true

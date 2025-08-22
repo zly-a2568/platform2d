@@ -29,14 +29,17 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		GameProcesser.message_send("无敌时间将缩短！")
-		player.super_time.wait_time=2.0
+		
+		var transition = player.get_node("StateChart/Root/Living/Intract/Hurting/SuperTime/On Free") as Transition
+		transition.delay_in_seconds="2.0"
 	pass # Replace with function body.
 
 
 func _on_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		GameProcesser.message_send("无敌时间已恢复！")
-		player.super_time.wait_time=4.0
+		var transition = player.get_node("StateChart/Root/Living/Intract/Hurting/SuperTime/On Free") as Transition
+		transition.delay_in_seconds="4.0"
 	pass # Replace with function body.
 
 

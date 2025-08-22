@@ -2,9 +2,10 @@ extends  CharacterBody2D
 class_name Player
 
 const SPEED = 200
-const JUMP_VELOCITY = -400
-const GROUND_ACCELERATION = 1500
-const AIR_ACCELERATION =3000
+const JUMP_VELOCITY = -350
+#for snow_world
+var GROUND_ACCELERATION = 1500
+var AIR_ACCELERATION =3000
 const GRAVITY = 900
 const FLASH_SPEED =800
 const HURT_BACK_AMOUNT=700
@@ -16,6 +17,7 @@ var on_floor:bool=false
 var still:bool=true
 var controlled:bool=true
 var bar_length=4.7
+var can_flash:bool=true
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state:AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
@@ -51,6 +53,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			status.energy-=10
 		if status.energy<0:
 			status.energy=0
+
+func disable_flash():
+	can_flash=false
+func enable_flash():
+	can_flash=true
 
 func _physics_process(delta: float) -> void:
 	if $StateChart/Root/Dying.active:
@@ -134,7 +141,7 @@ func _on_prepare_to_flash_processing(delta: float) -> void:
 	if is_on_floor():
 		state_chart.send_event("grounded")
 	if Input.is_action_just_pressed("flash"):
-		if status.energy>=20:
+		if status.energy>=20 and can_flash:
 			state_chart.send_event("flash")
 			status.energy-=30
 		if status.energy<0:
@@ -218,7 +225,7 @@ func _on_on_hurt_taken() -> void:
 func _on_super_time_state_physics_processing(delta: float) -> void:
 	modulate.a=sin(Time.get_ticks_msec()/40)+0.5
 	$Hurttip.show()
-	$Hurttip.scale.x=bar_length/4.7
+	$Hurttip.scale.x=bar_length/int($"StateChart/Root/Living/Intract/Hurting/SuperTime/On Free".delay_in_seconds)
 	bar_length-=delta
 	pass # Replace with function body.
 
@@ -227,9 +234,11 @@ func _on_sliding_state_physics_processing(delta: float) -> void:
 	animation_state.travel("walljump")
 	velocity.y=move_toward(velocity.y,GRAVITY/18,3000*delta)
 	if Input.is_action_just_pressed("jump"):
-		velocity.x=get_wall_normal().x*WALL_JUMP_AMOUNT_X
-		velocity.y=JUMP_VELOCITY
-		state_chart.send_event("jump")
+		if status.energy>=30:
+			status.energy-=30
+			velocity.x=get_wall_normal().x*WALL_JUMP_AMOUNT_X
+			velocity.y=JUMP_VELOCITY
+			state_chart.send_event("jump")
 	if not $Graphics/WallChecker.is_colliding():
 		state_chart.send_event("airborne")
 	pass # Replace with function body.
