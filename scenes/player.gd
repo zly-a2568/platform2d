@@ -41,6 +41,9 @@ func _ready() -> void:
 	var config=ConfigFile.new()
 	config.load(GameProcesser.CONFIG_PATH)
 	knob_sensitivity=config.get_value("Settings","knob_sensitivity",1.0)
+	if OS.get_name()=="Android":
+		for child:Control in $foreUI/JoyPad.get_children():
+			child.scale=config.get_value("Settings","pad_scale",0.5)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
