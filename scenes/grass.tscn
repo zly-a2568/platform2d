@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt3tunsvdmw0"]
+[gd_scene load_steps=11 format=3 uid="uid://bt3tunsvdmw0"]
 
 [ext_resource type="Script" uid="uid://bhqr6pwfeta0c" path="res://scenes/grass.gd" id="1_u7wuo"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="5_h00y4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="8_esugc"]
 [ext_resource type="Script" uid="uid://bjm75opqrpty" path="res://scenes/PlayerCamera.gd" id="9_j6x2i"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="9_sj11k"]
+[ext_resource type="PackedScene" uid="uid://dwenqwimaj5sd" path="res://scenes/tutorial_panel.tscn" id="10_u7wuo"]
 [ext_resource type="PackedScene" uid="uid://bwntdiifnevcj" path="res://scenes/fruit.tscn" id="14_neahd"]
 
 [node name="grass" type="Node2D"]
@@ -124,3 +125,9 @@ drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 editor_draw_drag_margin = true
 script = ExtResource("9_j6x2i")
+
+[node name="ToturialLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TutorialPanel" parent="ToturialLayer" instance=ExtResource("10_u7wuo")]
+visible = false

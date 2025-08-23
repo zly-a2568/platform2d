@@ -36,13 +36,7 @@ func _on_exit_pressed() -> void:
 
 
 func _on_new_pressed() -> void:
-	var file=ConfigFile.new()
-	file.load(GameProcesser.CONFIG_PATH)
-	var introduced=file.get_value("Run","introduced",false)
-	if introduced:
-		GameProcesser.new_game()
-	else:
-		GameProcesser.change_scene("res://scenes/tutorial.tscn")
+	GameProcesser.new_game()
 
 
 

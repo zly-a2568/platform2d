@@ -36,7 +36,6 @@ window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
-window/size/always_on_top.editor=true
 
 [dotnet]
 
@@ -44,7 +43,7 @@ project/assembly_name="platform"
 
 [editor]
 
-movie_writer/movie_file="C:/Data/platform-show/movie.avi"
+movie_writer/movie_file="C:/Data/platform-movie/movie.avi"
 movie_writer/disable_vsync=true
 movie_writer/fps=120
 

@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwenqwimaj5sd"]
+
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_oonuy"]
+[ext_resource type="Script" uid="uid://bg6tc8relgstl" path="res://scenes/tutorial_panel.gd" id="2_0yulk"]
+[ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="2_1wo7w"]
+[ext_resource type="VideoStream" uid="uid://2frq1evoia54" path="res://assets/show/run.ogv" id="4_0yulk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yulk"]
+shader = ExtResource("2_1wo7w")
+shader_parameter/blur_amount = 2.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+shader_parameter/mix_amount = 0.5
+shader_parameter/alpha = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oonuy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.403922)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wo7w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.403922)
+border_blend = true
+
+[node name="TutorialPanel" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oonuy")
+script = ExtResource("2_0yulk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0yulk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -56.0
+offset_right = 79.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oonuy")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(159, 92)
+layout_mode = 2
+size_flags_vertical = 3
+stream = ExtResource("4_0yulk")
+expand = true
+loop = true
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1wo7w")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Next" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "继续"
+
+[node name="Skip" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "跳过"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "警告"
+initial_position = 1
+size = Vector2i(400, 200)
+content_scale_mode = 1
+content_scale_factor = 2.0
+theme = ExtResource("1_oonuy")
+ok_button_text = "确定"
+dialog_text = "是否要跳过新手引导?"
+cancel_button_text = "取消"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Skip" to="." method="_on_skip_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

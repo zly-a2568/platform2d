@@ -2,9 +2,10 @@ extends  CharacterBody2D
 class_name Player
 
 const SPEED = 200
-const JUMP_VELOCITY = -350
+
 #for snow_world
 var GROUND_ACCELERATION = 1500
+var JUMP_VELOCITY = -380
 var AIR_ACCELERATION =3000
 const GRAVITY = 900
 const FLASH_SPEED =800
