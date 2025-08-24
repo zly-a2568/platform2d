@@ -10,7 +10,7 @@ func _ready() -> void:
 	if not introduced:
 		goto_toturial()	
 	else:
-		$ToturialLayer/TutorialPanel.queue_free()
+		$ToturialLayer.queue_free()
 
 func goto_toturial():
 	await get_tree().create_timer(1.0).timeout

@@ -75,15 +75,19 @@ func _on_skip_pressed() -> void:
 	if index<8:
 		if OS.get_name()!="Android":
 			$ConfirmationDialog.show()
+		else:
+			finish_introduce()
+			get_tree().current_scene.process_mode=Node.PROCESS_MODE_PAUSABLE
+			get_parent().queue_free()
 	else:
 		finish_introduce()
 		get_tree().current_scene.process_mode=Node.PROCESS_MODE_PAUSABLE
-		queue_free()
+		get_parent().queue_free()
 	pass # Replace with function body.
 
 
 func _on_confirmation_dialog_confirmed() -> void:
 	finish_introduce()
 	get_tree().current_scene.process_mode=Node.PROCESS_MODE_PAUSABLE
-	queue_free()
+	get_parent().queue_free()
 	pass # Replace with function body.
