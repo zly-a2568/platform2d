@@ -9,8 +9,9 @@ var JUMP_VELOCITY = -380
 var AIR_ACCELERATION =3000
 const GRAVITY = 900
 const FLASH_SPEED =800
-const HURT_BACK_AMOUNT=700
+const HURT_BACK_AMOUNT=900
 const WALL_JUMP_AMOUNT_X =600
+const ATTACK_MOVE_AMOUNT = 150
 
 var knob_sensitivity:float
 var acceleration:float
@@ -72,10 +73,10 @@ func _physics_process(delta: float) -> void:
 	acceleration=GROUND_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	if controlled:
 		if not is_zero_approx(dire):
-			if not $StateChart/Root/Living/Intract/Hurting/Hurt.active:
+			if not $StateChart/Root/Living/Intract/Hurting/Hurt.active or $StateChart/Root/Living/Intract/Attacking/Attack.active:
 				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity,acceleration*delta*knob_sensitivity)
 			else:
-				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity/4,acceleration*delta)
+				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity/3,acceleration*delta)
 			direction=sign(dire)
 			if still:
 				still=false
@@ -123,6 +124,9 @@ func hurt_back(hitter:Node2D):
 	velocity=back_vector
 	
 func shoot_bullet():
+	if not $ShootTimer.is_stopped():
+		return
+	$ShootTimer.start()
 	var bullet:=bullet_prefab.instantiate() as Bullet
 	bullet.global_position=global_position
 	bullet.velocity.x=direction*400

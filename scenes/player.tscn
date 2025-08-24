@@ -1230,6 +1230,10 @@ to = NodePath("../../Dying")
 event = &"dying"
 delay_in_seconds = "0.0"
 
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="body_entered" from="Graphics/Hurter" to="." method="_on_hurter_body_entered"]
 [connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]
 [connection signal="state_physics_processing" from="StateChart/Root/Dying" to="." method="_on_dying_state_physics_processing"]

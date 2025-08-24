@@ -498,7 +498,7 @@ size = Vector2(36.4582, 8.6195)
 size = Vector2(20.8772, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lo6t"]
-size = Vector2(43, 19)
+size = Vector2(37, 19)
 
 [node name="Boar" groups=["enemies"] instance=ExtResource("1_yrl73")]
 script = ExtResource("2_qbaom")
@@ -544,7 +544,7 @@ position = Vector2(-1.43862, 2)
 shape = SubResource("RectangleShape2D_oqe4t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hurter" index="1"]
-position = Vector2(-3.5, 3.5)
+position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_6lo6t")
 
 [node name="Sprite2D" parent="Graphics" index="5"]
