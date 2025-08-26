@@ -80,14 +80,31 @@ max_value = 1.2
 step = 0.0
 value = 1.0
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckUpdate" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "检查更新"
+
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../GridContainer/Button")
 text = "关闭"
 
+[node name="VersionCheck" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="ExecutableDownload" type="HTTPRequest" parent="."]
+use_threads = true
+
 [connection signal="pressed" from="VBoxContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="drag_ended" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_drag_ended"]
 [connection signal="value_changed" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CheckUpdate" to="." method="_on_check_update_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="request_completed" from="VersionCheck" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="ExecutableDownload" to="." method="_on_executable_download_request_completed"]

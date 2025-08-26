@@ -5,6 +5,8 @@ var is_guichu:bool=false
 var introduced:bool=false
 var knob_sensitivity:float=1.0
 var settings=ConfigFile.new()
+var update_downloading:bool=false
+var ver:String
 
 func _ready() -> void:
 	var config=ConfigFile.new()
@@ -69,4 +71,49 @@ func _on_button_pressed() -> void:
 
 
 func _on_button_2_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_check_update_pressed() -> void:
+	if OS.get_name()!="Windows":
+		OS.alert("此功能目前仅对Windows开放")
+		return
+	OS.alert("需要加速器")
+	$VBoxContainer/HBoxContainer/CheckUpdate.disabled=true
+	var error = $VersionCheck.request("https://gh-proxy.net/https://github.com/zly-a1/platform/releases/latest/download/version-note.txt")
+	print(error)
+		
+	pass # Replace with function body.
+
+
+func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	
+	var remote_version=body.get_string_from_utf8().substr(1)
+	ver=remote_version
+	var current_version=ProjectSettings.get_setting("application/config/version") as String
+	var cur_ver_array=current_version.split(".")
+	var rem_ver_array=remote_version.split(".")
+	for a in range(3):
+		if int(rem_ver_array[a])>int(cur_ver_array[a]):
+			print("update avivable")
+			$ExecutableDownload.download_file="user://win.zip"
+			if OS.get_name()=="Windows":
+				$ExecutableDownload.request("https://gh-proxy.net/https://github.com/zly-a1/platform/releases/latest/download/windows-x64.zip")
+				update_downloading=true
+				var downloaded:=Label.new()
+				downloaded.name="downloaded"
+				$VBoxContainer/HBoxContainer.add_child(downloaded)
+			return
+	pass
+	
+func _process(delta: float) -> void:
+	if update_downloading:
+		$VBoxContainer/HBoxContainer.get_node("downloaded").text=str($ExecutableDownload.get_downloaded_bytes()/1000/1000)+"MB"
+
+func _on_executable_download_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	ProjectSettings.set_setting("application/config/version",ver)
+	$VBoxContainer/HBoxContainer/CheckUpdate.disabled=false
+	$VBoxContainer/HBoxContainer.get_node("downloaded").queue_free()
+	update_downloading=false
+	OS.alert("请到数据文件夹查看安装包")
 	pass # Replace with function body.
