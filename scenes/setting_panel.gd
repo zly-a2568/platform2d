@@ -96,9 +96,9 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	for a in range(3):
 		if int(rem_ver_array[a])>int(cur_ver_array[a]):
 			print("update avivable")
-			$ExecutableDownload.download_file="user://win.zip"
+			$ExecutableDownload.download_file=OS.get_executable_path()+"platform2d.pck"
 			if OS.get_name()=="Windows":
-				$ExecutableDownload.request("https://gh-proxy.net/https://github.com/zly-a1/platform/releases/latest/download/windows-x64.zip")
+				$ExecutableDownload.request("https://gh-proxy.net/https://github.com/zly-a1/platform/releases/latest/download/platform2d.pck")
 				update_downloading=true
 				var downloaded:=Label.new()
 				downloaded.name="downloaded"
@@ -115,5 +115,5 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 	$VBoxContainer/HBoxContainer/CheckUpdate.disabled=false
 	$VBoxContainer/HBoxContainer.get_node("downloaded").queue_free()
 	update_downloading=false
-	OS.alert("请到数据文件夹查看安装包")
+	
 	pass # Replace with function body.

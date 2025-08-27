@@ -31,9 +31,11 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
+          mkdir -v -p build/windows-pck
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          godot --headless --verbose --export-pack "Windows Desktop" "$EXPORT_DIR/windows-pck/$EXPORT_NAME.pck"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -51,6 +53,7 @@ jobs:
           tag_name: ${{ env.RELEASE_VERSION }}
           files: | 
               ./build/windows-x64.zip
+              ./build/windows-pck/${EXPORT_NAME}.pck
 
   export-linux:
     name: Linux Export
@@ -69,6 +72,7 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
+          mkdir -v -p build/linux-pck
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
