@@ -6,6 +6,7 @@ var introduced:bool=false
 var knob_sensitivity:float=1.0
 var settings=ConfigFile.new()
 var update_downloading:bool=false
+var update_source:String
 var ver:String
 
 func _ready() -> void:
@@ -14,14 +15,14 @@ func _ready() -> void:
 
 func load_settings():
 	settings.load(SETTING_FILE)
-	introduced=settings.get_value("Run","introduced",false)
+	introduced=settings.get_value("Run","is_first_run",false)
+	update_source=settings.get_value("Settings","update_source","gitee")
+	ProjectSettings.set_setting("application/config/version",settings.get_value("Run","version","1.0.1"))
 	knob_sensitivity=settings.get_value("Settings","knob_sensitivity",1.0)
 	is_guichu=settings.get_value("Settings","is_guichu",false)
-	$VBoxContainer/GridContainer/HSlider2.value=knob_sensitivity
-	$VBoxContainer/GridContainer/CheckButton.button_pressed=is_guichu
+	$VBoxContainer/ScrollContainer/GridContainer/HSlider2.value=knob_sensitivity
+	$VBoxContainer/ScrollContainer/GridContainer/CheckButton.button_pressed=is_guichu
 func apply_settings():
-	var settings=ConfigFile.new()
-	settings.load(SETTING_FILE)
 	settings.set_value("Settings","is_guichu",is_guichu)
 	settings.save(SETTING_FILE)
 	(SoundManager.get_node("BGM/GameOver") as AudioStreamPlayer).stream=preload("res://assets/bgm/Turn All The Lights On.mp3") if is_guichu else preload("res://assets/bgm/game_over.mp3")
@@ -48,9 +49,7 @@ func _on_h_slider_2_value_changed(value: float) -> void:
 
 
 
-func _on_h_slider_2_drag_ended(value_changed: bool) -> void:
-	if not introduced:
-		GameProcesser.message_send("此设置在教程关卡不起效")
+
 
 func _on_exit_pressed() -> void:
 	hide()
@@ -59,7 +58,7 @@ func _on_exit_pressed() -> void:
 
 func _on_check_button_pressed() -> void:
 	SoundManager.play_sfx("Press")
-	is_guichu=$VBoxContainer/GridContainer/CheckButton.button_pressed
+	is_guichu=$VBoxContainer/ScrollContainer/GridContainer/CheckButton.button_pressed
 	apply_settings()
 
 
@@ -78,9 +77,13 @@ func _on_check_update_pressed() -> void:
 	if OS.get_name()!="Windows":
 		OS.alert("此功能目前仅对Windows开放")
 		return
-	OS.alert("需要加速器")
-	$VBoxContainer/HBoxContainer/CheckUpdate.disabled=true
-	var error = $VersionCheck.request("https://gh-proxy.net/https://github.com/zly-a1/platform/releases/latest/download/version-note.txt")
+	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=true
+	var update_url:String
+	if update_source=="github":
+		update_url="https://github.com/zly-a1/platform/releases/download/latest/version-note.txt"
+	else:
+		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/version-note.txt"
+	var error = $VersionCheck.request(update_url)
 	print(error)
 		
 	pass # Replace with function body.
@@ -96,24 +99,39 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	for a in range(3):
 		if int(rem_ver_array[a])>int(cur_ver_array[a]):
 			print("update avivable")
-			$ExecutableDownload.download_file=OS.get_executable_path()+"platform2d.pck"
+			$ExecutableDownload.download_file=OS.get_executable_path().get_base_dir()+"/platform2d.pck"
 			if OS.get_name()=="Windows":
-				$ExecutableDownload.request("https://gh-proxy.net/https://github.com/zly-a1/platform/releases/latest/download/platform2d.pck")
+				var update_url:String
+				if update_source=="github":
+					update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.pck"
+				else:
+					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
+				$ExecutableDownload.request(update_url)
+				
 				update_downloading=true
-				var downloaded:=Label.new()
-				downloaded.name="downloaded"
-				$VBoxContainer/HBoxContainer.add_child(downloaded)
 			return
+	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
 	pass
 	
 func _process(delta: float) -> void:
 	if update_downloading:
-		$VBoxContainer/HBoxContainer.get_node("downloaded").text=str($ExecutableDownload.get_downloaded_bytes()/1000/1000)+"MB"
+		$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text=str($ExecutableDownload.get_downloaded_bytes()/1000/1000)+"MB"
 
 func _on_executable_download_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	ProjectSettings.set_setting("application/config/version",ver)
-	$VBoxContainer/HBoxContainer/CheckUpdate.disabled=false
-	$VBoxContainer/HBoxContainer.get_node("downloaded").queue_free()
+	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text="检查"
+	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
 	update_downloading=false
+	if not body.get_string_from_utf8().find("404"):
+		ProjectSettings.set_setting("application/config/version",ver)
+		settings.set_value("Run","version",ProjectSettings.get_setting("application/config/version") as String)
+		settings.save(GameProcesser.CONFIG_PATH)
 	
+	pass # Replace with function body.
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	if index==0:
+		update_source="github"
+	elif index==1:
+		update_source="gitee"
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://dq2k6takiambk"]
+[gd_resource type="Theme" load_steps=26 format=3 uid="uid://dq2k6takiambk"]
 
 [ext_resource type="FontFile" uid="uid://jrf4v6nnakcf" path="res://themes/fonts/fusion.ttf" id="1_1h68f"]
 [ext_resource type="Texture2D" uid="uid://bosph78xofbl5" path="res://assets/Menu/Buttons/checkbutton.png" id="2_kgv31"]
@@ -74,6 +74,21 @@ texture_margin_bottom = 20.0
 axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8t2u"]
+atlas = ExtResource("2_oryc4")
+region = Rect2(65, 177, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0q7g"]
+atlas = ExtResource("2_oryc4")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c42i"]
+bg_color = Color(0.226707, 0.226708, 0.226707, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hrgd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8t2u"]
+
 [resource]
 default_font_size = 22
 AcceptDialog/font_sizes/title_font_size = 16
@@ -112,4 +127,14 @@ Label/constants/outline_size = 1
 Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 10
 Label/fonts/font = ExtResource("1_1h68f")
+OptionButton/font_sizes/font_size = 10
+OptionButton/fonts/font = ExtResource("1_1h68f")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_t51y8")
+PopupMenu/fonts/font = ExtResource("1_1h68f")
+PopupMenu/fonts/font_separator = ExtResource("1_1h68f")
+PopupMenu/fonts/title_font = ExtResource("1_1h68f")
+PopupMenu/icons/radio_checked = SubResource("AtlasTexture_a8t2u")
+PopupMenu/icons/radio_unchecked = SubResource("AtlasTexture_k0q7g")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_6c42i")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_2hrgd")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_a8t2u")

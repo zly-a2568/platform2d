@@ -30,48 +30,57 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+layout_mode = 2
+offset_right = 384.0
+offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("2_i1njt")
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "设置"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(125, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 text = "鬼畜音效"
+horizontal_alignment = 3
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/GridContainer"]
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Button")
 
-[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 text = "键位设置"
+horizontal_alignment = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../CheckButton")
-focus_neighbor_bottom = NodePath("../../Exit")
+focus_neighbor_bottom = NodePath("../../../Exit")
 text = "进入"
 
-[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 text = "灵敏度"
+horizontal_alignment = 3
 
-[node name="HSlider2" type="HSlider" parent="VBoxContainer/GridContainer"]
+[node name="HSlider2" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -80,18 +89,35 @@ max_value = 1.2
 step = 0.0
 value = 1.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
+text = "检查更新"
+horizontal_alignment = 1
 
-[node name="CheckUpdate" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="CheckUpdate" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "检查更新"
+text = "检查"
+
+[node name="Label5" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "更新源"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+selected = 1
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "Github"
+popup/item_0/id = 0
+popup/item_1/text = "Gitee"
+popup/item_1/id = 1
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../GridContainer/Button")
+focus_neighbor_top = NodePath("../ScrollContainer/GridContainer/Button")
 text = "关闭"
 
 [node name="VersionCheck" type="HTTPRequest" parent="."]
@@ -100,11 +126,11 @@ use_threads = true
 [node name="ExecutableDownload" type="HTTPRequest" parent="."]
 use_threads = true
 
-[connection signal="pressed" from="VBoxContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="drag_ended" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_drag_ended"]
-[connection signal="value_changed" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/CheckUpdate" to="." method="_on_check_update_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CheckUpdate" to="." method="_on_check_update_pressed"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/GridContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="request_completed" from="VersionCheck" to="." method="_on_http_request_request_completed"]
 [connection signal="request_completed" from="ExecutableDownload" to="." method="_on_executable_download_request_completed"]
