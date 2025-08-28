@@ -53,7 +53,7 @@ jobs:
           tag_name: ${{ env.RELEASE_VERSION }}
           files: | 
               ./build/windows-x64.zip
-              ./build/windows-pck/${EXPORT_NAME}.pck
+              ./build/windows-pck/$EXPORT_NAME.pck
 
   export-linux:
     name: Linux Export
