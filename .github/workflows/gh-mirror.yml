@@ -1,0 +1,96 @@
+name: Sync to Gitee
+
+on:
+  push:
+    branches: [ main, master ]
+  release:
+    types: [ published ]
+
+jobs:
+  mirror-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror code to Gitee
+        uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        with:
+          source-repo: "git clone git@github.com:zly-a1/platform.git"
+          destination-repo: "git@gitee.com:zly-k/platformer2d.git"
+
+  sync-releases:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install @octokit/rest
+
+      - name: Sync release to Gitee
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node -e "
+          const { Octokit } = require('@octokit/rest');
+          const github = new Octokit({ auth: process.env.GITHUB_TOKEN });
+          const giteeToken = process.env.GITEE_TOKEN;
+          const owner = '${{ github.repository_owner }}';
+          const repo = '${{ github.event.repository.name }}';
+          const releaseId = '${{ github.event.release.id }}';
+
+          async function syncRelease() {
+            // 获取 GitHub Release 信息
+            const { data: release } = await github.repos.getRelease({ owner, repo, release_id: releaseId });
+            const { tag_name, name, body, assets } = release;
+
+            // 获取 Gitee 仓库 ID
+            const giteeRepoRes = await fetch(\`https://gitee.com/api/v5/repos/${owner}/${repo}\`, {
+              headers: { 'Authorization': \`token \${giteeToken}\` }
+            });
+            const giteeRepo = await giteeRepoRes.json();
+            const giteeRepoId = giteeRepo.id;
+
+            // 创建 Gitee Release
+            const createReleaseRes = await fetch(\`https://gitee.com/api/v5/repos/${owner}/${repo}/releases\`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': \`token \${giteeToken}\`
+              },
+              body: JSON.stringify({
+                tag_name: tag_name,
+                name: name,
+                body: body,
+                target_commitish: 'master'
+              })
+            });
+            const giteeRelease = await createReleaseRes.json();
+            console.log('Gitee Release created:', giteeRelease.html_url);
+
+            // 上传附件
+            for (const asset of assets) {
+              const assetRes = await fetch(asset.url, { headers: { 'Authorization': \`token \${process.env.GITHUB_TOKEN}\` } });
+              const assetBuffer = await assetRes.buffer();
+              const uploadRes = await fetch(\`https://gitee.com/api/v5/repos/${owner}/${repo}/releases/\${giteeRelease.id}/assets\`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/octet-stream',
+                  'Authorization': \`token \${giteeToken}\`
+                },
+                body: assetBuffer
+              });
+              console.log('Uploaded asset:', await uploadRes.json());
+            }
+          }
+
+          syncRelease().catch(err => console.error(err));
+          "
