@@ -16,7 +16,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
         with:
-          source-repo: "git clone git@github.com:zly-a1/platform.git"
+          source-repo: "git@github.com:zly-a1/platform.git"
           destination-repo: "git@gitee.com:zly-k/platformer2d.git"
 
   sync-releases:
