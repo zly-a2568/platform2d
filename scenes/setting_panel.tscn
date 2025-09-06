@@ -129,7 +129,6 @@ text = "关闭"
 
 [node name="VersionCheck" type="HTTPRequest" parent="."]
 use_threads = true
-timeout = 1.0
 
 [node name="ExecutableDownload" type="HTTPRequest" parent="."]
 use_threads = true
