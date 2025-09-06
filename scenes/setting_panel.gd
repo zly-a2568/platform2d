@@ -103,39 +103,39 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	var current_version=ProjectSettings.get_setting("application/config/version") as String
 	var cur_ver_array=current_version.split(".")
 	var rem_ver_array=remote_version.split(".")
-	if OS.get_name()!="Android":
-		for a in range(3):
-			if int(rem_ver_array[a])>int(cur_ver_array[a]):
-				print("update avivable")
-				if OS.get_name()!="Android":
-					$ExecutableDownload.download_file=OS.get_executable_path().get_base_dir()+"/platform2d.pck"
-					var update_url:String
-					if update_source=="github":
-						update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.pck"
-					else:
-						update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
-					$ExecutableDownload.request(update_url)
-					
-					update_downloading=true
-					return
+	for a in range(3):
+		if int(rem_ver_array[a])>int(cur_ver_array[a]):
+			print("update avivable")
+			if OS.get_name()!="Android":
+				$ExecutableDownload.download_file=OS.get_executable_path().get_base_dir()+"/platform2d.pck"
+				var update_url:String
+				if update_source=="github":
+					update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.pck"
 				else:
-					var download_dir:=OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)+"/platform"
-					if not DirAccess.dir_exists_absolute(download_dir):
-						if DirAccess.make_dir_recursive_absolute(download_dir)!=OK:
-							fail_update()
-							return
-					var download_package=download_dir+"platform2d.apk"
-					$ExecutableDownload.download_file=download_package
-					var update_url:String
-					if update_source=="github":
-						update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.apk"
-					else:
-						update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
-					$ExecutableDownload.request(update_url)
-					update_downloading=true
-					return
+					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
+				$ExecutableDownload.request(update_url)
+				
+				update_downloading=true
+				return
+			else:
+				var download_dir:=OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)+"/platform"
+				if not DirAccess.dir_exists_absolute(download_dir):
+					if DirAccess.make_dir_recursive_absolute(download_dir)!=OK:
+						fail_update()
+						return
+				var download_package=download_dir+"platform2d.apk"
+				$ExecutableDownload.download_file=download_package
+				var update_url:String
+				if update_source=="github":
+					update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.apk"
+				else:
+					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
+				$ExecutableDownload.request(update_url)
+				update_downloading=true
+				return
 	OS.alert("已是最新版本","提示")
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
+	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text="检查"
 	$VBoxContainer/Exit.disabled=false
 	pass
 	
