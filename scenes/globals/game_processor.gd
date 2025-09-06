@@ -31,6 +31,8 @@ const SceneFile:Dictionary={
 signal camera_shock(amount:float)
 
 func _ready():
+	if OS.get_name()=="Android":
+		OS.request_permissions()
 	load_data()
 	color_rect.hide()
 	load_config()

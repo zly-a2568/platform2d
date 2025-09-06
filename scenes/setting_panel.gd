@@ -95,7 +95,7 @@ func _on_check_update_pressed() -> void:
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result!=HTTPRequest.RESULT_SUCCESS:
-		print("网络请求错误：",result)
+		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
 	var remote_version=body.get_string_from_utf8().substr(1)
@@ -118,20 +118,12 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 				update_downloading=true
 				return
 			else:
-				var download_dir:=OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)+"/platform"
-				if not DirAccess.dir_exists_absolute(download_dir):
-					if DirAccess.make_dir_recursive_absolute(download_dir)!=OK:
-						fail_update()
-						return
-				var download_package=download_dir+"platform2d.apk"
-				$ExecutableDownload.download_file=download_package
 				var update_url:String
 				if update_source=="github":
 					update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.apk"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
-				$ExecutableDownload.request(update_url)
-				update_downloading=true
+				OS.shell_open(update_url)
 				return
 	OS.alert("已是最新版本","提示")
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
@@ -152,12 +144,8 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 		ProjectSettings.set_setting("application/config/version",ver)
 		settings.set_value("Run","version",ProjectSettings.get_setting("application/config/version") as String)
 		settings.save(GameProcesser.CONFIG_PATH)
-		if OS.get_name()=="Android":
-			var downloaded_file:=OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)+"/platform/platform2d.apk"
-			OS.shell_open(downloaded_file)
-			OS.alert("更新完成，请重启","提示")
-			get_tree().quit()
 	else:
+		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
 	
