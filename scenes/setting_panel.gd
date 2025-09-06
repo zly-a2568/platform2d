@@ -63,6 +63,8 @@ func _on_check_button_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
+	#get_parent().get_node("JoyPadEditable").open_panel()
+	#return
 	if OS.get_name()=="Android":
 		get_parent().get_node("JoyPadEditable").open_panel()
 	else:
