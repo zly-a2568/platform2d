@@ -17,7 +17,6 @@ func load_settings():
 	settings.load(SETTING_FILE)
 	introduced=settings.get_value("Run","is_first_run",false)
 	update_source=settings.get_value("Settings","update_source","gitee")
-	ProjectSettings.set_setting("application/config/version",settings.get_value("Run","version","1.0.1"))
 	knob_sensitivity=settings.get_value("Settings","knob_sensitivity",1.0)
 	is_guichu=settings.get_value("Settings","is_guichu",false)
 	$VBoxContainer/ScrollContainer/GridContainer/HSlider2.value=knob_sensitivity
@@ -94,13 +93,14 @@ func _on_check_update_pressed() -> void:
 
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	print(result)
 	if result!=HTTPRequest.RESULT_SUCCESS:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
 	var remote_version=body.get_string_from_utf8().substr(1)
 	ver=remote_version
-	var current_version=ProjectSettings.get_setting("application/config/version") as String
+	var current_version=GameProcesser.get_game_version() as String
 	var cur_ver_array=current_version.split(".")
 	var rem_ver_array=remote_version.split(".")
 	for a in range(3):
@@ -133,17 +133,19 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	
 func _process(delta: float) -> void:
 	if update_downloading:
-		$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text=str($ExecutableDownload.get_downloaded_bytes()/1000/1000)+"MB"
+		$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text=str($ExecutableDownload.get_downloaded_bytes()/1024/1024)+"MB"
 
 func _on_executable_download_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	print("result:",result,"\n","response_code:",response_code)
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text="检查"
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
 	$VBoxContainer/Exit.disabled=false
 	update_downloading=false
 	if result==HTTPRequest.RESULT_SUCCESS:
-		ProjectSettings.set_setting("application/config/version",ver)
-		settings.set_value("Run","version",ProjectSettings.get_setting("application/config/version") as String)
-		settings.save(GameProcesser.CONFIG_PATH)
+		if OS.get_name()!="Android":
+			OS.alert("更新完成，请重启","提示")
+			OS.create_instance([])
+			get_tree().quit()
 	else:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()

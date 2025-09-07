@@ -76,7 +76,7 @@ region_rect = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8t2u"]
 atlas = ExtResource("2_oryc4")
-region = Rect2(65, 177, 14, 14)
+region = Rect2(65, 113, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0q7g"]
 atlas = ExtResource("2_oryc4")
@@ -130,6 +130,9 @@ Label/fonts/font = ExtResource("1_1h68f")
 OptionButton/font_sizes/font_size = 10
 OptionButton/fonts/font = ExtResource("1_1h68f")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_t51y8")
+PopupMenu/font_sizes/font_separator_size = 20
+PopupMenu/font_sizes/font_size = 20
+PopupMenu/font_sizes/title_font_size = 20
 PopupMenu/fonts/font = ExtResource("1_1h68f")
 PopupMenu/fonts/font_separator = ExtResource("1_1h68f")
 PopupMenu/fonts/title_font = ExtResource("1_1h68f")

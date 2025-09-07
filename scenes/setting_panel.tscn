@@ -122,8 +122,9 @@ popup/item_1/text = "Gitee"
 popup/item_1/id = 1
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 16)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../ScrollContainer/GridContainer/Button")
 text = "关闭"
 

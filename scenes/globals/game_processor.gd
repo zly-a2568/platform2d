@@ -1,6 +1,10 @@
 extends Node
 @onready var color_rect = $ColorRect
 
+
+const GAME_VERSION="1.0.2"
+
+
 const CONFIG_PATH="user://config.ini"
 const DATA_PATH = "user://scenedata.tres"
 const KEYMAP_PATH = "user://keymap.tres"
@@ -37,6 +41,9 @@ func _ready():
 	color_rect.hide()
 	load_config()
 	#get_window().min_size=Vector2i(1024,648)
+	
+func get_game_version()->String:
+	return GAME_VERSION
 
 func change_scene(path:String,fun_to_exec:Callable=func():):
 	if tween_started or message_started:
