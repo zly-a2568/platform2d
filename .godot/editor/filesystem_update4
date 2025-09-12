@@ -1,0 +1,14 @@
+res://scenes/grass.tscn
+res://themes/theme.tres
+res://assets/Terrain/maptile.tres
+res://shaders/blur.tres
+res://assets/Terrain/tile1.tres
+res://scenes/tutorial_panel.tscn
+res://scenes/player.tscn
+res://scenes/skyland.tscn
+res://scenes/joy_pad.tscn
+res://scenes/snow.tscn
+res://scenes/title_screen.tscn
+res://scenes/boar.tscn
+res://scenes/setting_panel.tscn
+res://scenes/globals/game_processor.tscn
