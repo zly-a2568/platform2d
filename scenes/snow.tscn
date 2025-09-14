@@ -59,13 +59,11 @@ position = Vector2(43, 54)
 [node name="Puzzles" type="Node" parent="."]
 
 [node name="Fan" parent="Puzzles" instance=ExtResource("7_fmvj7")]
-position = Vector2(1158, -56)
-rotation = 0.000518576
-target_point = Vector2(-2.74622, -260.172)
+position = Vector2(1165, -58)
+target_point = Vector2(0, -250)
 
 [node name="Fan2" parent="Puzzles" instance=ExtResource("7_fmvj7")]
-position = Vector2(470, -363)
-rotation = 0.000518576
-target_point = Vector2(-1.10739, -206.999)
+position = Vector2(476, -364)
+target_point = Vector2(0, -249.97)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

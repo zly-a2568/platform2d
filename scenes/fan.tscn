@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgvj1q4q36qfo"]
+[gd_scene load_steps=9 format=3 uid="uid://dgvj1q4q36qfo"]
 
 [ext_resource type="PackedScene" uid="uid://6dvkj6pnnxxt" path="res://scenes/puzzle.tscn" id="1_p64dw"]
 [ext_resource type="Script" uid="uid://b781aigwrx8ld" path="res://scenes/fan.gd" id="2_ib1wi"]
 [ext_resource type="Texture2D" uid="uid://0jba2hh42cm" path="res://assets/Traps/Fan/On (24x8).png" id="3_h3fxe"]
+[ext_resource type="Script" uid="uid://113v4mdui02t" path="res://scenes/ray_cast_show.gd" id="4_05mpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3fxe"]
 size = Vector2(23, 8)
@@ -120,7 +121,7 @@ _data = {
 
 [node name="Fan" instance=ExtResource("1_p64dw")]
 script = ExtResource("2_ib1wi")
-target_point = Vector2(-0.0581512, -55.4999)
+target_point = Vector2(0, -55.5)
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0.5, 0)
@@ -138,5 +139,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="3"]
-target_position = Vector2(-0.0581512, -55.4999)
+position = Vector2(-1, 0)
+target_position = Vector2(0, -50)
 collision_mask = 2
+script = ExtResource("4_05mpp")
