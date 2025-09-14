@@ -93,6 +93,12 @@ jobs:
           tag_name: ${{ env.RELEASE_VERSION }}
           files: | 
               ./build/linux-x64.zip
+      - name: Mirror To Gitee
+        run: |
+          cd $PROJECT_PATH/.hithub/workflows/
+          bash ./mirror_gitee.sh
+          
+          
 
   export-web:
     name: Web Export

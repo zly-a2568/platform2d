@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=26 format=3 uid="uid://dq2k6takiambk"]
 
-[ext_resource type="FontFile" uid="uid://jrf4v6nnakcf" path="res://themes/fonts/fusion.ttf" id="1_1h68f"]
-[ext_resource type="Texture2D" uid="uid://bosph78xofbl5" path="res://assets/Menu/Buttons/checkbutton.png" id="2_kgv31"]
-[ext_resource type="Texture2D" uid="uid://ci40s4lu5pbjg" path="res://assets/Menu/HUD.png" id="2_oryc4"]
+[ext_resource type="FontFile" uid="uid://17la2c1eedop" path="res://themes/fonts/fusion.ttf" id="1_1h68f"]
+[ext_resource type="Texture2D" uid="uid://chs8enfumrkku" path="res://assets/Menu/Buttons/checkbutton.png" id="2_kgv31"]
+[ext_resource type="Texture2D" uid="uid://blvo75f63iwgi" path="res://assets/Menu/HUD.png" id="2_oryc4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgv31"]
 bg_color = Color(0, 0, 0, 0.309804)
