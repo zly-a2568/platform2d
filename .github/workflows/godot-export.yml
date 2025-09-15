@@ -54,10 +54,6 @@ jobs:
           files: | 
               ./build/windows-x64.zip
               ./build/windows-pck/${{env.EXPORT_NAME}}.pck
-      - name: Mirror To Gitee
-        run: |
-          cd $PROJECT_PATH/.github/workflows/
-          bash ./mirror_gitee.sh $(readlink -f build)/windows-x64.zip
 
   export-linux:
     name: Linux Export
@@ -97,11 +93,6 @@ jobs:
           tag_name: ${{ env.RELEASE_VERSION }}
           files: | 
               ./build/linux-x64.zip
-      - name: Mirror To Gitee
-        run: |
-          cd $PROJECT_PATH/.github/workflows/
-          bash ./mirror_gitee.sh $(readlink -f build)/linux-x64.zip
-          
           
 
   export-web:
