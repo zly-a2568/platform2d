@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cvnhm5vric1gy"]
 
 [ext_resource type="Script" uid="uid://d0aup3qahsasg" path="res://scenes/slime_bullet.gd" id="1_nvs0k"]
-[ext_resource type="Texture2D" uid="uid://uexdtdpjq35w" path="res://assets/Main Characters/Slimer/slime_bullets.png" id="2_nvs0k"]
+[ext_resource type="Texture2D" uid="uid://3knwv2j2x2dy" path="res://assets/Main Characters/Slimer/slime_bullets.png" id="2_nvs0k"]
 [ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="3_6codh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xo4i"]

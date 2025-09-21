@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dskfgefbsxmba"]
 
 [ext_resource type="Script" uid="uid://jvu5qysr8l1n" path="res://scenes/save_point.gd" id="1_wiums"]
-[ext_resource type="Texture2D" uid="uid://bb8x4h1oq5abw" path="res://assets/Items/Checkpoints/Checkpoint/save_point_anim_strip_9.png" id="2_wiums"]
-[ext_resource type="Texture2D" uid="uid://cp1uy8qn6pq7s" path="res://assets/Items/Checkpoints/Checkpoint/save_point_saving_anim_strip_3.png" id="3_n0rt3"]
+[ext_resource type="Texture2D" uid="uid://dqr1ntdkynfks" path="res://assets/Items/Checkpoints/Checkpoint/save_point_anim_strip_9.png" id="2_wiums"]
+[ext_resource type="Texture2D" uid="uid://b8twdmxjuqwsc" path="res://assets/Items/Checkpoints/Checkpoint/save_point_saving_anim_strip_3.png" id="3_n0rt3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rt3"]
 

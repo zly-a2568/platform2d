@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bephgxrkhh3e2"]
 
 [ext_resource type="Script" uid="uid://c1o57esbvbwai" path="res://addons/godot_state_charts/utilities/editor_sidebar.gd" id="1_7kcy8"]
-[ext_resource type="Texture2D" uid="uid://bx8dwyh5vto0i" path="res://addons/godot_state_charts/atomic_state.svg" id="2_0k4pg"]
-[ext_resource type="Texture2D" uid="uid://crpxf5viqfsvs" path="res://addons/godot_state_charts/compound_state.svg" id="3_b4okj"]
-[ext_resource type="Texture2D" uid="uid://d6o05laejb3j" path="res://addons/godot_state_charts/parallel_state.svg" id="4_lmfic"]
-[ext_resource type="Texture2D" uid="uid://dnahbqqur0ym4" path="res://addons/godot_state_charts/history_state.svg" id="5_oj1t0"]
-[ext_resource type="Texture2D" uid="uid://difqf7cnlmmln" path="res://addons/godot_state_charts/transition.svg" id="6_72e5q"]
-[ext_resource type="Texture2D" uid="uid://bw3ub1mm64r4t" path="res://addons/godot_state_charts/toggle_sidebar.svg" id="9_dqcj0"]
+[ext_resource type="Texture2D" uid="uid://vbvx3607y206" path="res://addons/godot_state_charts/atomic_state.svg" id="2_0k4pg"]
+[ext_resource type="Texture2D" uid="uid://bx47hslrckt18" path="res://addons/godot_state_charts/compound_state.svg" id="3_b4okj"]
+[ext_resource type="Texture2D" uid="uid://c3j0sk1nhyfp8" path="res://addons/godot_state_charts/parallel_state.svg" id="4_lmfic"]
+[ext_resource type="Texture2D" uid="uid://j5vic1rp8t8h" path="res://addons/godot_state_charts/history_state.svg" id="5_oj1t0"]
+[ext_resource type="Texture2D" uid="uid://cem8i84qt0d38" path="res://addons/godot_state_charts/transition.svg" id="6_72e5q"]
+[ext_resource type="Texture2D" uid="uid://bwso8nl6abfnv" path="res://addons/godot_state_charts/toggle_sidebar.svg" id="9_dqcj0"]
 
 [node name="EditorSidebar" type="MarginContainer"]
 anchors_preset = 15

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://2a5hobg7j8ek"]
 
-[ext_resource type="Texture2D" uid="uid://rrk36fbc6q0s" path="res://assets/Traps/Platforms/Brown On (32x8).png" id="1_ba0x2"]
+[ext_resource type="Texture2D" uid="uid://ctywjoeyxmqky" path="res://assets/Traps/Platforms/Brown On (32x8).png" id="1_ba0x2"]
 [ext_resource type="Script" uid="uid://5ryvcnmumdpr" path="res://scenes/platform.gd" id="1_nlgqw"]
 
 [sub_resource type="Animation" id="Animation_n1ckp"]

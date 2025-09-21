@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://b8n62pqdhsqkn"]
 
-[ext_resource type="Texture2D" uid="uid://bw816tgqmm7di" path="res://assets/Terrain/Terrain (16x16).png" id="1_613ta"]
-[ext_resource type="Texture2D" uid="uid://bbvcl54ieud8j" path="res://assets/Traps/Spikes/Idle.png" id="2_h3xn7"]
-[ext_resource type="Texture2D" uid="uid://byrxsatk8fb6m" path="res://assets/Traps/Spike Head/Blink (54x52).png" id="3_h3xn7"]
+[ext_resource type="Texture2D" uid="uid://bawdrspevsq7q" path="res://assets/Terrain/Terrain (16x16).png" id="1_613ta"]
+[ext_resource type="Texture2D" uid="uid://dtruifueevmb3" path="res://assets/Traps/Spikes/Idle.png" id="2_h3xn7"]
+[ext_resource type="Texture2D" uid="uid://d1acvp2qknaa5" path="res://assets/Traps/Spike Head/Blink (54x52).png" id="3_h3xn7"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_613ta"]
 tile_data = PackedInt32Array(65536, 1, 1073741824, 1, 1, 268435456, 65537, 393216, 6, 131073, 1, 805306368, 65538, 1, 1342177280)

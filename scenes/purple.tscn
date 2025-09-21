@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b1sffaio2xdbr"]
 
 [ext_resource type="Script" uid="uid://cbie3jr2dm3b3" path="res://scenes/purple.gd" id="1_v0v38"]
-[ext_resource type="Texture2D" uid="uid://2mvyyo80y78b" path="res://assets/Background/Purple.png" id="2_qpuvs"]
+[ext_resource type="Texture2D" uid="uid://bekrybxvywhqi" path="res://assets/Background/Purple.png" id="2_qpuvs"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="2_v0v38"]
 [ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="3_q2ltv"]
 [ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="5_amdbo"]

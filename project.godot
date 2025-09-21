@@ -13,10 +13,10 @@ config_version=5
 config/name="platform"
 config/version="1.0.0"
 run/main_scene="uid://dj0b7cwm84d7y"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 0.321569)
-boot_splash/image="uid://b8ip6i3rsct1b"
-config/icon="uid://b8ip6i3rsct1b"
+boot_splash/image="uid://c65vap244qkbu"
+config/icon="uid://c65vap244qkbu"
 
 [autoload]
 

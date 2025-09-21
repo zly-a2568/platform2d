@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cksvt27ed8tp6" path="res://scenes/gold.gd" id="1_kxhfr"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_hqwsd"]
 [ext_resource type="PackedScene" uid="uid://bwntdiifnevcj" path="res://scenes/fruit.tscn" id="3_vkgjr"]
-[ext_resource type="Texture2D" uid="uid://bystue7dvw8s2" path="res://assets/Background/Yellow.png" id="4_kxhfr"]
+[ext_resource type="Texture2D" uid="uid://bird5s5l60tu" path="res://assets/Background/Yellow.png" id="4_kxhfr"]
 [ext_resource type="PackedScene" uid="uid://2a5hobg7j8ek" path="res://scenes/platform.tscn" id="4_qea4k"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="5_4jmfr"]
 [ext_resource type="PackedScene" uid="uid://c3b43sqwhi7cp" path="res://scenes/trampoline.tscn" id="8_yqlv4"]

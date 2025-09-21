@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://birko4vphtwjn"]
 
 [ext_resource type="PackedScene" uid="uid://6dvkj6pnnxxt" path="res://scenes/puzzle.tscn" id="1_1e8ai"]
-[ext_resource type="Texture2D" uid="uid://crudcl6pkjho6" path="res://assets/Traps/Rock Head/Blink (42x42).png" id="2_lynhg"]
+[ext_resource type="Texture2D" uid="uid://mcoht4lw2qno" path="res://assets/Traps/Rock Head/Blink (42x42).png" id="2_lynhg"]
 [ext_resource type="Script" uid="uid://cqp5ru8e5gmh7" path="res://scenes/shooter.gd" id="2_mger4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lynhg"]

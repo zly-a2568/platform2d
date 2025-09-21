@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0ugxc5ghfetg"]
 
-[ext_resource type="Texture2D" uid="uid://dsp1kniwegaxm" path="res://assets/Traps/Saw/On (38x38).png" id="1_sxjcd"]
+[ext_resource type="Texture2D" uid="uid://htb33tp5orde" path="res://assets/Traps/Saw/On (38x38).png" id="1_sxjcd"]
 [ext_resource type="Script" uid="uid://bwdvdwqy7dx64" path="res://scenes/puzzle_bullet.gd" id="1_tc3o5"]
 [ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="2_tc3o5"]
 

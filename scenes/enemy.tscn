@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="2_y1m0c"]
 [ext_resource type="Script" uid="uid://co0qwrre8i7w7" path="res://classes/Hurter.gd" id="3_ygnln"]
 [ext_resource type="Script" uid="uid://clfunqr5x6xet" path="res://classes/Status.gd" id="5_c4w8v"]
-[ext_resource type="Texture2D" uid="uid://ci40s4lu5pbjg" path="res://assets/Menu/HUD.png" id="6_xwavj"]
+[ext_resource type="Texture2D" uid="uid://c3x3sl3dh28le" path="res://assets/Menu/HUD.png" id="6_xwavj"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="7_nenq2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]

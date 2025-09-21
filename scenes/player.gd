@@ -9,7 +9,7 @@ var JUMP_VELOCITY = -380
 var AIR_ACCELERATION =3000
 const GRAVITY = 900
 const FLASH_SPEED =800
-const HURT_BACK_AMOUNT=900
+const HURT_BACK_AMOUNT=700
 const WALL_JUMP_AMOUNT_X =600
 const ATTACK_MOVE_AMOUNT = 150
 
@@ -20,6 +20,7 @@ var still:bool=true
 var controlled:bool=true
 var bar_length=4.7
 var can_flash:bool=true
+var free_time:float=0.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state:AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
@@ -69,7 +70,6 @@ func _physics_process(delta: float) -> void:
 		return
 	#Controlling of Movement
 	var dire =Input.get_axis("ui_left","ui_right") 
-	
 	acceleration=GROUND_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	if controlled:
 		if not is_zero_approx(dire):
@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity,acceleration*delta*knob_sensitivity)
 			else:
 				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity/3,acceleration*delta)
-			direction=sign(dire)
+			direction=sign(dire) if dire!=0 else direction
 			if still:
 				still=false
 		else:
@@ -119,9 +119,17 @@ func _physics_process(delta: float) -> void:
 			
 
 func hurt_back(hitter:Node2D):
-	var back_direction=(global_position-hitter.global_position).normalized()
-	var back_vector=back_direction*HURT_BACK_AMOUNT
-	velocity=back_vector
+	if hitter is TileMap:
+		var v_normalized=velocity.normalized()
+		var tile_pos=hitter.to_global(hitter.map_to_local(hitter.local_to_map(hitter.to_local(global_position+v_normalized*16))))
+		print(tile_pos)
+		var back_direction=(global_position-tile_pos).normalized()
+		var back_vector=back_direction*HURT_BACK_AMOUNT
+		velocity=back_vector
+	else:
+		var back_direction=(global_position-hitter.global_position).normalized()
+		var back_vector=back_direction*HURT_BACK_AMOUNT
+		velocity=back_vector
 	
 func shoot_bullet():
 	if not $ShootTimer.is_stopped():
@@ -180,8 +188,14 @@ func _on_cannot_jump_state_physics_processing(delta: float) -> void:
 
 
 func _on_free_state_physics_processing(delta: float) -> void:
+	if free_time<=100:
+		free_time+=delta
+	else:
+		free_time=0.0
 	if Input.is_action_just_pressed("attack"):
-		state_chart.send_event("attack")
+		if free_time>=0.1:
+			state_chart.send_event("attack")
+			free_time=0.0
 	pass # Replace with function body.
 
 

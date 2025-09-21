@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhqr6pwfeta0c" path="res://scenes/grass.gd" id="1_u7wuo"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="5_h00y4"]
-[ext_resource type="Texture2D" uid="uid://nml365ffy357" path="res://assets/Background/Green.png" id="5_sj11k"]
+[ext_resource type="Texture2D" uid="uid://syjn7s30eh8f" path="res://assets/Background/Green.png" id="5_sj11k"]
 [ext_resource type="PackedScene" uid="uid://cuxn2ncimf10h" path="res://scenes/boar.tscn" id="6_gpe7j"]
 [ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="6_h00y4"]
 [ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="8_esugc"]
@@ -14,7 +14,6 @@
 [node name="grass" type="Node2D"]
 script = ExtResource("1_u7wuo")
 metadata/_edit_horizontal_guides_ = [953.0]
-metadata/_edit_vertical_guides_ = [187.0]
 
 [node name="Portals" type="Node" parent="."]
 

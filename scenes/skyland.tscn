@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b46cwywirf3sn" path="res://scenes/skyland.gd" id="1_8gkas"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_ljaw2"]
 [ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="3_dvqhr"]
-[ext_resource type="Texture2D" uid="uid://cu6c32wrv6c5l" path="res://assets/Background/world_tileset.png" id="4_0sglt"]
+[ext_resource type="Texture2D" uid="uid://bi5c3k2thffb8" path="res://assets/Background/world_tileset.png" id="4_0sglt"]
 [ext_resource type="Script" uid="uid://bjm75opqrpty" path="res://scenes/PlayerCamera.gd" id="4_bjjy1"]
 [ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="5_ljaw2"]
 [ext_resource type="PackedScene" uid="uid://cuxn2ncimf10h" path="res://scenes/boar.tscn" id="6_dvqhr"]

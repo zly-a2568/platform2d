@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c78bswp0urruk" path="res://scenes/slime.tscn" id="3_ajmxu"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="3_txt7i"]
 [ext_resource type="PackedScene" uid="uid://bwntdiifnevcj" path="res://scenes/fruit.tscn" id="4_sphpj"]
-[ext_resource type="Texture2D" uid="uid://bjkbt8jh1i646" path="res://assets/Background/Gray.png" id="4_txt7i"]
+[ext_resource type="Texture2D" uid="uid://dpchf4y61b0h2" path="res://assets/Background/Gray.png" id="4_txt7i"]
 [ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="5_4hkna"]
 [ext_resource type="PackedScene" uid="uid://2a5hobg7j8ek" path="res://scenes/platform.tscn" id="6_akgbu"]
 [ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="6_tp2bq"]

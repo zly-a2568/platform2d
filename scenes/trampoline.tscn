@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://c3b43sqwhi7cp"]
 
 [ext_resource type="PackedScene" uid="uid://6dvkj6pnnxxt" path="res://scenes/puzzle.tscn" id="1_nytqh"]
-[ext_resource type="Texture2D" uid="uid://cwhstmtojxgul" path="res://assets/Traps/Trampoline/Idle.png" id="2_1ne3y"]
+[ext_resource type="Texture2D" uid="uid://bsbqlbvkvm7a4" path="res://assets/Traps/Trampoline/Idle.png" id="2_1ne3y"]
 [ext_resource type="Script" uid="uid://dn3prayx6m3k8" path="res://scenes/trampoline.gd" id="2_5gay0"]
-[ext_resource type="Texture2D" uid="uid://2a31knqqlpul" path="res://assets/Traps/Trampoline/Jump (28x28).png" id="4_5gay0"]
+[ext_resource type="Texture2D" uid="uid://dmveom74aqd7c" path="res://assets/Traps/Trampoline/Jump (28x28).png" id="4_5gay0"]
 
 [sub_resource type="Animation" id="Animation_64cc3"]
 length = 0.001

@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://yk4sluf8s346"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://yk4sluf8s346"]
 
-[ext_resource type="Texture2D" uid="uid://tpgdajcolfkw" path="res://assets/tilemap_packed.png" id="1_3g2l4"]
+[ext_resource type="Texture2D" uid="uid://c6nnlwsrt2wp1" path="res://assets/tilemap_packed.png" id="1_3g2l4"]
+[ext_resource type="Texture2D" uid="uid://dtruifueevmb3" path="res://assets/Traps/Spikes/Idle.png" id="2_n5ywx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n5ywx"]
 texture = ExtResource("1_3g2l4")
@@ -155,9 +156,19 @@ texture_region_size = Vector2i(18, 18)
 8:0/0 = 0
 8:0/0/probability = 0.5
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yveht"]
+texture = ExtResource("2_n5ywx")
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -1)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-4.5, 2.5, -1.5, 9, -8, 9)
+0:0/0/physics_layer_1/polygon_1/points = PackedVector2Array(3.5, 2.5, 0.5, 9, 6.5, 9)
+
 [resource]
 tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 8
+physics_layer_1/collision_mask = 2
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "snow"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -165,3 +176,4 @@ terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "snow"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_n5ywx")
+sources/1 = SubResource("TileSetAtlasSource_yveht")

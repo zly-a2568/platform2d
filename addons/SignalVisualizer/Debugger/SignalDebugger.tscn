@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbsmvov8u78q"]
 
 [ext_resource type="Script" uid="uid://xgidakgxje5w" path="res://addons/SignalVisualizer/Debugger/signal_debugger_panel.gd" id="1_66cpc"]
-[ext_resource type="Texture2D" uid="uid://6vocyxicht8c" path="res://addons/SignalVisualizer/Play.svg" id="2_2wkuv"]
-[ext_resource type="Texture2D" uid="uid://d14tcrmdlm3er" path="res://addons/SignalVisualizer/Stop.svg" id="3_bg5eu"]
-[ext_resource type="Texture2D" uid="uid://dutiaxlekmr03" path="res://addons/SignalVisualizer/Clear.svg" id="4_vg63r"]
+[ext_resource type="Texture2D" uid="uid://e1dk6q8v2ebj" path="res://addons/SignalVisualizer/Play.svg" id="2_2wkuv"]
+[ext_resource type="Texture2D" uid="uid://b2i2v884cmctr" path="res://addons/SignalVisualizer/Stop.svg" id="3_bg5eu"]
+[ext_resource type="Texture2D" uid="uid://chjqejq7fj51h" path="res://addons/SignalVisualizer/Clear.svg" id="4_vg63r"]
 
 [node name="SignalDebugger" type="Control"]
 clip_contents = true
@@ -71,6 +71,7 @@ layout_mode = 2
 
 [node name="TabBar" type="TabBar" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
+current_tab = 0
 tab_count = 2
 tab_0/title = "Signal Log"
 tab_1/title = "Signal Graph"

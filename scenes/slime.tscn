@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://c0if24aritjfw" path="res://scenes/enemy.tscn" id="1_gt117"]
 [ext_resource type="Script" uid="uid://crwd1niab5nd" path="res://scenes/slime.gd" id="2_1e8ai"]
-[ext_resource type="Texture2D" uid="uid://bexm7a5eojr0w" path="res://assets/Main Characters/Slimer/slimer-Die.png" id="4_2npkn"]
+[ext_resource type="Texture2D" uid="uid://w50ikgkghtdv" path="res://assets/Main Characters/Slimer/slimer-Die.png" id="4_2npkn"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_v5wyi"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_0l8pv"]
-[ext_resource type="Texture2D" uid="uid://okpc0xchrolt" path="res://assets/Main Characters/Slimer/slimer-idle.png" id="7_v5wyi"]
-[ext_resource type="Texture2D" uid="uid://h7eaho6dd1fx" path="res://assets/Main Characters/Slimer/slimer.png" id="8_0l8pv"]
+[ext_resource type="Texture2D" uid="uid://ib7l47jm84i5" path="res://assets/Main Characters/Slimer/slimer-idle.png" id="7_v5wyi"]
+[ext_resource type="Texture2D" uid="uid://cqg1yxqmgsdvb" path="res://assets/Main Characters/Slimer/slimer.png" id="8_0l8pv"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="8_vnioy"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v5wyi"]
@@ -558,7 +558,7 @@ one_shot = true
 [connection signal="state_physics_processing" from="StateChart/Root/Living/Walk" to="." method="_on_walk_state_physics_processing"]
 [connection signal="taken" from="StateChart/Root/Living/Walk/On Idle" to="." method="_on_on_idle_taken"]
 [connection signal="state_entered" from="StateChart/Root/Living/Shoot" to="." method="_on_shoot_state_entered"]
-[connection signal="taken" from="StateChart/Root/Living/Shoot/On Walk" to="." method="_on_on_walk_taken"]
 [connection signal="taken" from="StateChart/Root/Living/Shoot/On Walk" to="." method="_on_end_shoot_taken"]
+[connection signal="taken" from="StateChart/Root/Living/Shoot/On Walk" to="." method="_on_on_walk_taken"]
 [connection signal="taken" from="StateChart/Root/Living/Hurt/On Shoot" to="." method="_on_on_shoot_taken"]
 [connection signal="state_physics_processing" from="StateChart/Root/Dying" to="." method="_on_dying_state_physics_processing"]

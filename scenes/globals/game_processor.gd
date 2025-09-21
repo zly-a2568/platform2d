@@ -45,7 +45,7 @@ func _ready():
 func get_game_version()->String:
 	return GAME_VERSION
 
-func change_scene(path:String,fun_to_exec:Callable=func():):
+func change_scene(path:String):
 	if tween_started or message_started:
 		return
 	tween_started=true
@@ -63,7 +63,6 @@ func change_scene(path:String,fun_to_exec:Callable=func():):
 	tween=create_tween()
 	tween.tween_property(color_rect,"color:a",0,0.5)
 	await tween.finished
-	fun_to_exec.call()
 	tween_started=false
 	color_rect.hide()
 

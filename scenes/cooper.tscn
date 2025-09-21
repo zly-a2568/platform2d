@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyfm008was8oj" path="res://scenes/cooper.gd" id="1_kimck"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_6sx7t"]
-[ext_resource type="Texture2D" uid="uid://b61su44i1wemm" path="res://assets/Background/Brown.png" id="2_kimck"]
+[ext_resource type="Texture2D" uid="uid://cc43ck46kmstx" path="res://assets/Background/Brown.png" id="2_kimck"]
 [ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="3_u45cv"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="4_20agi"]
 [ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="5_6sx7t"]

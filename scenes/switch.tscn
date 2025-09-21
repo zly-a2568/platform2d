@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://67t6gka723tc"]
 
 [ext_resource type="Script" uid="uid://dlcodi2durnk1" path="res://scenes/switch.gd" id="1_nnoiq"]
-[ext_resource type="Texture2D" uid="uid://dg01wc40pofj5" path="res://assets/Items/Switch/Blue_To_Red.png" id="2_nnoiq"]
-[ext_resource type="Texture2D" uid="uid://dgy80sw55lc3k" path="res://assets/Items/Switch/Red_To_Blue.png" id="3_4m6b1"]
+[ext_resource type="Texture2D" uid="uid://c1tkm8p5n4vwd" path="res://assets/Items/Switch/Blue_To_Red.png" id="2_nnoiq"]
+[ext_resource type="Texture2D" uid="uid://cvgpg5xd7ftl" path="res://assets/Items/Switch/Red_To_Blue.png" id="3_4m6b1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rt3"]
 size = Vector2(30, 23)

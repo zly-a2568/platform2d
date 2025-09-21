@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cia1qymus5xtg"]
 
 [ext_resource type="Script" uid="uid://bx4rmethejjhf" path="res://scenes/status_panel.gd" id="1_27we0"]
-[ext_resource type="Texture2D" uid="uid://bk2ognnplrou5" path="res://assets/Main Characters/Virtual Guy/Idle (32x32).png" id="1_rqlg0"]
+[ext_resource type="Texture2D" uid="uid://bcaedxvwl4q71" path="res://assets/Main Characters/Virtual Guy/Idle (32x32).png" id="1_rqlg0"]
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="2_27we0"]
-[ext_resource type="Texture2D" uid="uid://ci40s4lu5pbjg" path="res://assets/Menu/HUD.png" id="3_fqsbo"]
+[ext_resource type="Texture2D" uid="uid://c3x3sl3dh28le" path="res://assets/Menu/HUD.png" id="3_fqsbo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27we0"]
 content_margin_left = 3.0
