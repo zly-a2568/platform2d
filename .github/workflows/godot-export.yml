@@ -4,7 +4,7 @@ on:
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
-  GODOT_VERSION: 4.4.1
+  GODOT_VERSION: 4.5
   EXPORT_NAME: platform2d
   PROJECT_PATH: ./
   SECRET_RELEASE_KEYSTORE_BASE64: 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
@@ -16,7 +16,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-22.04  # Use 22.04 with godot 4
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,7 +59,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-22.04  # Use 22.04 with godot 4
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -99,7 +99,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-22.04  # Use 22.04 with godot 4
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -137,7 +137,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-22.04  # Use 22.04 with godot 4
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -175,7 +175,7 @@ jobs:
     name: Android Export
     runs-on: ubuntu-22.04
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
