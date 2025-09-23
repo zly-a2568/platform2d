@@ -83,7 +83,7 @@ func _on_check_update_pressed() -> void:
 	$VBoxContainer/Exit.disabled=true
 	var update_url:String
 	if update_source=="github":
-		update_url="https://github.com/zly-a1/platform/releases/download/latest/version-note.txt"
+		update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/version-note.txt"
 	else:
 		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/version-note.txt"
 	var error = $VersionCheck.request(update_url)
@@ -110,7 +110,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 				$ExecutableDownload.download_file=OS.get_executable_path().get_base_dir()+"/platform2d.pck"
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.pck"
+					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.pck"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
 				$ExecutableDownload.request(update_url)
@@ -120,7 +120,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			else:
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a1/platform/releases/download/latest/platform2d.apk"
+					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.apk"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
 				OS.shell_open(update_url)
