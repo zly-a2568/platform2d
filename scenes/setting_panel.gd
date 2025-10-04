@@ -14,6 +14,41 @@ func _ready() -> void:
 	var config=ConfigFile.new()
 	config.load(GameProcesser.CONFIG_PATH)
 
+func installAPK(apkPath:String) -> void:
+	var runtime=Engine.get_singleton("AndroidRuntime")
+	if runtime:
+		var file_class=JavaClassWrapper.wrap("java.io.File")
+		var apk_file=file_class.File(ProjectSettings.globalize_path($ExecutableDownload.download_file))
+		if !apk_file.exists():
+			print("APK file does not exist: $apkPath")
+			return
+
+		if !apk_file.canRead():
+			print("APK file is not readable: $apkPath")
+			return
+		
+		
+		
+		var Intent = JavaClassWrapper.wrap("android.content.Intent")
+		var activity = runtime.getActivity()
+		var intent = Intent.Intent() # Call the constructor.
+		
+		var uri_class=JavaClassWrapper.wrap("android.net.Uri")
+		var fileprovider_class=JavaClassWrapper.wrap("androidx.core.content.FileProvider")
+		var apkUri=fileprovider_class.getUriForFile(activity,"com.zly.platform.provider",apk_file)
+		
+		
+		
+		intent.setAction(Intent.ACTION_VIEW)
+		intent.setDataAndType(apkUri, "application/vnd.android.package-archive")
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+		activity.startActivity(intent)
+	else:
+		print("failed")
+
+
 func load_settings():
 	settings.load(SETTING_FILE)
 	introduced=settings.get_value("Run","is_first_run",false)
@@ -124,7 +159,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.apk"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
-				$ExecutableDownload.download_file=OS.get_cache_dir()+"/platform2d.apk"
+				$ExecutableDownload.download_file="user://platform2d.apk"
 				$ExecutableDownload.request(update_url)
 				update_downloading=true
 				return
@@ -149,9 +184,7 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 			OS.create_instance([])
 			get_tree().quit()
 		else:
-			if Engine.has_singleton("InstallerPlugin"):
-				var plugin=Engine.get_singleton("InstallerPlugin")
-				plugin.installApk($ExecutableDownload.download_file)
+			installAPK(ProjectSettings.globalize_path($ExecutableDownload.download_file))
 	else:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
