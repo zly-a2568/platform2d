@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bj386ecx2xrmq"]
+
+[ext_resource type="Texture2D" uid="uid://bjhgcc0d6mrdx" path="res://assets/Main Characters/Virtual Guy/smoke.png" id="1_acmqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx0m8"]
+atlas = ExtResource("1_acmqr")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4cvb"]
+atlas = ExtResource("1_acmqr")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by7rd"]
+atlas = ExtResource("1_acmqr")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rms5f"]
+atlas = ExtResource("1_acmqr")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3n76"]
+atlas = ExtResource("1_acmqr")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7epj"]
+atlas = ExtResource("1_acmqr")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmh0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx0m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4cvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by7rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rms5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3n76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7epj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Smoke" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_jmh0c")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0

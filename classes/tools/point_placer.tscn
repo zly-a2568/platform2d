@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv5clbw3adx0s"]
+
+[ext_resource type="Script" uid="uid://cgrb2rmbgr882" path="res://classes/tools/point_placer.gd" id="1_my1ip"]
+
+[node name="PointPlacer" type="Node"]
+script = ExtResource("1_my1ip")

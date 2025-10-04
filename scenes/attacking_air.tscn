@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://8n4s0ynmx5sx"]
+
+[ext_resource type="Texture2D" uid="uid://dskjjojunoxux" path="res://assets/Main Characters/Virtual Guy/Attacking.png" id="1_rw1l1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbupw"]
+atlas = ExtResource("1_rw1l1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc56w"]
+atlas = ExtResource("1_rw1l1")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5ksg"]
+atlas = ExtResource("1_rw1l1")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2p60"]
+atlas = ExtResource("1_rw1l1")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj5uq"]
+atlas = ExtResource("1_rw1l1")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owq3d"]
+atlas = ExtResource("1_rw1l1")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3l8kw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbupw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc56w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5ksg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2p60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj5uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owq3d")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="AttackingAir" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_3l8kw")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0

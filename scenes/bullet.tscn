@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dug4bwyt8kk4a"]
+
+[ext_resource type="Script" uid="uid://o5r6gfu2bbwu" path="res://scenes/Bullet.gd" id="1_fdvxp"]
+[ext_resource type="Texture2D" uid="uid://cjiwvvg7qt8ok" path="res://assets/Traps/Spiked Ball/Spiked Ball.png" id="2_l5glv"]
+[ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="3_tkb1v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xo4i"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_viewh"]
+radius = 4.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_fdvxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.278571, 0.278571)
+texture = ExtResource("2_l5glv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3xo4i")
+
+[node name="Hitter" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+monitorable = false
+script = ExtResource("3_tkb1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter"]
+shape = SubResource("CircleShape2D_viewh")

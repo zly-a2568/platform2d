@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cobtd4sovs4vn"]
+
+[ext_resource type="Script" uid="uid://270k8uil1yek" path="res://scenes/damage_number.gd" id="1_aie4f"]
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_l4fel"]
+
+[node name="DamageNumber" type="Label"]
+theme = ExtResource("1_l4fel")
+text = "100"
+script = ExtResource("1_aie4f")
