@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://xm02h8hrmfmi"]
+
+[ext_resource type="Script" uid="uid://bs5yffdpj61b6" path="res://scenes/knob.gd" id="1_6f5qt"]
+[ext_resource type="Texture2D" uid="uid://c3x3sl3dh28le" path="res://assets/Menu/HUD.png" id="1_j686r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f5qt"]
+atlas = ExtResource("1_j686r")
+region = Rect2(4, 84, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6f5qt"]
+size = Vector2(15, 15)
+
+[node name="Knob" type="Node2D"]
+script = ExtResource("1_6f5qt")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(-4, -4)
+texture_normal = SubResource("AtlasTexture_6f5qt")
+shape = SubResource("RectangleShape2D_6f5qt")
+visibility_mode = 1

@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0if24aritjfw"]
+
+[ext_resource type="Script" uid="uid://yqft5ntybu2d" path="res://scenes/enemy.gd" id="1_ieiqb"]
+[ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="2_y1m0c"]
+[ext_resource type="Script" uid="uid://co0qwrre8i7w7" path="res://classes/Hurter.gd" id="3_ygnln"]
+[ext_resource type="Script" uid="uid://clfunqr5x6xet" path="res://classes/Status.gd" id="5_c4w8v"]
+[ext_resource type="Texture2D" uid="uid://c3x3sl3dh28le" path="res://assets/Menu/HUD.png" id="6_xwavj"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="7_nenq2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("6_xwavj")
+region = Rect2(307, 6, 58, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("6_xwavj")
+region = Rect2(308, 103, 56, 2)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ieiqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("5_c4w8v")
+health = 3
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Hitter" type="Area2D" parent="Graphics"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_y1m0c")
+
+[node name="Wall" type="RayCast2D" parent="Graphics"]
+position = Vector2(-20, 5)
+target_position = Vector2(-11, 0)
+
+[node name="PlayerChecker" type="RayCast2D" parent="Graphics"]
+position = Vector2(-20, 5)
+target_position = Vector2(-54, 0)
+collision_mask = 2
+
+[node name="Floor" type="RayCast2D" parent="Graphics"]
+position = Vector2(-20, 15)
+target_position = Vector2(0, 8)
+
+[node name="Hurter" type="Area2D" parent="Graphics"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_ygnln")
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+
+[node name="HealthBar" type="TextureProgressBar" parent="Graphics"]
+offset_left = -29.0
+offset_top = -32.0
+offset_right = 29.0
+offset_bottom = -28.0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(28.75, 2.5)
+value = 50.0
+texture_under = SubResource("AtlasTexture_nenq2")
+texture_progress = SubResource("AtlasTexture_md484")
+texture_progress_offset = Vector2(1, 1)
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("7_nenq2")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

@@ -1,0 +1,240 @@
+name: "godot-ci export"
+on:
+  push
+# NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
+
+env:
+  GODOT_VERSION: 4.5
+  EXPORT_NAME: platform2d
+  PROJECT_PATH: ./
+  SECRET_RELEASE_KEYSTORE_BASE64: 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
+  SECRET_RELEASE_KEYSTORE_USER: mygame
+  SECRET_RELEASE_KEYSTORE_PASSWORD: 123456
+  RELEASE_VERSION: v1.0.2
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-22.04  # Use 22.04 with godot 4
+    container:
+      image: barichello/godot-ci:4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          mkdir -v -p build/windows-pck
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          godot --headless --verbose --export-pack "Windows Desktop" "$EXPORT_DIR/windows-pck/$EXPORT_NAME.pck"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: build/windows
+      - name: Archive Zip
+        run: |
+          cd $(readlink -f build)
+          ls
+          zip -r ./windows-x64.zip ./windows
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.ACCESS_TOKEN }} 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: | 
+              ./build/windows-x64.zip
+              ./build/windows-pck/${{env.EXPORT_NAME}}.pck
+
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-22.04  # Use 22.04 with godot 4
+    container:
+      image: barichello/godot-ci:4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          mkdir -v -p build/linux-pck
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: build/linux
+      - name: Archive Zip
+        run: |
+          cd $(readlink -f build)
+          ls
+          zip -r ./linux-x64.zip ./linux
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.ACCESS_TOKEN }} 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: | 
+              ./build/linux-x64.zip
+          
+
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-22.04  # Use 22.04 with godot 4
+    container:
+      image: barichello/godot-ci:4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: build/web
+      - name: Archive Zip
+        run: |
+          cd $(readlink -f build)
+          ls
+          zip -r ./web.zip ./web
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.ACCESS_TOKEN }} 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: | 
+              ./build/web.zip
+
+  export-mac:
+    name: Mac Export
+    runs-on: ubuntu-22.04  # Use 22.04 with godot 4
+    container:
+      image: barichello/godot-ci:4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Mac Build
+        run: |
+          mkdir -v -p build/mac
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac
+          path: build/mac
+      - name: Archive Zip
+        run: |
+          cd $(readlink -f build)
+          ls
+          zip -r ./mac-x64.zip ./mac
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.ACCESS_TOKEN }} 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: | 
+              ./build/mac-x64.zip
+
+  export-android:
+    name: Android Export
+    runs-on: ubuntu-22.04
+    container:
+      image: barichello/godot-ci:4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          sdkmanager --licenses 
+          sdkmanager "platform-tools" "build-tools;33.0.2" "platforms;android-33" "cmdline-tools;latest" "cmake;3.22.1" "ndk;25.2.9519653"
+          
+      - name: Android Build
+        run: |
+          echo "Using Java: $JAVA_HOME"
+          java -version
+          echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore
+          mkdir -v -p build/android
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+
+          mkdir -v -p android
+          cd android
+          mkdir -v -p build
+          echo "$GODOT_VERSION.stable" > .build_version
+          cat .build_version
+          apt install -y unzip
+          unzip  ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/android_source.zip -d ./
+          sed -i '/\[preset.1.options\]/a keystore\/release="\/root\/release.keystore"' export_presets.cfg
+          sed -i '/keystore\/release="\/root\/release.keystore"/a keystore\/release_user="mygame"' export_presets.cfg
+          sed -i '/keystore\/release_user="mygame"/a keystore\/release_password=123456' export_presets.cfg
+          godot --headless --verbose --export-release "Android" "$EXPORT_DIR/android/$EXPORT_NAME.apk"
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.ACCESS_TOKEN }} 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: | 
+              ./build/android/platform2d.apk
+  create-version-text:
+    name: Create Version File
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 
+      - name: Write Version Files
+        run: |
+          echo $RELEASE_VERSION > version-note.txt
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.ACCESS_TOKEN }} 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: | 
+              ./version-note.txt

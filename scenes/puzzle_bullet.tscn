@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0ugxc5ghfetg"]
+
+[ext_resource type="Texture2D" uid="uid://htb33tp5orde" path="res://assets/Traps/Saw/On (38x38).png" id="1_sxjcd"]
+[ext_resource type="Script" uid="uid://bwdvdwqy7dx64" path="res://scenes/puzzle_bullet.gd" id="1_tc3o5"]
+[ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="2_tc3o5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31l3b"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5prm"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ff0p"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1glrj"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tfxt"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojwx3"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brlkw"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgi7i"]
+atlas = ExtResource("1_sxjcd")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3l06g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31l3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5prm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ff0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1glrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tfxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojwx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brlkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgi7i")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_31vod"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1lsi"]
+radius = 19.0
+
+[node name="puzzle_bullet" type="CharacterBody2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 1024
+script = ExtResource("1_tc3o5")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3l06g")
+frame_progress = 0.222617
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_31vod")
+
+[node name="Hitter" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 2
+script = ExtResource("2_tc3o5")
+metadata/_custom_type_script = "uid://bujr4o6vperxe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter"]
+shape = SubResource("CircleShape2D_a1lsi")
+
+[connection signal="body_entered" from="Hitter" to="." method="_on_hitter_body_entered"]
