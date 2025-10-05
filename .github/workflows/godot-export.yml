@@ -95,13 +95,26 @@ jobs:
               ./build/web.zip
               ./build/mac-x64.zip
               ./build/android/platform2d.apk
-      - name: Mirror To Gitee
-        run: |
-          cd $PROJECT_PATH
-          apt-get update && apt-get upgrade -y
-          apt-get install curl jq -y
-          chmod +x ./mirror.sh
-          bash ./mirror.sh ${{ secrets.MIRROR_TOKEN }} ${{ env.RELEASE_VERSION }} $(readlink -f build)/*.zip $(readlink -f build)/android/*.apk
+      - name: Create Release with Multiple Files
+        uses: nicennnnnnnlee/action-gitee-release@master
+        with:
+          gitee_action: create_release
+          gitee_owner: Gitee用户名
+          gitee_repo: Gitee项目名
+          gitee_token: ${{ secrets.MIRROR_TOKEN }}
+          gitee_tag_name: ${{env.RELEASE_VERSION}}
+          gitee_release_name: ${{env.RELEASE_VERSION}}
+          gitee_release_body: ${{env.RELEASE_VERSION}}
+          gitee_target_commitish: master
+          gitee_upload_retry_times: 3
+          gitee_files: |
+            ./build/windows-x64.zip
+            ./build/windows-pck/${{env.EXPORT_NAME}}.pck
+            ./build/linux-x64.zip
+            ./build/web.zip
+            ./build/mac-x64.zip
+            ./build/android/platform2d.apk
+      
           
 
   create-version-text:
