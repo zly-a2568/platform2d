@@ -160,11 +160,20 @@ clean_attachments() {
     fi
 }
 
-# 上传文件 - 根据完整API文档修正
+# 上传文件 - 修复URL问题
 upload_file() {
     local release_id=$1
     local file_path=$2
-    local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$release_id/attach_files"
+    
+    # 清理release_id中的换行符和额外信息
+    local clean_release_id=$(echo "$release_id" | tr -d '\n\r' | grep -o '[0-9]\+' | head -1)
+    
+    if [ -z "$clean_release_id" ]; then
+        log_error "无法获取有效的Release ID: $release_id"
+        return 1
+    fi
+    
+    local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$clean_release_id/attach_files"
     
     if [ ! -f "$file_path" ]; then
         log_warning "文件不存在: $file_path"
@@ -174,43 +183,38 @@ upload_file() {
     local file_name=$(basename "$file_path")
     local file_size=$(stat -f%z "$file_path" 2>/dev/null || stat -c%s "$file_path" 2>/dev/null || echo "unknown")
     log_info "正在上传: $file_name (大小: $file_size bytes)"
+    log_info "使用Release ID: $clean_release_id"
+    log_info "上传URL: $url"
     
-    # 使用更详细的curl命令进行调试
+    # 使用简单的curl命令，避免详细输出导致的解析问题
     local response
-    response=$(curl -v -X POST \
+    response=$(curl -s -X POST \
         -F "access_token=$GITEE_TOKEN" \
         -F "file=@$file_path" \
-        "$url" 2>&1)
+        "$url")
     
-    # 从详细输出中提取响应体
-    local response_body=$(echo "$response" | grep -A 100 "^{" | head -n 50)
+    # 检查响应
+    if [ -z "$response" ]; then
+        log_error "上传失败: $file_name - 空响应"
+        return 1
+    fi
     
-    # 记录详细的调试信息
-    log_info "上传请求完成，检查响应..."
+    log_info "API响应: $response"
     
     # 检查响应是否包含成功字段
-    if echo "$response_body" | jq -e '.id' > /dev/null 2>&1; then
-        local uploaded_id=$(echo "$response_body" | jq -r '.id')
-        local uploaded_name=$(echo "$response_body" | jq -r '.name')
-        local download_url=$(echo "$response_body" | jq -r '.browser_download_url // .download_url // .url')
+    if echo "$response" | jq -e '.id' > /dev/null 2>&1; then
+        local uploaded_id=$(echo "$response" | jq -r '.id')
+        local uploaded_name=$(echo "$response" | jq -r '.name')
         
         log_info "✅ 上传成功: $uploaded_name"
         log_info "   文件ID: $uploaded_id"
-        if [ -n "$download_url" ] && [ "$download_url" != "null" ]; then
-            log_info "   下载链接: $download_url"
-        fi
         return 0
-    elif echo "$response_body" | jq -e '.message' > /dev/null 2>&1; then
-        local error_msg=$(echo "$response_body" | jq -r '.message')
+    elif echo "$response" | jq -e '.message' > /dev/null 2>&1; then
+        local error_msg=$(echo "$response" | jq -r '.message')
         log_error "上传失败: $file_name - API错误: $error_msg"
         return 1
     else
-        log_error "上传失败: $file_name - 无法解析响应: $response_body"
-        # 显示原始响应的前几行用于调试
-        log_info "原始响应前10行:"
-        echo "$response" | head -n 10 | while read line; do
-            log_info "   $line"
-        done
+        log_error "上传失败: $file_name - 无法解析响应: $response"
         return 1
     fi
 }
