@@ -44,7 +44,6 @@ create_release() {
     
     local response
     response=$(curl -s -X POST \
-        -H "Authorization: Bearer $GITEE_TOKEN" \
         -F "access_token=$GITEE_TOKEN" \
         -F "tag_name=$RELEASE_TAG" \
         -F "name=Release $RELEASE_TAG" \
@@ -68,7 +67,9 @@ get_release_id() {
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/tags/$RELEASE_TAG"
     local response
     
-    response=$(curl -s -H "Authorization: Bearer $GITEE_TOKEN" "$url")
+    response=$(curl -s -X GET \
+        -F "access_token=$GITEE_TOKEN" \
+        "$url")
     
     # 检查是否获取到有效的Release ID
     if echo "$response" | jq -e '.id' > /dev/null 2>&1; then
@@ -86,7 +87,9 @@ get_attachments() {
     local release_id=$1
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$release_id/attach_files"
     
-    curl -s -H "Authorization: Bearer $GITEE_TOKEN" "$url?access_token=$GITEE_TOKEN&per_page=100"
+    curl -s -X GET \
+        -F "access_token=$GITEE_TOKEN" \
+        "$url?per_page=100"
 }
 
 # 删除单个附件
@@ -96,7 +99,9 @@ delete_attachment() {
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/attach_files/$attachment_id"
     
     local response
-    response=$(curl -s -X DELETE -H "Authorization: Bearer $GITEE_TOKEN" "$url?access_token=$GITEE_TOKEN")
+    response=$(curl -s -X DELETE \
+        -F "access_token=$GITEE_TOKEN" \
+        "$url")
     
     if [ $? -eq 0 ]; then
         log_info "已删除: $attachment_name"
@@ -113,10 +118,16 @@ clean_attachments() {
     local attachments
     attachments=$(get_attachments "$release_id")
     
-    local count
-    count=$(echo "$attachments" | jq length)
+    # 修复：检查 attachments 是否为空或无效
+    if [ -z "$attachments" ] || [ "$attachments" = "null" ] || [ "$attachments" = "[]" ]; then
+        log_info "没有找到需要清理的附件"
+        return 0
+    fi
     
-    if [ "$count" -gt 0 ]; then
+    local count
+    count=$(echo "$attachments" | jq 'length' 2>/dev/null || echo "0")
+    
+    if [ "$count" -gt 0 ] 2>/dev/null; then
         log_info "找到 $count 个附件需要清理"
         
         echo "$attachments" | jq -c '.[]' | while read -r attachment; do
@@ -124,15 +135,17 @@ clean_attachments() {
             attach_id=$(echo "$attachment" | jq -r '.id')
             attach_name=$(echo "$attachment" | jq -r '.name')
             
-            delete_attachment "$attach_id" "$attach_name"
-            sleep 0.3  # 避免API限流
+            if [ -n "$attach_id" ] && [ "$attach_id" != "null" ]; then
+                delete_attachment "$attach_id" "$attach_name"
+                sleep 0.3  # 避免API限流
+            fi
         done
     else
         log_info "没有找到需要清理的附件"
     fi
 }
 
-# 上传文件
+# 上传文件 - 根据API文档修正
 upload_file() {
     local release_id=$1
     local file_path=$2
@@ -147,7 +160,6 @@ upload_file() {
     
     local response
     response=$(curl -s -X POST \
-        -H "Authorization: Bearer $GITEE_TOKEN" \
         -F "access_token=$GITEE_TOKEN" \
         -F "file=@$file_path" \
         "$url")
