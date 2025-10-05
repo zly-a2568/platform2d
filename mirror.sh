@@ -32,7 +32,6 @@ check_dependencies() {
     if [ ${#missing[@]} -ne 0 ]; then
         log_error "缺少必要工具: ${missing[*]}"
         log_info "请安装: sudo apt-get install ${missing[*]}"
-        sudo apt-get install curl jq -y
         exit 1
     fi
 }
