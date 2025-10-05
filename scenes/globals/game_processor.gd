@@ -34,6 +34,9 @@ const SceneFile:Dictionary={
 
 signal camera_shock(amount:float)
 
+@onready var tip: Label = $Tip
+
+
 func _ready():
 	if OS.get_name()=="Android":
 		OS.request_permissions()
@@ -115,27 +118,15 @@ func _process(delta):
 			return
 		message_started=true
 		var str=message_list[0]
-		var tip=Label.new()
-		tip.z_index=100
-		if get_tree().current_scene is World:
-			var pl:Player=get_tree().get_first_node_in_group("player")
-			tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
-			get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
-		else:
-			tip.position=Vector2(get_viewport().get_visible_rect().position.x+10,get_viewport().get_visible_rect().size.y-20)
-			print(tip.position)
-			get_node("/root/GameProcesser").add_child(tip)
-		
+		tip.modulate.a=1.0
 		tip.text=str
 		tip.visible_characters=0
-		tip.theme=preload("res://themes/theme.tres") as Theme
 		var tween=create_tween()
 		tween.tween_property(tip,"visible_characters",str.length(),0.2)
 		await get_tree().create_timer(1.0).timeout
 		tween=create_tween()
 		tween.tween_property(tip,"modulate",Color(1.0,1.0,1.0,0.0),0.2)
 		await tween.finished
-		tip.queue_free()
 		message_list.pop_at(0)
 		message_started=false
 
