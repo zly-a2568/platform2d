@@ -65,8 +65,10 @@ create_release() {
 # 获取Release ID，如果不存在则创建
 get_release_id() {
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/tags/$RELEASE_TAG"
-    local response
     
+    log_info "检查Release是否存在: $RELEASE_TAG"
+    
+    local response
     response=$(curl -s -X GET \
         -F "access_token=$GITEE_TOKEN" \
         "$url")
@@ -87,9 +89,12 @@ get_attachments() {
     local release_id=$1
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$release_id/attach_files"
     
-    curl -s -X GET \
+    local response
+    response=$(curl -s -X GET \
         -F "access_token=$GITEE_TOKEN" \
-        "$url?per_page=100"
+        "$url")
+    
+    echo "$response"
 }
 
 # 删除单个附件
@@ -98,13 +103,15 @@ delete_attachment() {
     local attachment_name=$2
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/attach_files/$attachment_id"
     
+    log_info "删除附件: $attachment_name (ID: $attachment_id)"
+    
     local response
     response=$(curl -s -X DELETE \
         -F "access_token=$GITEE_TOKEN" \
         "$url")
     
     if [ $? -eq 0 ]; then
-        log_info "已删除: $attachment_name"
+        log_info "✅ 已删除: $attachment_name"
     else
         log_error "删除失败: $attachment_name - $response"
     fi
@@ -118,9 +125,15 @@ clean_attachments() {
     local attachments
     attachments=$(get_attachments "$release_id")
     
-    # 修复：检查 attachments 是否为空或无效
+    # 检查响应是否有效
     if [ -z "$attachments" ] || [ "$attachments" = "null" ] || [ "$attachments" = "[]" ]; then
         log_info "没有找到需要清理的附件"
+        return 0
+    fi
+    
+    # 检查是否是有效的JSON数组
+    if ! echo "$attachments" | jq -e '.' > /dev/null 2>&1; then
+        log_warning "获取附件列表响应无效: $attachments"
         return 0
     fi
     
@@ -132,12 +145,14 @@ clean_attachments() {
         
         echo "$attachments" | jq -c '.[]' | while read -r attachment; do
             local attach_id attach_name
-            attach_id=$(echo "$attachment" | jq -r '.id')
-            attach_name=$(echo "$attachment" | jq -r '.name')
+            attach_id=$(echo "$attachment" | jq -r '.id // empty')
+            attach_name=$(echo "$attachment" | jq -r '.name // empty')
             
-            if [ -n "$attach_id" ] && [ "$attach_id" != "null" ]; then
+            if [ -n "$attach_id" ] && [ "$attach_id" != "null" ] && [ -n "$attach_name" ]; then
                 delete_attachment "$attach_id" "$attach_name"
                 sleep 0.3  # 避免API限流
+            else
+                log_warning "跳过无效的附件数据: $attachment"
             fi
         done
     else
@@ -145,7 +160,7 @@ clean_attachments() {
     fi
 }
 
-# 上传文件 - 根据API文档修正
+# 上传文件 - 根据完整API文档修正
 upload_file() {
     local release_id=$1
     local file_path=$2
@@ -156,19 +171,46 @@ upload_file() {
         return 1
     fi
     
-    log_info "正在上传: $(basename "$file_path")"
+    local file_name=$(basename "$file_path")
+    local file_size=$(stat -f%z "$file_path" 2>/dev/null || stat -c%s "$file_path" 2>/dev/null || echo "unknown")
+    log_info "正在上传: $file_name (大小: $file_size bytes)"
     
+    # 使用更详细的curl命令进行调试
     local response
-    response=$(curl -s -X POST \
+    response=$(curl -v -X POST \
         -F "access_token=$GITEE_TOKEN" \
         -F "file=@$file_path" \
-        "$url")
+        "$url" 2>&1)
     
-    if echo "$response" | jq -e '.id' > /dev/null 2>&1; then
-        log_info "✅ 上传成功: $(basename "$file_path")"
+    # 从详细输出中提取响应体
+    local response_body=$(echo "$response" | grep -A 100 "^{" | head -n 50)
+    
+    # 记录详细的调试信息
+    log_info "上传请求完成，检查响应..."
+    
+    # 检查响应是否包含成功字段
+    if echo "$response_body" | jq -e '.id' > /dev/null 2>&1; then
+        local uploaded_id=$(echo "$response_body" | jq -r '.id')
+        local uploaded_name=$(echo "$response_body" | jq -r '.name')
+        local download_url=$(echo "$response_body" | jq -r '.browser_download_url // .download_url // .url')
+        
+        log_info "✅ 上传成功: $uploaded_name"
+        log_info "   文件ID: $uploaded_id"
+        if [ -n "$download_url" ] && [ "$download_url" != "null" ]; then
+            log_info "   下载链接: $download_url"
+        fi
         return 0
+    elif echo "$response_body" | jq -e '.message' > /dev/null 2>&1; then
+        local error_msg=$(echo "$response_body" | jq -r '.message')
+        log_error "上传失败: $file_name - API错误: $error_msg"
+        return 1
     else
-        log_error "上传失败: $(basename "$file_path") - $response"
+        log_error "上传失败: $file_name - 无法解析响应: $response_body"
+        # 显示原始响应的前几行用于调试
+        log_info "原始响应前10行:"
+        echo "$response" | head -n 10 | while read line; do
+            log_info "   $line"
+        done
         return 1
     fi
 }
@@ -213,7 +255,8 @@ main() {
     
     log_info "开始Gitee Releases上传流程..."
     log_info "Release标签: $RELEASE_TAG"
-    log_info "待上传文件: ${FILES_TO_UPLOAD[*]}"
+    log_info "待上传文件数量: ${#FILES_TO_UPLOAD[@]}"
+    log_info "文件列表: ${FILES_TO_UPLOAD[*]}"
     
     # 检查依赖
     check_dependencies
@@ -237,7 +280,7 @@ main() {
         else
             ((fail_count++))
         fi
-        sleep 0.5  # 避免API限流
+        sleep 1  # 增加延迟避免API限流
     done
     
     # 输出结果
