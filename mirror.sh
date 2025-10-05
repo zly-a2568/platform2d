@@ -165,15 +165,13 @@ upload_file() {
     local release_id=$1
     local file_path=$2
     
-    # 清理release_id中的换行符和额外信息
-    local clean_release_id=$(echo "$release_id" | tr -d '\n\r' | grep -o '[0-9]\+' | head -1)
     
     if [ -z "$clean_release_id" ]; then
         log_error "无法获取有效的Release ID: $release_id"
         return 1
     fi
     
-    local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$clean_release_id/attach_files"
+    local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$release_id/attach_files"
     
     if [ ! -f "$file_path" ]; then
         log_warning "文件不存在: $file_path"
@@ -188,8 +186,8 @@ upload_file() {
     
     # 使用简单的curl命令，避免详细输出导致的解析问题
     local response
-    response=$(curl -s -X POST \
-        -F "access_token=$GITEE_TOKEN" \
+    response=$(curl -X POST \
+        -H "Authorization: Bearer $GITEE_TOKEN" \
         -F "file=@$file_path" \
         "$url")
     
