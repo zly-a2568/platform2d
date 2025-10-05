@@ -106,11 +106,11 @@ jobs:
           python -m pip install --upgrade pip
         
       - name: Create Release with Multiple Files
-        uses: nicennnnnnnlee/action-gitee-release@master
+        uses: nICEnnnnnnnLee/action-gitee-release@v2.0.0
         with:
           gitee_action: create_release
-          gitee_owner: Gitee用户名
-          gitee_repo: Gitee项目名
+          gitee_owner: zly-k
+          gitee_repo: platformer2d
           gitee_token: ${{ secrets.MIRROR_TOKEN }}
           gitee_tag_name: ${{env.RELEASE_VERSION}}
           gitee_release_name: ${{env.RELEASE_VERSION}}
