@@ -98,8 +98,8 @@ jobs:
       - name: Mirror To Gitee
         run: |
           cd $PROJECT_PATH
-          apt update && apt upgrade -y
-          apt install curl jq -y
+          apt-get update && apt-get upgrade -y
+          apt-get install curl jq -y
           chmod +x ./mirror.sh
           bash ./mirror.sh ${{ secrets.MIRROR_TOKEN }} ${{ env.RELEASE_VERSION }} $(readlink -f build)/*.zip $(readlink -f build)/android/*.apk
           

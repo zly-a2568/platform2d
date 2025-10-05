@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Gitee配置信息（移除了GITEE_TOKEN和RELEASE_TAG）
+# Gitee配置信息
 OWNER="zly-k"
 REPO="platformer2d"
 
@@ -36,18 +36,48 @@ check_dependencies() {
     fi
 }
 
-# 获取Release ID
+# 创建Release
+create_release() {
+    local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases"
+    
+    log_info "创建新的Release: $RELEASE_TAG"
+    
+    local response
+    response=$(curl -s -X POST \
+        -H "Authorization: Bearer $GITEE_TOKEN" \
+        -F "access_token=$GITEE_TOKEN" \
+        -F "tag_name=$RELEASE_TAG" \
+        -F "name=Release $RELEASE_TAG" \
+        -F "body=Automatically released from CI/CD pipeline" \
+        -F "target_commitish=master" \
+        -F "prerelease=false" \
+        "$url")
+    
+    if echo "$response" | jq -e '.id' > /dev/null 2>&1; then
+        local new_release_id=$(echo "$response" | jq -r '.id')
+        log_info "✅ Release创建成功, ID: $new_release_id"
+        echo "$new_release_id"
+    else
+        log_error "创建Release失败: $response"
+        exit 1
+    fi
+}
+
+# 获取Release ID，如果不存在则创建
 get_release_id() {
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/tags/$RELEASE_TAG"
     local response
     
     response=$(curl -s -H "Authorization: Bearer $GITEE_TOKEN" "$url")
     
+    # 检查是否获取到有效的Release ID
     if echo "$response" | jq -e '.id' > /dev/null 2>&1; then
-        echo "$response" | jq -r '.id'
+        local release_id=$(echo "$response" | jq -r '.id')
+        log_info "找到现有Release, ID: $release_id"
+        echo "$release_id"
     else
-        log_error "获取Release失败: $response"
-        exit 1
+        log_warning "Release '$RELEASE_TAG' 不存在，尝试创建..."
+        create_release
     fi
 }
 
@@ -56,7 +86,7 @@ get_attachments() {
     local release_id=$1
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/$release_id/attach_files"
     
-    curl -s -H "Authorization: Bearer $GITEE_TOKEN" "$url?per_page=100"
+    curl -s -H "Authorization: Bearer $GITEE_TOKEN" "$url?access_token=$GITEE_TOKEN&per_page=100"
 }
 
 # 删除单个附件
@@ -66,7 +96,7 @@ delete_attachment() {
     local url="https://gitee.com/api/v5/repos/$OWNER/$REPO/releases/attach_files/$attachment_id"
     
     local response
-    response=$(curl -s -X DELETE -H "Authorization: Bearer $GITEE_TOKEN" "$url")
+    response=$(curl -s -X DELETE -H "Authorization: Bearer $GITEE_TOKEN" "$url?access_token=$GITEE_TOKEN")
     
     if [ $? -eq 0 ]; then
         log_info "已删除: $attachment_name"
@@ -118,6 +148,7 @@ upload_file() {
     local response
     response=$(curl -s -X POST \
         -H "Authorization: Bearer $GITEE_TOKEN" \
+        -F "access_token=$GITEE_TOKEN" \
         -F "file=@$file_path" \
         "$url")
     
@@ -175,7 +206,7 @@ main() {
     # 检查依赖
     check_dependencies
     
-    # 获取Release ID
+    # 获取Release ID（如果不存在会自动创建）
     log_info "获取Release信息: $RELEASE_TAG"
     RELEASE_ID=$(get_release_id)
     log_info "Release ID: $RELEASE_ID"
