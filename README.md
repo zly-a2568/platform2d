@@ -1,9 +1,9 @@
 <div align="center">
-<<<<<<< HEAD
+
 <img src="./image/Jump (32x32).png" alt="Jump" width="256" height="256" align="center" hspace="10">
-=======
+
  <img src="./Jump (32x32).png" alt="Jump" width="256" height="256" align="center" hspace="10">
->>>>>>> b3803037023033c5af868406fd8e1c1ab1309119
+
 </div>
 
 这是一个基于 Godot 引擎开发的 2D 平台跳跃游戏项目，包含了丰富的素材资源、场景和脚本文件。该项目主要包含以下内容：
