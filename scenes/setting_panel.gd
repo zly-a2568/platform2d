@@ -14,18 +14,20 @@ func _ready() -> void:
 	var config=ConfigFile.new()
 	config.load(GameProcesser.CONFIG_PATH)
 
-func installAPK(apkPath:String) -> void:
+func getUriForFile(filePath:String):
 	var runtime=Engine.get_singleton("AndroidRuntime")
 	if runtime:
+		var activity=runtime.getActivity()
 		var file_class=JavaClassWrapper.wrap("java.io.File")
-		var apk_file=file_class.File(ProjectSettings.globalize_path($ExecutableDownload.download_file))
-		if !apk_file.exists():
-			print("APK file does not exist: $apkPath")
-			return
+		var file=file_class.File(filePath)
+		var fileprovider_class=JavaClassWrapper.wrap("androidx.core.content.FileProvider")
+		var fileUri=fileprovider_class.getUriForFile(activity,"com.zly.platform.fileprovider",file)
+		return fileUri
 
-		if !apk_file.canRead():
-			print("APK file is not readable: $apkPath")
-			return
+func installAPK(apkPath) -> void:
+	var runtime=Engine.get_singleton("AndroidRuntime")
+	if runtime:
+		
 		
 		
 		
@@ -33,18 +35,14 @@ func installAPK(apkPath:String) -> void:
 		var activity = runtime.getActivity()
 		var intent = Intent.Intent() # Call the constructor.
 		
-		var uri_class=JavaClassWrapper.wrap("android.net.Uri")
-		var fileprovider_class=JavaClassWrapper.wrap("androidx.core.content.FileProvider")
-		var apkUri=fileprovider_class.getUriForFile(activity,"com.zly.platform.provider",apk_file)
-		
 		
 		
 		intent.setAction(Intent.ACTION_VIEW)
-		intent.setDataAndType(apkUri, "application/vnd.android.package-archive")
+		intent.addCategory(Intent.CATEGORY_DEFAULT)
+		intent.setDataAndType(apkPath, "application/vnd.android.package-archive")
 		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-		activity.startActivity(intent)
+		activity.startActivityForResult(intent, 10)
 	else:
 		print("failed")
 
@@ -184,7 +182,9 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 			OS.create_instance([])
 			get_tree().quit()
 		else:
-			installAPK(ProjectSettings.globalize_path($ExecutableDownload.download_file))
+			var filepath=ProjectSettings.globalize_path($ExecutableDownload.download_file)
+			print(getUriForFile(filepath))
+			installAPK(getUriForFile(filepath))
 	else:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()

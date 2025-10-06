@@ -95,35 +95,6 @@ jobs:
               ./build/web.zip
               ./build/mac-x64.zip
               ./build/android/platform2d.apk
-
-      - name: Python Setup
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-      
-      - name: Pip Setup
-        run: |
-          python -m pip install --upgrade pip
-        
-      - name: Create Release with Multiple Files
-        uses: nICEnnnnnnnLee/action-gitee-release@v2.0.0
-        with:
-          gitee_action: create_release
-          gitee_owner: zly-k
-          gitee_repo: platformer2d
-          gitee_token: ${{ secrets.MIRROR_TOKEN }}
-          gitee_tag_name: ${{env.RELEASE_VERSION}}
-          gitee_release_name: ${{env.RELEASE_VERSION}}
-          gitee_release_body: ${{env.RELEASE_VERSION}}
-          gitee_target_commitish: master
-          gitee_upload_retry_times: 3
-          gitee_files: |
-            ./build/windows-x64.zip
-            ./build/windows-pck/${{env.EXPORT_NAME}}.pck
-            ./build/linux-x64.zip
-            ./build/web.zip
-            ./build/mac-x64.zip
-            ./build/android/platform2d.apk
       
           
 
