@@ -2,7 +2,7 @@ extends Node
 @onready var color_rect = $ColorRect
 
 
-const GAME_VERSION="1.0.1"
+const GAME_VERSION="1.0.3"
 
 
 const CONFIG_PATH="user://config.ini"
