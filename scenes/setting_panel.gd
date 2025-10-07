@@ -14,38 +14,6 @@ func _ready() -> void:
 	var config=ConfigFile.new()
 	config.load(GameProcesser.CONFIG_PATH)
 
-func getUriForFile(filePath:String):
-	var runtime=Engine.get_singleton("AndroidRuntime")
-	if runtime:
-		var activity=runtime.getActivity()
-		var file_class=JavaClassWrapper.wrap("java.io.File")
-		var file=file_class.File(filePath)
-		var fileprovider_class=JavaClassWrapper.wrap("androidx.core.content.FileProvider")
-		var fileUri=fileprovider_class.getUriForFile(activity,"com.zly.platform.fileprovider",file)
-		return fileUri
-
-func installAPK(apkPath) -> void:
-	var runtime=Engine.get_singleton("AndroidRuntime")
-	if runtime:
-		
-		
-		
-		
-		var Intent = JavaClassWrapper.wrap("android.content.Intent")
-		var activity = runtime.getActivity()
-		var intent = Intent.Intent() # Call the constructor.
-		
-		
-		
-		intent.setAction(Intent.ACTION_VIEW)
-		intent.addCategory(Intent.CATEGORY_DEFAULT)
-		intent.setDataAndType(apkPath, "application/vnd.android.package-archive")
-		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-		activity.startActivityForResult(intent, 10)
-	else:
-		print("failed")
-
 
 func load_settings():
 	settings.load(SETTING_FILE)
@@ -109,6 +77,7 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_check_update_pressed() -> void:
+	
 	if OS.get_name()!="Android" and OS.get_name()!="Windows":
 		OS.alert("暂时仅对Windows和Android开放")
 		return
@@ -157,9 +126,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.apk"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
-				$ExecutableDownload.download_file="user://platform2d.apk"
-				$ExecutableDownload.request(update_url)
-				update_downloading=true
+				OS.shell_open(update_url)
 				return
 	OS.alert("已是最新版本","提示")
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
@@ -182,9 +149,7 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 			OS.create_instance([])
 			get_tree().quit()
 		else:
-			var filepath=ProjectSettings.globalize_path($ExecutableDownload.download_file)
-			print(getUriForFile(filepath))
-			installAPK(getUriForFile(filepath))
+			pass
 	else:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
