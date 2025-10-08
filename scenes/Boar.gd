@@ -48,6 +48,9 @@ func _on_on_walk_taken() -> void:
 
 
 func _on_living_state_physics_processing(delta: float) -> void:
+	if $Graphics/Wall.is_colliding() or not $Graphics/Floor.is_colliding():
+		if is_on_floor():
+			direction*=-1
 	if status.health<=0:
 		state_chart.send_event("dying")
 	if player_checker.is_colliding() and not$StateChart/Root/Living/Hurt.active:
@@ -100,6 +103,9 @@ func _on_walk_state_physics_processing(delta: float) -> void:
 
 
 func _on_run_state_physics_processing(delta: float) -> void:
+	floorchker.force_raycast_update()
+	wall.force_raycast_update()
+	player_checker.force_raycast_update()
 	if wall.is_colliding() or not floorchker.is_colliding() and is_on_floor():
 		direction*=-1
 	velocity.x = move_toward(velocity.x, MAX_SPEED * direction, acceleration * delta)
@@ -107,6 +113,9 @@ func _on_run_state_physics_processing(delta: float) -> void:
 
 
 func _on_idle_state_physics_processing(delta: float) -> void:
+	floorchker.force_raycast_update()
+	wall.force_raycast_update()
+	player_checker.force_raycast_update()
 	velocity.x=0
 	animation_state.travel("idle")
 	if lock_turn and is_on_floor():

@@ -14,7 +14,9 @@ config/name="platform"
 config/version="1.0.0"
 run/main_scene="uid://dj0b7cwm84d7y"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/bg_color=Color(0, 0, 0, 0.321569)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 boot_splash/image="uid://c65vap244qkbu"
 config/icon="uid://c65vap244qkbu"
 
