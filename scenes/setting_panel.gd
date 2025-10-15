@@ -77,7 +77,6 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_check_update_pressed() -> void:
-	
 	if OS.get_name()!="Android" and OS.get_name()!="Windows":
 		OS.alert("暂时仅对Windows和Android开放")
 		return
@@ -123,10 +122,12 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			else:
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.apk"
+					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.pck"
 				else:
-					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.apk"
-				OS.shell_open(update_url)
+					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
+				$ExecutableDownload.download_file="user://update.pck"
+				$ExecutableDownload.request(update_url)
+				#OS.shell_open(update_url)
 				return
 	OS.alert("已是最新版本","提示")
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
@@ -144,12 +145,9 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 	$VBoxContainer/Exit.disabled=false
 	update_downloading=false
 	if result==HTTPRequest.RESULT_SUCCESS:
-		if OS.get_name()!="Android":
-			OS.alert("更新完成，请重启","提示")
-			OS.create_instance([])
-			get_tree().quit()
-		else:
-			pass
+		OS.alert("更新完成，请重启","提示")
+		OS.create_instance([])
+		get_tree().quit()
 	else:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()

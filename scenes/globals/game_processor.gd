@@ -44,6 +44,9 @@ func _ready():
 	color_rect.hide()
 	load_config()
 	#get_window().min_size=Vector2i(1024,648)
+	if OS.get_name()=="Android":
+		if FileAccess.file_exists("user://update.pck"):
+			ProjectSettings.load_resource_pack("user://update.pck")
 	
 func get_game_version()->String:
 	return GAME_VERSION
