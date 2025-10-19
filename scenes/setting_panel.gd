@@ -109,12 +109,12 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		if int(rem_ver_array[a])>int(cur_ver_array[a]):
 			print("update avivable")
 			if OS.get_name()!="Android":
-				$ExecutableDownload.download_file=OS.get_executable_path().get_base_dir()+"/platform2d.pck"
+				$ExecutableDownload.download_file="user://update.pck"
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.pck"
+					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/windows.pck"
 				else:
-					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
+					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/windows.pck"
 				$ExecutableDownload.request(update_url)
 				
 				update_downloading=true
@@ -122,9 +122,9 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			else:
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/platform2d.pck"
+					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/android.pck"
 				else:
-					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/platform2d.pck"
+					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/android.pck"
 				$ExecutableDownload.download_file="user://update.pck"
 				$ExecutableDownload.request(update_url)
 				#OS.shell_open(update_url)
