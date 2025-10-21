@@ -127,6 +127,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/android.pck"
 				$ExecutableDownload.download_file="user://update.pck"
 				$ExecutableDownload.request(update_url)
+				update_downloading=true
 				#OS.shell_open(update_url)
 				return
 	OS.alert("已是最新版本","提示")
