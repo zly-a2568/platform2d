@@ -533,6 +533,9 @@ shape = SubResource("RectangleShape2D_q63wp")
 position = Vector2(-1.7709, 7.69025)
 shape = SubResource("RectangleShape2D_31k63")
 
+[node name="Wall" parent="Graphics" index="1"]
+hit_from_inside = true
+
 [node name="PlayerChecker" parent="Graphics" index="2"]
 target_position = Vector2(-70, 0)
 
