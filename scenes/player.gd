@@ -73,10 +73,13 @@ func _physics_process(delta: float) -> void:
 	acceleration=GROUND_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	if controlled:
 		if not is_zero_approx(dire):
-			if not $StateChart/Root/Living/Intract/Hurting/Hurt.active or $StateChart/Root/Living/Intract/Attacking/Attack.active:
+			if (not $StateChart/Root/Living/Intract/Hurting/Hurt.active) and (not $StateChart/Root/Living/Intract/Attacking/Attack.active):
 				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity,acceleration*delta*knob_sensitivity)
 			else:
-				velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity/3,acceleration*delta)
+				if $StateChart/Root/Living/Intract/Attacking/Attack.active and not is_on_floor():
+					velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity,acceleration*delta*knob_sensitivity)
+				else:
+					velocity.x=move_toward(velocity.x,direction*SPEED*knob_sensitivity/3,acceleration*delta)
 			direction=sign(dire) if dire!=0 else direction
 			if still:
 				still=false
@@ -201,6 +204,10 @@ func _on_free_state_physics_processing(delta: float) -> void:
 
 func _on_on_attack_taken() -> void:
 	$Graphics/Hitter/CollisionShape2D.disabled=false
+	if $StateChart/Root/Living/Movement/Sliding.active:
+		state_chart.send_event("airborne")
+		velocity+=Vector2.LEFT*600
+	
 	animation_state.travel("attack")
 	SoundManager.play_sfx("Attack")
 	pass # Replace with function body.

@@ -57,7 +57,7 @@ position = Vector2(837, 960)
 position = Vector2(370, 497)
 
 [node name="Boar2" parent="Enemies" instance=ExtResource("6_gpe7j")]
-position = Vector2(468, 400)
+position = Vector2(545, 416)
 
 [node name="Fruits" type="Node" parent="."]
 

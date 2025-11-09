@@ -18,8 +18,6 @@ var is_hurt:bool=false
 var can_hurt:bool=true
 var back_direction:int=0
 var bullet=preload("res://scenes/slime_bullet.tscn")
-var lock_turn:bool=false
-var lock2_turn:bool=false
 
 
 func _ready() -> void:
@@ -43,6 +41,9 @@ func _on_on_walk_taken() -> void:
 
 
 func _on_living_state_physics_processing(delta: float) -> void:
+	if $Graphics/Wall.is_colliding() or not $Graphics/Floor.is_colliding():
+		if is_on_floor():
+			direction*=-1 
 	if status.health<=0:
 		state_chart.send_event("dying")
 	if player_checker.is_colliding() and not$StateChart/Root/Living/Hurt.active and not $StateChart/Root/Living/Shoot.active:
@@ -59,10 +60,6 @@ func _on_living_state_physics_processing(delta: float) -> void:
 
 
 func _on_on_shoot_taken() -> void:
-	if lock2_turn:
-		$Graphics/Hurter/CollisionShape2D.set_deferred("disabled",false)
-		can_hurt=true
-		lock2_turn=false
 	animation_state.travel("walk")
 	var playerposX:=(get_tree().get_first_node_in_group("player") as Player).global_position.x
 	direction=-1 if playerposX<global_position.x else 1
@@ -80,16 +77,13 @@ func _on_on_hurt_taken() -> void:
 	animation_state.travel("hurt")
 	status.health-=1
 	$Graphics/Hurter/CollisionShape2D.set_deferred("disabled",true)
-	
-	lock2_turn=true
 	can_hurt=false
 	pass # Replace with function body.
 
 
 func _on_walk_state_physics_processing(delta: float) -> void:
-	if wall.is_colliding() or not floorchker.is_colliding():
-		velocity.x=0
-		lock_turn=true
+	if not floorchker.is_colliding() or wall.is_colliding():
+		#direction*=-1
 		state_chart.send_event("idle")
 	velocity.x = move_toward(velocity.x, SPEED * direction, acceleration * delta)
 	pass # Replace with function body.
@@ -103,9 +97,6 @@ func _on_shoot_state_entered() -> void:
 func _on_idle_state_physics_processing(delta: float) -> void:
 	velocity.x=0
 	animation_state.travel("idle")
-	if lock_turn and is_on_floor():
-		direction*=-1
-		lock_turn=false
 		
 	pass # Replace with function body.
 
@@ -129,4 +120,10 @@ func shoot():
 
 
 func _on_end_shoot_taken() -> void:
+	pass # Replace with function body.
+
+
+func _on_on_hurt_end() -> void:
+	$Graphics/Hurter/CollisionShape2D.set_deferred("disabled",false)
+	can_hurt=true
 	pass # Replace with function body.

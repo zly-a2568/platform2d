@@ -22,8 +22,6 @@ enum State{
 var is_hurt:bool=false
 var can_hurt:bool=true
 var back_direction:int=0
-var lock_turn:bool=false
-var lock2_turn:bool=false
 
 
 func _ready() -> void:
@@ -50,7 +48,9 @@ func _on_on_walk_taken() -> void:
 func _on_living_state_physics_processing(delta: float) -> void:
 	if $Graphics/Wall.is_colliding() or not $Graphics/Floor.is_colliding():
 		if is_on_floor():
-			direction*=-1
+			direction*=-1 
+			if $StateChart/Root/Living/Walk.active:
+				state_chart.send_event("idle")
 	if status.health<=0:
 		state_chart.send_event("dying")
 	if player_checker.is_colliding() and not$StateChart/Root/Living/Hurt.active:
@@ -67,11 +67,9 @@ func _on_living_state_physics_processing(delta: float) -> void:
 
 
 func _on_on_run_taken() -> void:
-	if lock2_turn:
-		$Graphics/Hurter/CollisionShape2D.set_deferred("disabled",false)
-		$Graphics/Hurter/CollisionShape2D2.set_deferred("disabled",false)
-		can_hurt=true
-		lock2_turn=false
+	$Graphics/Hurter/CollisionShape2D.set_deferred("disabled",false)
+	$Graphics/Hurter/CollisionShape2D2.set_deferred("disabled",false)
+	can_hurt=true
 	animation_state.travel("run")
 	pass # Replace with function body.
 
@@ -88,16 +86,11 @@ func _on_on_hurt_taken() -> void:
 	status.health-=1
 	$Graphics/Hurter/CollisionShape2D.set_deferred("disabled",true)
 	$Graphics/Hurter/CollisionShape2D2.set_deferred("disabled",true)
-	lock2_turn=true
 	can_hurt=false
 	pass # Replace with function body.
 
 
 func _on_walk_state_physics_processing(delta: float) -> void:
-	if wall.is_colliding() or not floorchker.is_colliding():
-		velocity.x=0
-		lock_turn=true
-		state_chart.send_event("idle")
 	velocity.x = move_toward(velocity.x, SPEED * direction, acceleration * delta)
 	pass # Replace with function body.
 
@@ -106,8 +99,6 @@ func _on_run_state_physics_processing(delta: float) -> void:
 	floorchker.force_raycast_update()
 	wall.force_raycast_update()
 	player_checker.force_raycast_update()
-	if wall.is_colliding() or not floorchker.is_colliding() and is_on_floor():
-		direction*=-1
 	velocity.x = move_toward(velocity.x, MAX_SPEED * direction, acceleration * delta)
 	pass # Replace with function body.
 
@@ -118,9 +109,6 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 	player_checker.force_raycast_update()
 	velocity.x=0
 	animation_state.travel("idle")
-	if lock_turn and is_on_floor():
-		direction*=-1
-		lock_turn=false
 		
 	pass # Replace with function body.
 

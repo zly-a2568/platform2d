@@ -617,7 +617,7 @@ script = ExtResource("9_41htl")
 [node name="On Run" type="Node" parent="StateChart/Root/Living/Hurt" index="0"]
 script = ExtResource("8_4qjkf")
 to = NodePath("../../Run")
-delay_in_seconds = "0.5"
+delay_in_seconds = "0.6"
 
 [node name="Dying" type="Node" parent="StateChart/Root" index="1"]
 script = ExtResource("9_41htl")

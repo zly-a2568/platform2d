@@ -5,7 +5,7 @@ enum Direction {
 	LEFT = -1,
 	RIGHT = +1,
 }
-const HURT_BACK_AMOUNT=200
+const HURT_BACK_AMOUNT=210
 const SPEED=100
 const MAX_SPEED: float = 180
 @onready var status: Status = $Status
