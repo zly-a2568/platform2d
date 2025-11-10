@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=26 format=3 uid="uid://dq2k6takiambk"]
+[gd_resource type="Theme" load_steps=32 format=3 uid="uid://dq2k6takiambk"]
 
 [ext_resource type="FontFile" uid="uid://d22d1ht8sxf5i" path="res://themes/fonts/fusion.ttf" id="1_1h68f"]
 [ext_resource type="Texture2D" uid="uid://cwowqmv2s7u8" path="res://assets/Menu/Buttons/checkbutton.png" id="2_kgv31"]
@@ -60,6 +60,36 @@ texture_margin_bottom = 3.0
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 region_rect = Rect2(3, 130, 11, 11)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kgv31"]
+load_path = "res://.godot/imported/HUD.png-0b105114229e72f3666bffe317f24470.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j33s6"]
+atlas = SubResource("CompressedTexture2D_kgv31")
+region = Rect2(94, 14, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsup1"]
+texture = SubResource("AtlasTexture_j33s6")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(94, 14, 20, 20)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6c42i"]
+load_path = "res://.godot/imported/HUD.png-0b105114229e72f3666bffe317f24470.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsup1"]
+atlas = SubResource("CompressedTexture2D_6c42i")
+region = Rect2(94, 14, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gf3l"]
+texture = SubResource("AtlasTexture_vsup1")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(94, 14, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wa65"]
 region = Rect2(16, 224, 48, 48)
@@ -124,6 +154,11 @@ Label/constants/outline_size = 1
 Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 10
 Label/fonts/font = ExtResource("1_1h68f")
+LineEdit/constants/minimum_character_width = 10
+LineEdit/font_sizes/font_size = 8
+LineEdit/fonts/font = ExtResource("1_1h68f")
+LineEdit/styles/focus = SubResource("StyleBoxTexture_vsup1")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_8gf3l")
 OptionButton/font_sizes/font_size = 10
 OptionButton/fonts/font = ExtResource("1_1h68f")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_t51y8")

@@ -53,32 +53,37 @@ text = "设置"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(125, 100)
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+scroll_vertical = 33
+horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 columns = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 text = "鬼畜音效"
-horizontal_alignment = 3
+horizontal_alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 2
 focus_neighbor_bottom = NodePath("../Button")
+expand_icon = true
 
 [node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 text = "键位设置"
-horizontal_alignment = 3
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../CheckButton")
 focus_neighbor_bottom = NodePath("../../../Exit")
 text = "进入"
@@ -86,11 +91,12 @@ text = "进入"
 [node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 text = "灵敏度"
-horizontal_alignment = 3
+horizontal_alignment = 1
 
 [node name="HSlider2" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = 0.7
 max_value = 1.2
@@ -114,6 +120,7 @@ horizontal_alignment = 1
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 selected = 1
 fit_to_longest_item = false
 item_count = 2
@@ -121,6 +128,16 @@ popup/item_0/text = "Github"
 popup/item_0/id = 0
 popup/item_1/text = "Gitee"
 popup/item_1/id = 1
+
+[node name="Label6" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "Github代理地址"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+caret_blink = true
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(50, 16)
