@@ -1,4 +1,5 @@
 extends Control
+@onready var proxy_input: LineEdit = $VBoxContainer/ScrollContainer/GridContainer/ProxyInput
 
 const SETTING_FILE="user://config.ini"
 var is_guichu:bool=false
@@ -7,10 +8,10 @@ var knob_sensitivity:float=1.0
 var settings=ConfigFile.new()
 var update_downloading:bool=false
 var update_source:String
+var github_proxy:String
 var ver:String
 
 func _ready() -> void:
-	print(Engine.get_singleton_list())
 	var config=ConfigFile.new()
 	config.load(GameProcesser.CONFIG_PATH)
 
@@ -21,6 +22,8 @@ func load_settings():
 	update_source=settings.get_value("Settings","update_source","gitee")
 	knob_sensitivity=settings.get_value("Settings","knob_sensitivity",1.0)
 	is_guichu=settings.get_value("Settings","is_guichu",false)
+	github_proxy=settings.get_value("Settings","github_proxy",String())
+	proxy_input.text=github_proxy
 	$VBoxContainer/ScrollContainer/GridContainer/HSlider2.value=knob_sensitivity
 	$VBoxContainer/ScrollContainer/GridContainer/CheckButton.button_pressed=is_guichu
 func apply_settings():
@@ -85,7 +88,7 @@ func _on_check_update_pressed() -> void:
 	$VBoxContainer/Exit.disabled=true
 	var update_url:String
 	if update_source=="github":
-		update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/version-note.txt"
+		update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/download/latest/version-note.txt"
 	else:
 		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/version-note.txt"
 	var error = $VersionCheck.request(update_url)
@@ -96,7 +99,7 @@ func _on_check_update_pressed() -> void:
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	print(result)
-	if result!=HTTPRequest.RESULT_SUCCESS:
+	if result!=HTTPRequest.RESULT_SUCCESS or response_code!=200:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
@@ -112,7 +115,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 				$ExecutableDownload.download_file="user://update.pck"
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/windows.pck"
+					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/download/latest/windows.pck"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/windows.pck"
 				$ExecutableDownload.request(update_url)
@@ -122,7 +125,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			else:
 				var update_url:String
 				if update_source=="github":
-					update_url="https://github.com/zly-a2568/platform2d/releases/download/latest/android.pck"
+					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/download/latest/android.pck"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/android.pck"
 				$ExecutableDownload.download_file="user://update.pck"
@@ -167,4 +170,18 @@ func _on_option_button_item_selected(index: int) -> void:
 		update_source="github"
 	elif index==1:
 		update_source="gitee"
+	pass # Replace with function body.
+
+
+func _on_proxy_input_editing_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		proxy_input.grab_focus()
+	pass # Replace with function body.
+
+
+
+func _on_proxy_input_text_submitted(new_text: String) -> void:
+	github_proxy=proxy_input.text
+	settings.set_value("Settings","github_proxy",github_proxy)
+	settings.save(SETTING_FILE)
 	pass # Replace with function body.

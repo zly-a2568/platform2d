@@ -134,7 +134,7 @@ layout_mode = 2
 text = "Github代理地址"
 horizontal_alignment = 1
 
-[node name="SpinBox" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="ProxyInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 caret_blink = true
@@ -157,6 +157,8 @@ use_threads = true
 [connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CheckUpdate" to="." method="_on_check_update_pressed"]
 [connection signal="item_selected" from="VBoxContainer/ScrollContainer/GridContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="editing_toggled" from="VBoxContainer/ScrollContainer/GridContainer/ProxyInput" to="." method="_on_proxy_input_editing_toggled"]
+[connection signal="text_submitted" from="VBoxContainer/ScrollContainer/GridContainer/ProxyInput" to="." method="_on_proxy_input_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="request_completed" from="VersionCheck" to="." method="_on_http_request_request_completed"]
 [connection signal="request_completed" from="ExecutableDownload" to="." method="_on_executable_download_request_completed"]
