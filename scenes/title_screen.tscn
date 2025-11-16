@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj0b7cwm84d7y"]
+[gd_scene load_steps=9 format=3 uid="uid://dj0b7cwm84d7y"]
 
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://batb7erkde71v" path="res://scenes/title_screen.gd" id="1_sa3yf"]
+[ext_resource type="Texture2D" uid="uid://cn5co46ao7bu7" path="res://assets/Background/Blue.png" id="2_3yumr"]
 [ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="2_s4lrb"]
 [ext_resource type="PackedScene" uid="uid://cfuluqhqbxr1l" path="res://scenes/setting_panel.tscn" id="4_dc4i4"]
 [ext_resource type="PackedScene" uid="uid://cc0nc4xa5f6sw" path="res://scenes/joy_pad_editable.tscn" id="6_e54dn"]
@@ -26,6 +27,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3yumr")
+stretch_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
 material = SubResource("ShaderMaterial_sa3yf")

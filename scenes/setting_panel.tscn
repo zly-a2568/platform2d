@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1njt"]
 shader = ExtResource("1_xtyyo")
-shader_parameter/blur_amount = 4.0
+shader_parameter/blur_amount = 2.0
 shader_parameter/color_over = Color(0, 0, 0, 1)
 shader_parameter/mix_amount = 0.5
 shader_parameter/alpha = 1.0
@@ -56,7 +56,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-scroll_vertical = 33
+scroll_vertical = 29
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
@@ -121,8 +121,11 @@ horizontal_alignment = 1
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+flat = true
+language = "zh_CN"
 selected = 1
 fit_to_longest_item = false
+allow_reselect = true
 item_count = 2
 popup/item_0/text = "Github"
 popup/item_0/id = 0
@@ -137,7 +140,14 @@ horizontal_alignment = 1
 [node name="ProxyInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+placeholder_text = "代理URL"
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+clear_button_enabled = true
 caret_blink = true
+language = "zh_CN"
+structured_text_bidi_override = 1
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(50, 16)
@@ -157,7 +167,6 @@ use_threads = true
 [connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CheckUpdate" to="." method="_on_check_update_pressed"]
 [connection signal="item_selected" from="VBoxContainer/ScrollContainer/GridContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="editing_toggled" from="VBoxContainer/ScrollContainer/GridContainer/ProxyInput" to="." method="_on_proxy_input_editing_toggled"]
 [connection signal="text_submitted" from="VBoxContainer/ScrollContainer/GridContainer/ProxyInput" to="." method="_on_proxy_input_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="request_completed" from="VersionCheck" to="." method="_on_http_request_request_completed"]

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=32 format=3 uid="uid://dq2k6takiambk"]
+[gd_resource type="Theme" load_steps=39 format=3 uid="uid://dq2k6takiambk"]
 
 [ext_resource type="FontFile" uid="uid://d22d1ht8sxf5i" path="res://themes/fonts/fusion.ttf" id="1_1h68f"]
 [ext_resource type="Texture2D" uid="uid://cwowqmv2s7u8" path="res://assets/Menu/Buttons/checkbutton.png" id="2_kgv31"]
@@ -20,6 +20,7 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(94, 14, 20, 20)
+modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c42i"]
 atlas = ExtResource("2_kgv31")
@@ -61,11 +62,12 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 region_rect = Rect2(3, 130, 11, 11)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kgv31"]
-load_path = "res://.godot/imported/HUD.png-0b105114229e72f3666bffe317f24470.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gf3l"]
+atlas = ExtResource("2_oryc4")
+region = Rect2(20, 149, 7, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j33s6"]
-atlas = SubResource("CompressedTexture2D_kgv31")
+atlas = ExtResource("2_oryc4")
 region = Rect2(94, 14, 20, 20)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsup1"]
@@ -75,21 +77,20 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(94, 14, 20, 20)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6c42i"]
-load_path = "res://.godot/imported/HUD.png-0b105114229e72f3666bffe317f24470.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vsup1"]
-atlas = SubResource("CompressedTexture2D_6c42i")
-region = Rect2(94, 14, 20, 20)
+modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gf3l"]
-texture = SubResource("AtlasTexture_vsup1")
+texture = ExtResource("2_oryc4")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(94, 14, 20, 20)
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jcxo"]
+atlas = ExtResource("2_oryc4")
+region = Rect2(20, 166, 7, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wa65"]
 region = Rect2(16, 224, 48, 48)
@@ -109,12 +110,33 @@ region = Rect2(65, 113, 14, 14)
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0q7g"]
 region = Rect2(64, 80, 16, 16)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8t2u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0q7g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j33s6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0q7g"]
+bg_color = Color(0, 0, 0, 0.5)
+border_color = Color(0, 0, 0, 0.8)
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gf3l"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c42i"]
-bg_color = Color(0.226707, 0.226708, 0.226707, 1)
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hrgd"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxnlh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8t2u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5vygm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqeco"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vsup1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0jcxo"]
 
 [resource]
 default_font_size = 22
@@ -135,6 +157,9 @@ Button/styles/focus = SubResource("StyleBoxTexture_oryc4")
 Button/styles/hover = SubResource("StyleBoxTexture_oryc4")
 Button/styles/normal = SubResource("StyleBoxEmpty_ls7it")
 Button/styles/pressed = SubResource("StyleBoxEmpty_ls7it")
+CheckButton/constants/align_to_largest_stylebox = 1
+CheckButton/constants/h_separation = 0
+CheckButton/font_sizes/font_size = 10
 CheckButton/fonts/font = ExtResource("1_1h68f")
 CheckButton/icons/checked = SubResource("AtlasTexture_6c42i")
 CheckButton/icons/unchecked = SubResource("AtlasTexture_2hrgd")
@@ -157,19 +182,35 @@ Label/fonts/font = ExtResource("1_1h68f")
 LineEdit/constants/minimum_character_width = 10
 LineEdit/font_sizes/font_size = 8
 LineEdit/fonts/font = ExtResource("1_1h68f")
+LineEdit/icons/clear = SubResource("AtlasTexture_8gf3l")
 LineEdit/styles/focus = SubResource("StyleBoxTexture_vsup1")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_8gf3l")
+OptionButton/constants/align_to_largest_stylebox = 1
 OptionButton/font_sizes/font_size = 10
 OptionButton/fonts/font = ExtResource("1_1h68f")
+OptionButton/icons/arrow = SubResource("AtlasTexture_0jcxo")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_t51y8")
-PopupMenu/font_sizes/font_separator_size = 10
-PopupMenu/font_sizes/font_size = 10
-PopupMenu/font_sizes/title_font_size = 10
+PopupMenu/constants/h_separation = 0
+PopupMenu/constants/indent = 4
+PopupMenu/constants/item_end_padding = 0
+PopupMenu/constants/item_start_padding = 0
+PopupMenu/constants/v_separation = 2
+PopupMenu/font_sizes/font_separator_size = 6
+PopupMenu/font_sizes/font_size = 6
+PopupMenu/font_sizes/title_font_size = 6
 PopupMenu/fonts/font = ExtResource("1_1h68f")
 PopupMenu/fonts/font_separator = ExtResource("1_1h68f")
 PopupMenu/fonts/title_font = ExtResource("1_1h68f")
 PopupMenu/icons/radio_checked = SubResource("AtlasTexture_a8t2u")
 PopupMenu/icons/radio_unchecked = SubResource("AtlasTexture_k0q7g")
-VScrollBar/styles/grabber = SubResource("StyleBoxFlat_6c42i")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_2hrgd")
-VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_a8t2u")
+PopupMenu/styles/hover = SubResource("StyleBoxEmpty_a8t2u")
+PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxEmpty_k0q7g")
+PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxEmpty_j33s6")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_k0q7g")
+PopupMenu/styles/separator = SubResource("StyleBoxEmpty_8gf3l")
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_6c42i")
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_nxnlh")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_5vygm")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_rqeco")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_vsup1")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_0jcxo")

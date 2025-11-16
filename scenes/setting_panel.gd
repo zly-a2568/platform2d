@@ -24,6 +24,7 @@ func load_settings():
 	is_guichu=settings.get_value("Settings","is_guichu",false)
 	github_proxy=settings.get_value("Settings","github_proxy",String())
 	proxy_input.text=github_proxy
+	$VBoxContainer/ScrollContainer/GridContainer/OptionButton.select(1 if update_source=="gitee" else 0)
 	$VBoxContainer/ScrollContainer/GridContainer/HSlider2.value=knob_sensitivity
 	$VBoxContainer/ScrollContainer/GridContainer/CheckButton.button_pressed=is_guichu
 func apply_settings():
@@ -108,7 +109,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	var current_version=GameProcesser.get_game_version() as String
 	var cur_ver_array=current_version.split(".")
 	var rem_ver_array=remote_version.split(".")
-	for a in range(3):
+	for a in range(4):
 		if int(rem_ver_array[a])>int(cur_ver_array[a]):
 			print("update avivable")
 			if OS.get_name()!="Android":
@@ -170,14 +171,9 @@ func _on_option_button_item_selected(index: int) -> void:
 		update_source="github"
 	elif index==1:
 		update_source="gitee"
+	settings.set_value("Settings","update_source",update_source)
+	print(settings.save(SETTING_FILE))
 	pass # Replace with function body.
-
-
-func _on_proxy_input_editing_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		proxy_input.grab_focus()
-	pass # Replace with function body.
-
 
 
 func _on_proxy_input_text_submitted(new_text: String) -> void:
