@@ -2,7 +2,7 @@ extends Node
 @onready var color_rect = $ColorRect
 
 
-const GAME_VERSION="1.0.3"
+var GAME_VERSION="1.0.3"
 
 
 const CONFIG_PATH="user://config.ini"
@@ -36,6 +36,12 @@ signal camera_shock(amount:float)
 
 @onready var tip: Label = $Tip
 
+func _init() -> void:
+	if OS.get_name()=="Android" or OS.get_name()=="Windows":
+		if FileAccess.file_exists("user://update.pck"):
+			print(ProjectSettings.load_resource_pack("user://update.pck"))
+			GAME_VERSION=(load("res://version_info.res") as VersionInfo).version
+			print(GAME_VERSION)
 
 func _ready():
 	if OS.get_name()=="Android":
@@ -44,9 +50,6 @@ func _ready():
 	color_rect.hide()
 	load_config()
 	#get_window().min_size=Vector2i(1024,648)
-	if OS.get_name()=="Android" or OS.get_name()=="Windows":
-		if FileAccess.file_exists("user://update.pck"):
-			print(ProjectSettings.load_resource_pack("user://update.pck"))
 	
 func get_game_version()->String:
 	return GAME_VERSION

@@ -88,7 +88,7 @@ func _on_check_update_pressed() -> void:
 	$VBoxContainer/Exit.disabled=true
 	var update_url:String
 	if update_source=="github":
-		update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/download/latest/version-note.txt"
+		update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/version-note.txt"
 	else:
 		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/version-note.txt"
 	var error = $VersionCheck.request(update_url)
@@ -99,7 +99,7 @@ func _on_check_update_pressed() -> void:
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	print(result)
-	if result!=HTTPRequest.RESULT_SUCCESS or response_code!=200:
+	if result!=HTTPRequest.RESULT_SUCCESS or response_code==522:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
@@ -115,7 +115,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 				$ExecutableDownload.download_file="user://update.pck"
 				var update_url:String
 				if update_source=="github":
-					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/download/latest/windows.pck"
+					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/windows.pck"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/windows.pck"
 				$ExecutableDownload.request(update_url)
@@ -125,7 +125,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			else:
 				var update_url:String
 				if update_source=="github":
-					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/download/latest/android.pck"
+					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/android.pck"
 				else:
 					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/android.pck"
 				$ExecutableDownload.download_file="user://update.pck"
@@ -148,7 +148,7 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
 	$VBoxContainer/Exit.disabled=false
 	update_downloading=false
-	if result==HTTPRequest.RESULT_SUCCESS:
+	if result==HTTPRequest.RESULT_SUCCESS and response_code==200:
 		OS.alert("更新完成，请重启","提示")
 		OS.create_instance([])
 		get_tree().quit()
