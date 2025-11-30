@@ -11,7 +11,7 @@ env:
   SECRET_RELEASE_KEYSTORE_USER: mygame
   SECRET_RELEASE_KEYSTORE_PASSWORD: 123456
   RELEASE_VERSION: v1.0.3
-  FULL_VERSION: v1.0.3.1
+  FULL_VERSION: v1.0.3.2
 jobs:
   export-windows:
     name: Windows Export
