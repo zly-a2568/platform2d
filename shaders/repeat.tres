@@ -1,0 +1,25 @@
+[gd_resource type="Shader" format=3 uid="uid://dfpw1yxqynvew"]
+
+[resource]
+code = "shader_type canvas_item;
+
+// 将当前帧纹理作为参数传入
+uniform sampler2D current_frame_texture;
+// 当前帧在纹理图集上的区域（归一化坐标）
+uniform vec4 frame_rect = vec4(0.0, 0.0, 1.0, 1.0);
+// 控制垂直平铺的数量
+uniform float vertical_tiles = 3.0;
+
+void fragment() {
+    // 1. 根据frame_rect，将UV映射到图集中当前帧的正确区域
+    vec2 frame_uv = vec2(
+        frame_rect.x + UV.x * frame_rect.z,
+        frame_rect.y + UV.y * frame_rect.w
+    );
+    
+    // 2. 对V坐标进行垂直平铺
+    vec2 tiled_uv = vec2(frame_uv.x, fract(frame_uv.y * vertical_tiles));
+    
+    // 3. 从传入的当前帧纹理采样
+    COLOR = texture(current_frame_texture, tiled_uv);
+}"

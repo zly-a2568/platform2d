@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://csemktnsxtjp"]
+[gd_scene load_steps=72 format=3 uid="uid://csemktnsxtjp"]
 
 [ext_resource type="Texture2D" uid="uid://bcaedxvwl4q71" path="res://assets/Main Characters/Virtual Guy/Idle (32x32).png" id="1_6c3n4"]
 [ext_resource type="Script" uid="uid://cyhuhwaigljp0" path="res://scenes/player.gd" id="1_6npl2"]
@@ -139,7 +139,10 @@ radius = 6.0
 height = 25.4189
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xauby"]
-size = Vector2(20, 24)
+size = Vector2(20, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke2ow"]
+size = Vector2(14, 24)
 
 [sub_resource type="Animation" id="Animation_23mgf"]
 loop_mode = 1
@@ -929,7 +932,7 @@ _data = {
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
-collision_mask = 513
+collision_mask = 1537
 floor_stop_on_slope = false
 safe_margin = 0.001
 script = ExtResource("1_6npl2")
@@ -975,7 +978,11 @@ disabled = true
 target_position = Vector2(13, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_xauby")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ke2ow")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
