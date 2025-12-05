@@ -37,6 +37,7 @@ signal camera_shock(amount:float)
 @onready var tip: Label = $Tip
 
 func _init() -> void:
+	
 	if OS.get_name()=="Android" or OS.get_name()=="Windows":
 		if FileAccess.file_exists("user://update.pck"):
 			print(ProjectSettings.load_resource_pack("user://update.pck"))
