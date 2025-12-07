@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 func _on_ground_entered(body: Node2D) -> void:
 	if body is Platform:
 		return
-	if type==Type.COLLISION and not body is Player and not body is Enemy:
+	if type==Type.COLLISION and body is TileMap:
 		v*=-1
 	elif body is Player:
 		if can_fade:

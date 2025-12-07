@@ -216,6 +216,7 @@ _data = {
 modulate = Color(0.920995, 0.920995, 0.920995, 1)
 z_index = 100
 collision_layer = 16
+collision_mask = 1025
 script = ExtResource("1_nvs0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

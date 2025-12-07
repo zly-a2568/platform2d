@@ -2,7 +2,7 @@ extends Node2D
 class_name World
 @onready var background = $Background
 @onready var map = $map
-@onready var camera_2d = $player/PlayerCamera
+@onready var camera_2d:Camera2D = $player/PlayerCamera
 @onready var player: Player = $player
 
 
@@ -36,7 +36,13 @@ func _ready():
 	player.status.energy=GameProcesser.player_status.energy
 
 func _input(event):
-	pass
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.button_index==MOUSE_BUTTON_WHEEL_UP:
+				camera_2d.zoom*=1.1 if camera_2d.zoom.x<=1.5 else 1.0
+			if event.button_index==MOUSE_BUTTON_WHEEL_DOWN:
+				camera_2d.zoom*=0.7 if camera_2d.zoom.x>=0.6 else 1.0
+			
 
 func packdata() -> Dictionary:
 	var enemies_data:={}
