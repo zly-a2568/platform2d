@@ -38,7 +38,7 @@ signal camera_shock(amount:float)
 
 func _init() -> void:
 	
-	if OS.get_name()=="Android" or OS.get_name()=="Windows":
+	if OS.get_name()=="Android" or OS.get_name()=="Windows" and not Engine.is_editor_hint():
 		if FileAccess.file_exists("user://update.pck"):
 			print(ProjectSettings.load_resource_pack("user://update.pck"))
 			GAME_VERSION=(load("res://version_info.res") as VersionInfo).version

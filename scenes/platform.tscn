@@ -200,7 +200,7 @@ size = Vector2(36, 9)
 
 [node name="Platform" type="CharacterBody2D" groups=["platforms"]]
 process_physics_priority = -4
-collision_layer = 512
+collision_layer = 1024
 collision_mask = 1537
 script = ExtResource("1_nlgqw")
 v = Vector2(40, 0)

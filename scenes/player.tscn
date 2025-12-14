@@ -932,7 +932,7 @@ _data = {
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
-collision_mask = 1537
+collision_mask = 1025
 floor_stop_on_slope = false
 safe_margin = 0.001
 script = ExtResource("1_6npl2")
