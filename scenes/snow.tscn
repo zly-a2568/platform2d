@@ -24,7 +24,7 @@ distance = -251.0
 script = ExtResource("1_n3rj0")
 
 [node name="player" parent="." instance=ExtResource("1_2q3oo")]
-position = Vector2(5564.1523, -2201.499)
+position = Vector2(3.518982, 14.739868)
 
 [node name="PlayerCamera" type="Camera2D" parent="player"]
 zoom = Vector2(0.8, 0.8)
