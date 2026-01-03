@@ -1,7 +1,6 @@
-[gd_resource type="Theme" load_steps=39 format=3 uid="uid://dq2k6takiambk"]
+[gd_resource type="Theme" load_steps=36 format=3 uid="uid://dq2k6takiambk"]
 
 [ext_resource type="FontFile" uid="uid://d22d1ht8sxf5i" path="res://themes/fonts/fusion.ttf" id="1_1h68f"]
-[ext_resource type="Texture2D" uid="uid://cwowqmv2s7u8" path="res://assets/Menu/Buttons/checkbutton.png" id="2_kgv31"]
 [ext_resource type="Texture2D" uid="uid://c3x3sl3dh28le" path="res://assets/Menu/HUD.png" id="2_oryc4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgv31"]
@@ -22,17 +21,9 @@ texture_margin_bottom = 4.0
 region_rect = Rect2(94, 14, 20, 20)
 modulate_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6c42i"]
-atlas = ExtResource("2_kgv31")
-region = Rect2(48, 0, 48, 16)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oryc4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2hrgd"]
-atlas = ExtResource("2_kgv31")
-region = Rect2(0, 0, 48, 16)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6c42i"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hrgd"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kgv31"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1mhw"]
 atlas = ExtResource("2_oryc4")
@@ -161,10 +152,8 @@ CheckButton/constants/align_to_largest_stylebox = 1
 CheckButton/constants/h_separation = 0
 CheckButton/font_sizes/font_size = 10
 CheckButton/fonts/font = ExtResource("1_1h68f")
-CheckButton/icons/checked = SubResource("AtlasTexture_6c42i")
-CheckButton/icons/unchecked = SubResource("AtlasTexture_2hrgd")
-CheckButton/styles/focus = SubResource("StyleBoxEmpty_6c42i")
-CheckButton/styles/hover = SubResource("StyleBoxEmpty_2hrgd")
+CheckButton/icons/checked = SubResource("PlaceholderTexture2D_oryc4")
+CheckButton/icons/unchecked = SubResource("PlaceholderTexture2D_kgv31")
 HBoxContainer/constants/separation = 4
 HSlider/constants/center_grabber = 0
 HSlider/icons/grabber = SubResource("AtlasTexture_n1mhw")
@@ -195,9 +184,9 @@ PopupMenu/constants/indent = 4
 PopupMenu/constants/item_end_padding = 0
 PopupMenu/constants/item_start_padding = 0
 PopupMenu/constants/v_separation = 2
-PopupMenu/font_sizes/font_separator_size = 6
-PopupMenu/font_sizes/font_size = 6
-PopupMenu/font_sizes/title_font_size = 6
+PopupMenu/font_sizes/font_separator_size = 8
+PopupMenu/font_sizes/font_size = 8
+PopupMenu/font_sizes/title_font_size = 8
 PopupMenu/fonts/font = ExtResource("1_1h68f")
 PopupMenu/fonts/font_separator = ExtResource("1_1h68f")
 PopupMenu/fonts/title_font = ExtResource("1_1h68f")

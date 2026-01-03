@@ -56,7 +56,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-scroll_vertical = 37
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
@@ -72,9 +71,10 @@ horizontal_alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
 focus_neighbor_bottom = NodePath("../Button")
-expand_icon = true
+text = "关闭"
+alignment = 1
+autowrap_trim_flags = 0
 
 [node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
@@ -87,6 +87,7 @@ size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../CheckButton")
 focus_neighbor_bottom = NodePath("../../../Exit")
 text = "进入"
+autowrap_trim_flags = 0
 
 [node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
@@ -112,6 +113,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 text = "检查"
+autowrap_trim_flags = 0
 
 [node name="Label5" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
@@ -122,6 +124,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
+autowrap_trim_flags = 0
 language = "zh_CN"
 selected = 1
 fit_to_longest_item = false

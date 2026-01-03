@@ -22,6 +22,10 @@ func load_settings():
 	update_source=settings.get_value("Settings","update_source","gitee")
 	knob_sensitivity=settings.get_value("Settings","knob_sensitivity",1.0)
 	is_guichu=settings.get_value("Settings","is_guichu",false)
+	if is_guichu:
+		$VBoxContainer/ScrollContainer/GridContainer/CheckButton.text="打开"
+	else:
+		$VBoxContainer/ScrollContainer/GridContainer/CheckButton.text="关闭"
 	github_proxy=settings.get_value("Settings","github_proxy",String())
 	proxy_input.text=github_proxy
 	$VBoxContainer/ScrollContainer/GridContainer/OptionButton.select(1 if update_source=="gitee" else 0)
@@ -65,6 +69,10 @@ func _on_check_button_pressed() -> void:
 	SoundManager.play_sfx("Press")
 	is_guichu=$VBoxContainer/ScrollContainer/GridContainer/CheckButton.button_pressed
 	apply_settings()
+	if is_guichu:
+		$VBoxContainer/ScrollContainer/GridContainer/CheckButton.text="打开"
+	else:
+		$VBoxContainer/ScrollContainer/GridContainer/CheckButton.text="关闭"
 
 
 func _on_button_pressed() -> void:
