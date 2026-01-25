@@ -59,10 +59,6 @@ shape = SubResource("WorldBoundaryShape2D_t73fm")
 position = Vector2(0, 38)
 target_world = "res://scenes/cooper.tscn"
 
-[node name="Portal2" parent="Portals" instance=ExtResource("5_qjmdr")]
-position = Vector2(5132, -1980)
-target_world = "res://scenes/cooper.tscn"
-
 [node name="SavePoints" type="Node" parent="."]
 
 [node name="SavePoint" parent="SavePoints" instance=ExtResource("6_jnldj")]
@@ -261,6 +257,18 @@ collision_mask = 1537
 
 [node name="Slime8" parent="Enemies" instance=ExtResource("11_nsjiq")]
 position = Vector2(2360, -2240)
+collision_mask = 1537
+
+[node name="Slime9" parent="Enemies" instance=ExtResource("11_nsjiq")]
+position = Vector2(5195, -2155)
+collision_mask = 1537
+
+[node name="Slime10" parent="Enemies" instance=ExtResource("11_nsjiq")]
+position = Vector2(5606, -2179)
+collision_mask = 1537
+
+[node name="Slime11" parent="Enemies" instance=ExtResource("11_nsjiq")]
+position = Vector2(5905, -2014)
 collision_mask = 1537
 
 [node name="Label3" type="Label" parent="."]
