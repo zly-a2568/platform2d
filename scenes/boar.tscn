@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cuxn2ncimf10h"]
+[gd_scene format=3 uid="uid://cuxn2ncimf10h"]
 
 [ext_resource type="Texture2D" uid="uid://bev5jw1cj3yki" path="res://assets/Main Characters/enemy/Idle-Sheet.png" id="1_0hpwt"]
 [ext_resource type="PackedScene" uid="uid://c0if24aritjfw" path="res://scenes/enemy.tscn" id="1_yrl73"]
@@ -500,10 +500,10 @@ size = Vector2(20.8772, 28)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lo6t"]
 size = Vector2(37, 19)
 
-[node name="Boar" groups=["enemies"] instance=ExtResource("1_yrl73")]
+[node name="Boar" unique_id=1195724605 groups=["enemies"] instance=ExtResource("1_yrl73")]
 script = ExtResource("2_qbaom")
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="0"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="0" unique_id=16890611]
 tree_root = SubResource("AnimationNodeStateMachine_1lypk")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -513,9 +513,7 @@ shape = SubResource("CircleShape2D_608qu")
 
 [node name="AnimationPlayer" parent="." index="2"]
 reset_on_save = false
-libraries = {
-&"": SubResource("AnimationLibrary_cq8op")
-}
+libraries/ = SubResource("AnimationLibrary_cq8op")
 
 [node name="Status" parent="." index="3"]
 health = 4
@@ -525,11 +523,11 @@ max_health = 4
 collision_mask = 18
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter" index="0" unique_id=1030445886]
 position = Vector2(-1.5, 2.6195)
 shape = SubResource("RectangleShape2D_q63wp")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hitter" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hitter" index="1" unique_id=1574963344]
 position = Vector2(-1.7709, 7.69025)
 shape = SubResource("RectangleShape2D_31k63")
 
@@ -542,11 +540,11 @@ target_position = Vector2(-70, 0)
 [node name="Hurter" parent="Graphics" index="4"]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0" unique_id=1245730844]
 position = Vector2(-1.43862, 2)
 shape = SubResource("RectangleShape2D_oqe4t")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hurter" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hurter" index="1" unique_id=1527425281]
 position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_6lo6t")
 
@@ -556,73 +554,73 @@ hframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 192, 32)
 
-[node name="CalmdownTimer" type="Timer" parent="." index="5"]
+[node name="CalmdownTimer" type="Timer" parent="." index="5" unique_id=1240646961]
 wait_time = 2.5
 one_shot = true
 
-[node name="Root" type="Node" parent="StateChart" index="0"]
+[node name="Root" type="Node" parent="StateChart" index="0" unique_id=1795051067]
 script = ExtResource("7_lp13s")
 initial_state = NodePath("Living")
 
-[node name="Living" type="Node" parent="StateChart/Root" index="0"]
+[node name="Living" type="Node" parent="StateChart/Root" index="0" unique_id=1719418674]
 script = ExtResource("7_lp13s")
 initial_state = NodePath("Idle")
 
-[node name="On Run" type="Node" parent="StateChart/Root/Living" index="0"]
+[node name="On Run" type="Node" parent="StateChart/Root/Living" index="0" unique_id=1372462939]
 script = ExtResource("8_4qjkf")
 to = NodePath("../Run")
 event = &"run"
 delay_in_seconds = "0.0"
 
-[node name="On Dying" type="Node" parent="StateChart/Root/Living" index="1"]
+[node name="On Dying" type="Node" parent="StateChart/Root/Living" index="1" unique_id=1598591672]
 script = ExtResource("8_4qjkf")
 to = NodePath("../../Dying")
 event = &"dying"
 delay_in_seconds = "0.0"
 
-[node name="On Hurt" type="Node" parent="StateChart/Root/Living" index="2"]
+[node name="On Hurt" type="Node" parent="StateChart/Root/Living" index="2" unique_id=1633247949]
 script = ExtResource("8_4qjkf")
 to = NodePath("../Hurt")
 event = &"hurt"
 delay_in_seconds = "0.0"
 
-[node name="Idle" type="Node" parent="StateChart/Root/Living" index="3"]
+[node name="Idle" type="Node" parent="StateChart/Root/Living" index="3" unique_id=724372508]
 script = ExtResource("9_41htl")
 
-[node name="On Walk" type="Node" parent="StateChart/Root/Living/Idle" index="0"]
+[node name="On Walk" type="Node" parent="StateChart/Root/Living/Idle" index="0" unique_id=1987470756]
 script = ExtResource("8_4qjkf")
 to = NodePath("../../Walk")
 delay_in_seconds = "randf_range(1,4)"
 
-[node name="Walk" type="Node" parent="StateChart/Root/Living" index="4"]
+[node name="Walk" type="Node" parent="StateChart/Root/Living" index="4" unique_id=604016940]
 script = ExtResource("9_41htl")
 
-[node name="On Idle" type="Node" parent="StateChart/Root/Living/Walk" index="0"]
+[node name="On Idle" type="Node" parent="StateChart/Root/Living/Walk" index="0" unique_id=1600169646]
 script = ExtResource("8_4qjkf")
 to = NodePath("../../Idle")
 event = &"idle"
 delay_in_seconds = "0.0"
 
-[node name="Run" type="Node" parent="StateChart/Root/Living" index="5"]
+[node name="Run" type="Node" parent="StateChart/Root/Living" index="5" unique_id=2034656852]
 script = ExtResource("9_41htl")
 
-[node name="On Walk" type="Node" parent="StateChart/Root/Living/Run" index="0"]
+[node name="On Walk" type="Node" parent="StateChart/Root/Living/Run" index="0" unique_id=1882014324]
 script = ExtResource("8_4qjkf")
 to = NodePath("../../Walk")
 delay_in_seconds = "randf_range(2.5,4.5)"
 
-[node name="Hurt" type="Node" parent="StateChart/Root/Living" index="6"]
+[node name="Hurt" type="Node" parent="StateChart/Root/Living" index="6" unique_id=1309497132]
 script = ExtResource("9_41htl")
 
-[node name="On Run" type="Node" parent="StateChart/Root/Living/Hurt" index="0"]
+[node name="On Run" type="Node" parent="StateChart/Root/Living/Hurt" index="0" unique_id=777913940]
 script = ExtResource("8_4qjkf")
 to = NodePath("../../Run")
 delay_in_seconds = "0.6"
 
-[node name="Dying" type="Node" parent="StateChart/Root" index="1"]
+[node name="Dying" type="Node" parent="StateChart/Root" index="1" unique_id=2021435200]
 script = ExtResource("9_41htl")
 
-[node name="DyingTimer" type="Timer" parent="StateChart/Root/Dying" index="0"]
+[node name="DyingTimer" type="Timer" parent="StateChart/Root/Dying" index="0" unique_id=2045297581]
 wait_time = 0.4
 one_shot = true
 
