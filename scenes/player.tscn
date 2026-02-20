@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://csemktnsxtjp"]
+[gd_scene format=3 uid="uid://csemktnsxtjp"]
 
 [ext_resource type="Texture2D" uid="uid://bcaedxvwl4q71" path="res://assets/Main Characters/Virtual Guy/Idle (32x32).png" id="1_6c3n4"]
 [ext_resource type="Script" uid="uid://cyhuhwaigljp0" path="res://scenes/player.gd" id="1_6npl2"]
@@ -141,8 +141,8 @@ height = 25.4189
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xauby"]
 size = Vector2(20, 19)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke2ow"]
-size = Vector2(14, 24)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ke2ow"]
+points = PackedVector2Array(-10, 7, -5, 12, 6, 12, 10, 7)
 
 [sub_resource type="Animation" id="Animation_23mgf"]
 loop_mode = 1
@@ -929,315 +929,313 @@ _data = {
 &"show": SubResource("Animation_4r5pv")
 }
 
-[node name="player" type="CharacterBody2D" groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=2140510425 groups=["player"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 1025
 floor_stop_on_slope = false
+platform_on_leave = 1
+platform_floor_layers = 1025
 safe_margin = 0.001
 script = ExtResource("1_6npl2")
 bullet_prefab = ExtResource("2_l71n6")
 smoke_prefab = ExtResource("3_ke2ow")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1465038216]
 tree_root = SubResource("AnimationNodeStateMachine_wnwbv")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle/blend_position = 0.00167787
 parameters/move/blend_position = -0.00233465
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=1258663003]
 
-[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=1430991890]
 position = Vector2(0, -4)
 texture = ExtResource("1_6c3n4")
 hframes = 11
 region_enabled = true
 region_rect = Rect2(0, 0, 352, 32)
 
-[node name="Hurter" type="Area2D" parent="Graphics"]
+[node name="Hurter" type="Area2D" parent="Graphics" unique_id=1760415117]
 collision_layer = 2
 collision_mask = 12
 script = ExtResource("9_gcno4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" unique_id=829186232]
 shape = SubResource("RectangleShape2D_qwvj0")
 
-[node name="Hitter" type="Area2D" parent="Graphics"]
+[node name="Hitter" type="Area2D" parent="Graphics" unique_id=1951500966]
 collision_layer = 2
 collision_mask = 4
 monitorable = false
 script = ExtResource("4_pg4o4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter" unique_id=1060214248]
 position = Vector2(11, 9)
 rotation = -2.30228
 shape = SubResource("CapsuleShape2D_4r5pv")
 disabled = true
 
-[node name="WallChecker" type="RayCast2D" parent="Graphics"]
+[node name="WallChecker" type="RayCast2D" parent="Graphics" unique_id=1862820080]
 target_position = Vector2(13, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1312038010]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_xauby")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ke2ow")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1904181682]
+shape = SubResource("ConvexPolygonShape2D_ke2ow")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2021454449]
 reset_on_save = false
-libraries = {
-&"": SubResource("AnimationLibrary_1rc57")
-}
+libraries/ = SubResource("AnimationLibrary_1rc57")
 
-[node name="Status" type="Node" parent="."]
+[node name="Status" type="Node" parent="." unique_id=1040952440]
 script = ExtResource("10_p053j")
 health = 20
 max_health = 20
 
-[node name="Prompt" type="Sprite2D" parent="."]
+[node name="Prompt" type="Sprite2D" parent="." unique_id=1071554506]
 visible = false
 position = Vector2(21, -27)
 texture = ExtResource("14_fulsm")
 region_enabled = true
 region_rect = Rect2(161, 65, 14, 13)
 
-[node name="Hurttip" type="Sprite2D" parent="."]
+[node name="Hurttip" type="Sprite2D" parent="." unique_id=187042660]
 visible = false
 modulate = Color(1, 0.466667, 1, 1)
 position = Vector2(0, -24)
 texture = SubResource("AtlasTexture_4r5pv")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_i4ail")
-}
-autoplay = "show"
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1942448030]
+libraries/ = SubResource("AnimationLibrary_i4ail")
+autoplay = &"show"
 
-[node name="foreUI" type="CanvasLayer" parent="."]
+[node name="foreUI" type="CanvasLayer" parent="." unique_id=1280454204]
 
-[node name="StatusPanel" parent="foreUI" node_paths=PackedStringArray("stats") instance=ExtResource("17_qfm1y")]
+[node name="StatusPanel" parent="foreUI" unique_id=1816057375 node_paths=PackedStringArray("stats") instance=ExtResource("17_qfm1y")]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 96.0
 offset_bottom = 34.0
 stats = NodePath("../../Status")
 
-[node name="JoyPad" parent="foreUI" instance=ExtResource("14_qfm1y")]
+[node name="JoyPad" parent="foreUI" unique_id=413043947 instance=ExtResource("14_qfm1y")]
 anchors_preset = -1
 metadata/_edit_horizontal_guides_ = [492.0]
 
-[node name="GameOverPanel" parent="foreUI" instance=ExtResource("17_60mlk")]
+[node name="GameOverPanel" parent="foreUI" unique_id=1734899645 instance=ExtResource("17_60mlk")]
 visible = false
 
-[node name="pausepanel" parent="foreUI" instance=ExtResource("16_4r5pv")]
+[node name="pausepanel" parent="foreUI" unique_id=644205607 instance=ExtResource("16_4r5pv")]
 visible = false
 
-[node name="message" type="Node" parent="foreUI"]
+[node name="message" type="Node" parent="foreUI" unique_id=2069402463]
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=139263216]
 script = ExtResource("20_i4ail")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Root" type="Node" parent="StateChart"]
+[node name="Root" type="Node" parent="StateChart" unique_id=1521690130]
 script = ExtResource("20_a38lo")
 initial_state = NodePath("Living")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="Dying" type="Node" parent="StateChart/Root"]
+[node name="Dying" type="Node" parent="StateChart/Root" unique_id=666525084]
 script = ExtResource("21_4ni07")
 
-[node name="Living" type="Node" parent="StateChart/Root"]
+[node name="Living" type="Node" parent="StateChart/Root" unique_id=1679727349]
 script = ExtResource("23_4ni07")
 
-[node name="Movement" type="Node" parent="StateChart/Root/Living"]
+[node name="Movement" type="Node" parent="StateChart/Root/Living" unique_id=530945587]
 script = ExtResource("20_a38lo")
 initial_state = NodePath("Airborne")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="Grounded" type="Node" parent="StateChart/Root/Living/Movement"]
+[node name="Grounded" type="Node" parent="StateChart/Root/Living/Movement" unique_id=774304507]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Grounded"]
+[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Grounded" unique_id=1129458151]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Airborne/DoubleEnabled")
 event = &"jump"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="On Airborne" type="Node" parent="StateChart/Root/Living/Movement/Grounded"]
+[node name="On Airborne" type="Node" parent="StateChart/Root/Living/Movement/Grounded" unique_id=1335451923]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Airborne/CoyoteEnabled")
 event = &"airborne"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="On Flash" type="Node" parent="StateChart/Root/Living/Movement/Grounded"]
+[node name="On Flash" type="Node" parent="StateChart/Root/Living/Movement/Grounded" unique_id=927950771]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Flashing")
 event = &"flash"
 delay_in_seconds = "0.0"
 
-[node name="Airborne" type="Node" parent="StateChart/Root/Living/Movement"]
+[node name="Airborne" type="Node" parent="StateChart/Root/Living/Movement" unique_id=383979967]
 script = ExtResource("20_a38lo")
 initial_state = NodePath("CoyoteEnabled")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="On Grounded" type="Node" parent="StateChart/Root/Living/Movement/Airborne"]
+[node name="On Grounded" type="Node" parent="StateChart/Root/Living/Movement/Airborne" unique_id=55580483]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Grounded")
 event = &"grounded"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="On Flash" type="Node" parent="StateChart/Root/Living/Movement/Airborne"]
+[node name="On Flash" type="Node" parent="StateChart/Root/Living/Movement/Airborne" unique_id=1371866096]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Flashing")
 event = &"flash"
 delay_in_seconds = "0.0"
 
-[node name="On Sliding" type="Node" parent="StateChart/Root/Living/Movement/Airborne"]
+[node name="On Sliding" type="Node" parent="StateChart/Root/Living/Movement/Airborne" unique_id=658624629]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Sliding")
 event = &"sliding"
 delay_in_seconds = "0.0"
 
-[node name="CoyoteEnabled" type="Node" parent="StateChart/Root/Living/Movement/Airborne"]
+[node name="CoyoteEnabled" type="Node" parent="StateChart/Root/Living/Movement/Airborne" unique_id=1510605208]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Airborne/CoyoteEnabled"]
+[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Airborne/CoyoteEnabled" unique_id=377109231]
 script = ExtResource("22_a38lo")
 to = NodePath("../../DoubleEnabled")
 event = &"jump"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="On Cancel" type="Node" parent="StateChart/Root/Living/Movement/Airborne/CoyoteEnabled"]
+[node name="On Cancel" type="Node" parent="StateChart/Root/Living/Movement/Airborne/CoyoteEnabled" unique_id=1745511421]
 script = ExtResource("22_a38lo")
 to = NodePath("../../DoubleEnabled")
 delay_in_seconds = "0.2"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="DoubleEnabled" type="Node" parent="StateChart/Root/Living/Movement/Airborne"]
+[node name="DoubleEnabled" type="Node" parent="StateChart/Root/Living/Movement/Airborne" unique_id=1566673127]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Airborne/DoubleEnabled"]
+[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Airborne/DoubleEnabled" unique_id=31123105]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Cannot Jump")
 event = &"jump"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="Cannot Jump" type="Node" parent="StateChart/Root/Living/Movement/Airborne"]
+[node name="Cannot Jump" type="Node" parent="StateChart/Root/Living/Movement/Airborne" unique_id=326358205]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="Flashing" type="Node" parent="StateChart/Root/Living/Movement"]
+[node name="Flashing" type="Node" parent="StateChart/Root/Living/Movement" unique_id=1934750354]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="End Flash" type="Node" parent="StateChart/Root/Living/Movement/Flashing"]
+[node name="End Flash" type="Node" parent="StateChart/Root/Living/Movement/Flashing" unique_id=721988792]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Airborne")
 delay_in_seconds = "0.3"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="Sliding" type="Node" parent="StateChart/Root/Living/Movement"]
+[node name="Sliding" type="Node" parent="StateChart/Root/Living/Movement" unique_id=1094816812]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Sliding"]
+[node name="On Jump" type="Node" parent="StateChart/Root/Living/Movement/Sliding" unique_id=1669506431]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Airborne/DoubleEnabled")
 event = &"jump"
 delay_in_seconds = "0.0"
 
-[node name="On Grounded" type="Node" parent="StateChart/Root/Living/Movement/Sliding"]
+[node name="On Grounded" type="Node" parent="StateChart/Root/Living/Movement/Sliding" unique_id=1282076451]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Grounded")
 event = &"grounded"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="On Airborne" type="Node" parent="StateChart/Root/Living/Movement/Sliding"]
+[node name="On Airborne" type="Node" parent="StateChart/Root/Living/Movement/Sliding" unique_id=284350111]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Airborne/DoubleEnabled")
 event = &"airborne"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="Intract" type="Node" parent="StateChart/Root/Living"]
+[node name="Intract" type="Node" parent="StateChart/Root/Living" unique_id=1213364804]
 script = ExtResource("23_4ni07")
 metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
 
-[node name="Attacking" type="Node" parent="StateChart/Root/Living/Intract"]
+[node name="Attacking" type="Node" parent="StateChart/Root/Living/Intract" unique_id=1261400661]
 script = ExtResource("20_a38lo")
 initial_state = NodePath("Free")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="Free" type="Node" parent="StateChart/Root/Living/Intract/Attacking"]
+[node name="Free" type="Node" parent="StateChart/Root/Living/Intract/Attacking" unique_id=1496981336]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Attack" type="Node" parent="StateChart/Root/Living/Intract/Attacking/Free"]
+[node name="On Attack" type="Node" parent="StateChart/Root/Living/Intract/Attacking/Free" unique_id=402938863]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Attack")
 event = &"attack"
 delay_in_seconds = "0.0"
 
-[node name="Attack" type="Node" parent="StateChart/Root/Living/Intract/Attacking"]
+[node name="Attack" type="Node" parent="StateChart/Root/Living/Intract/Attacking" unique_id=1442395086]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Free" type="Node" parent="StateChart/Root/Living/Intract/Attacking/Attack"]
+[node name="On Free" type="Node" parent="StateChart/Root/Living/Intract/Attacking/Attack" unique_id=644796662]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Free")
 delay_in_seconds = "0.6"
 
-[node name="Hurting" type="Node" parent="StateChart/Root/Living/Intract"]
+[node name="Hurting" type="Node" parent="StateChart/Root/Living/Intract" unique_id=255509750]
 script = ExtResource("20_a38lo")
 initial_state = NodePath("Free")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="Hurt" type="Node" parent="StateChart/Root/Living/Intract/Hurting"]
+[node name="Hurt" type="Node" parent="StateChart/Root/Living/Intract/Hurting" unique_id=1143418581]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On SuperTime" type="Node" parent="StateChart/Root/Living/Intract/Hurting/Hurt"]
+[node name="On SuperTime" type="Node" parent="StateChart/Root/Living/Intract/Hurting/Hurt" unique_id=953714781]
 script = ExtResource("22_a38lo")
 to = NodePath("../../SuperTime")
 delay_in_seconds = "0.7"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="SuperTime" type="Node" parent="StateChart/Root/Living/Intract/Hurting"]
+[node name="SuperTime" type="Node" parent="StateChart/Root/Living/Intract/Hurting" unique_id=238419609]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Free" type="Node" parent="StateChart/Root/Living/Intract/Hurting/SuperTime"]
+[node name="On Free" type="Node" parent="StateChart/Root/Living/Intract/Hurting/SuperTime" unique_id=834187857]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Free")
 delay_in_seconds = "4.0"
 
-[node name="Free" type="Node" parent="StateChart/Root/Living/Intract/Hurting"]
+[node name="Free" type="Node" parent="StateChart/Root/Living/Intract/Hurting" unique_id=1661979955]
 script = ExtResource("21_4ni07")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="On Hurt" type="Node" parent="StateChart/Root/Living/Intract/Hurting/Free"]
+[node name="On Hurt" type="Node" parent="StateChart/Root/Living/Intract/Hurting/Free" unique_id=440745202]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Hurt")
 event = &"hurt"
 delay_in_seconds = "0.0"
 
-[node name="On Dying" type="Node" parent="StateChart/Root/Living"]
+[node name="On Dying" type="Node" parent="StateChart/Root/Living" unique_id=323126922]
 script = ExtResource("22_a38lo")
 to = NodePath("../../Dying")
 event = &"dying"
 delay_in_seconds = "0.0"
 
-[node name="ShootTimer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="." unique_id=1500674277]
 wait_time = 0.3
 one_shot = true
 

@@ -27,7 +27,7 @@ size = Vector2(20, 41.440918)
 script = ExtResource("1_n3rj0")
 
 [node name="player" parent="." unique_id=746028102 instance=ExtResource("1_2q3oo")]
-position = Vector2(3.518982, 14.739868)
+position = Vector2(36.904358, 28.741592)
 
 [node name="PlayerCamera" type="Camera2D" parent="player" unique_id=2089878579]
 zoom = Vector2(0.8, 0.8)
@@ -192,6 +192,8 @@ bullet_limit = 1000.0
 
 [node name="Replacer" type="Area2D" parent="Puzzles" unique_id=1614817745]
 position = Vector2(5130.789, -1981.5591)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Puzzles/Replacer" unique_id=441265982]
 position = Vector2(0, -10.720459)

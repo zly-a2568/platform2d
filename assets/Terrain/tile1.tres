@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://c6nnlwsrt2wp1" path="res://assets/tilemap_packed.png" id="1_3g2l4"]
 [ext_resource type="Texture2D" uid="uid://dtruifueevmb3" path="res://assets/Traps/Spikes/Idle.png" id="2_n5ywx"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yveht"]
+friction = 0.0
+rough = true
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n5ywx"]
 friction = 0.0
 
@@ -178,6 +182,7 @@ use_texture_padding = false
 [resource]
 tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_yveht")
 physics_layer_1/collision_layer = 8
 physics_layer_1/collision_mask = 2
 physics_layer_2/collision_layer = 1024
