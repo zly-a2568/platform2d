@@ -5,8 +5,8 @@ class_name World
 @onready var camera_2d:Camera2D = $player/PlayerCamera
 @onready var player: Player = $player
 
-
-
+var finger_pressed:bool=false
+var finger_pos_local:Vector2
 
 
 
@@ -35,14 +35,14 @@ func _ready():
 	player.status.health=GameProcesser.player_status.health
 	player.status.energy=GameProcesser.player_status.energy
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.button_index==MOUSE_BUTTON_WHEEL_UP:
 				camera_2d.zoom*=1.1 if camera_2d.zoom.x<=1.5 else 1.0
 			if event.button_index==MOUSE_BUTTON_WHEEL_DOWN:
 				camera_2d.zoom*=0.7 if camera_2d.zoom.x>=0.6 else 1.0
-			
+
 
 func packdata() -> Dictionary:
 	var enemies_data:={}
@@ -103,6 +103,3 @@ func setup_scene(data:Dictionary):
 		switch.toogle() if switch.toogled else switch.untoogle()
 	player.global_position=data["player_position"]
 	player.direction=data["player_direction"]
-
-
-	

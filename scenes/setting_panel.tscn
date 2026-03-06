@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfuluqhqbxr1l"]
+[gd_scene format=3 uid="uid://cfuluqhqbxr1l"]
 
 [ext_resource type="Script" uid="uid://dpaiykn5olrdy" path="res://scenes/setting_panel.gd" id="1_bbwy6"]
 [ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="1_xtyyo"]
@@ -11,7 +11,7 @@ shader_parameter/color_over = Color(0, 0, 0, 1)
 shader_parameter/mix_amount = 0.5
 shader_parameter/alpha = 1.0
 
-[node name="SettingPanel" type="Control"]
+[node name="SettingPanel" type="Control" unique_id=1529234914]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bbwy6")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1889231049]
 material = SubResource("ShaderMaterial_i1njt")
 layout_mode = 1
 anchors_preset = 15
@@ -29,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1260966995]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,41 +47,41 @@ size_flags_vertical = 3
 theme = ExtResource("2_i1njt")
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=163382649]
 layout_mode = 2
 text = "设置"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1576160566]
 custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer" unique_id=1540273845]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1258938901]
 layout_mode = 2
 text = "鬼畜音效"
 horizontal_alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1961481095]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Button")
 text = "关闭"
 alignment = 1
 autowrap_trim_flags = 0
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=999319467]
 layout_mode = 2
 text = "键位设置"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=358375443]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../CheckButton")
@@ -89,12 +89,12 @@ focus_neighbor_bottom = NodePath("../../../Exit")
 text = "进入"
 autowrap_trim_flags = 0
 
-[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1926659319]
 layout_mode = 2
 text = "灵敏度"
 horizontal_alignment = 1
 
-[node name="HSlider2" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="HSlider2" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=581978785]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -104,23 +104,23 @@ max_value = 1.2
 step = 0.0
 value = 1.0
 
-[node name="Label4" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=705294711]
 layout_mode = 2
 text = "检查更新"
 horizontal_alignment = 1
 
-[node name="CheckUpdate" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="CheckUpdate" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1603425973]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "检查"
 autowrap_trim_flags = 0
 
-[node name="Label5" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Label5" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1907191021]
 layout_mode = 2
 text = "更新源"
 horizontal_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=2095381678]
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
@@ -135,12 +135,12 @@ popup/item_0/id = 0
 popup/item_1/text = "Gitee"
 popup/item_1/id = 1
 
-[node name="Label6" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Label6" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=410022376]
 layout_mode = 2
 text = "Github代理地址"
 horizontal_alignment = 1
 
-[node name="ProxyInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="ProxyInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=2106685906]
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "代理URL"
@@ -152,17 +152,17 @@ caret_blink = true
 language = "zh_CN"
 structured_text_bidi_override = 1
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1966443540]
 custom_minimum_size = Vector2(50, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../ScrollContainer/GridContainer/Button")
 text = "关闭"
 
-[node name="VersionCheck" type="HTTPRequest" parent="."]
+[node name="VersionCheck" type="HTTPRequest" parent="." unique_id=501674634]
 use_threads = true
 
-[node name="ExecutableDownload" type="HTTPRequest" parent="."]
+[node name="ExecutableDownload" type="HTTPRequest" parent="." unique_id=125590628]
 use_threads = true
 
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]

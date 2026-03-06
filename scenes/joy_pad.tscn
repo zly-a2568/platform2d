@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnmggkcx0q1s7"]
+[gd_scene format=3 uid="uid://cnmggkcx0q1s7"]
 
 [ext_resource type="Script" uid="uid://crwaik4my8r76" path="res://scenes/joy_pad.gd" id="1_j57s1"]
 [ext_resource type="Texture2D" uid="uid://c3x3sl3dh28le" path="res://assets/Menu/HUD.png" id="2_qvp2u"]
@@ -41,7 +41,7 @@ region = Rect2(140, 204, 24, 24)
 atlas = ExtResource("2_qvp2u")
 region = Rect2(140, 108, 24, 24)
 
-[node name="JoyPad" type="Control"]
+[node name="JoyPad" type="Control" unique_id=819908637]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +51,7 @@ grow_vertical = 2
 script = ExtResource("1_j57s1")
 metadata/_edit_horizontal_guides_ = [492.0, 160.0]
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=896827253]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -63,14 +63,14 @@ offset_bottom = 24.0
 grow_horizontal = 0
 pivot_offset = Vector2(24, -24)
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control"]
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control" unique_id=245359846]
 position = Vector2(-6, -6)
 texture_normal = SubResource("AtlasTexture_154w7")
 shape = SubResource("CircleShape2D_3bbm8")
 action = "ui_cancel"
 visibility_mode = 1
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="." unique_id=815202658]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = 2
@@ -83,16 +83,16 @@ offset_bottom = -56.0
 grow_vertical = 0
 pivot_offset = Vector2(-62, 56)
 
-[node name="TextureRect" type="TouchScreenButton" parent="Control2"]
+[node name="TextureRect" type="TouchScreenButton" parent="Control2" unique_id=1621582811]
 position = Vector2(-39, -39)
 scale = Vector2(1.5, 1.5)
 texture_normal = SubResource("AtlasTexture_7txrt")
 visibility_mode = 1
 
-[node name="Knob" parent="Control2" instance=ExtResource("3_j57s1")]
+[node name="Knob" parent="Control2" unique_id=23948126 instance=ExtResource("3_j57s1")]
 scale = Vector2(1.5, 1.5)
 
-[node name="Control4" type="Control" parent="."]
+[node name="Control4" type="Control" parent="." unique_id=1589095782]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = 3
@@ -108,35 +108,35 @@ grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(56, 56)
 
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="Control4"]
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="Control4" unique_id=1666518836]
 position = Vector2(-32, 8)
 texture_normal = SubResource("AtlasTexture_q316v")
 shape = SubResource("RectangleShape2D_acwks")
 action = "attack"
 visibility_mode = 1
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control4"]
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control4" unique_id=1789403784]
 position = Vector2(8, 8)
 texture_normal = SubResource("AtlasTexture_j57s1")
 shape = SubResource("RectangleShape2D_kfwdv")
 action = "jump"
 visibility_mode = 1
 
-[node name="TouchScreenButton5" type="TouchScreenButton" parent="Control4"]
+[node name="TouchScreenButton5" type="TouchScreenButton" parent="Control4" unique_id=386435682]
 position = Vector2(8, -32)
 texture_normal = SubResource("AtlasTexture_qrbvk")
 shape = SubResource("RectangleShape2D_kfwdv")
 action = "shoot"
 visibility_mode = 1
 
-[node name="TouchScreenButton6" type="TouchScreenButton" parent="Control4"]
+[node name="TouchScreenButton6" type="TouchScreenButton" parent="Control4" unique_id=1302308866]
 position = Vector2(-32, -32)
 texture_normal = SubResource("AtlasTexture_xifss")
 shape = SubResource("RectangleShape2D_kfwdv")
 action = "flash"
 visibility_mode = 1
 
-[node name="TouchScreenButton7" type="TouchScreenButton" parent="Control4"]
+[node name="TouchScreenButton7" type="TouchScreenButton" parent="Control4" unique_id=357365848]
 position = Vector2(-72, 8)
 texture_normal = SubResource("AtlasTexture_14xxj")
 shape = SubResource("RectangleShape2D_kfwdv")

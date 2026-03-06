@@ -39,3 +39,5 @@ func _ready() -> void:
 		child.released.connect(func():
 			child.modulate.a=1
 			)
+
+			

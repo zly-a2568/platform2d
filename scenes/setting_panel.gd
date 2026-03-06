@@ -89,15 +89,15 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_check_update_pressed() -> void:
-	if OS.get_name()!="Android" and OS.get_name()!="Windows":
-		OS.alert("暂时仅对Windows和Android开放")
+	if OS.get_name()!="Android" and OS.get_name()!="Windows" and OS.get_name()!="Linux":
+		OS.alert("暂时仅对Linux,Windows和Android开放")
 		return
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=true
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text="检查中"
 	$VBoxContainer/Exit.disabled=true
 	var update_url:String
 	if update_source=="github":
-		update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/version-note.txt"
+		update_url=proxy_input.text+"https://api.github.com/repos/zly-a2568/platform2d/branches/master"
 	else:
 		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/version-note.txt"
 	var error = $VersionCheck.request(update_url)
@@ -112,36 +112,26 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
-	var remote_version=body.get_string_from_utf8().substr(1)
-	ver=remote_version
-	var current_version=GameProcesser.get_game_version() as String
-	var cur_ver_array=current_version.split(".")
-	var rem_ver_array=remote_version.split(".")
-	for a in range(4):
-		if int(rem_ver_array[a])>int(cur_ver_array[a]):
+	if update_source=="gitee":
+		var remote_version=body.get_string_from_utf8().substr(1)
+		ver=remote_version
+		var current_version=GameProcesser.get_game_version() as String
+		var cur_ver_array=current_version.split(".")
+		var rem_ver_array=remote_version.split(".")
+		for a in range(4):
+			if int(rem_ver_array[a])>int(cur_ver_array[a]):
+				print("update avivable")
+				download_update()
+				return
+	else:
+		var version_commit_data=body.get_string_from_utf8()
+		var json_data=JSON.parse_string(version_commit_data)
+		var file=FileAccess.open("user://sha.txt",FileAccess.READ)
+		if (json_data["commit"] as Dictionary)["sha"]!=file.get_as_text():
 			print("update avivable")
-			if OS.get_name()!="Android":
-				$ExecutableDownload.download_file="user://update.pck"
-				var update_url:String
-				if update_source=="github":
-					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/windows.pck"
-				else:
-					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/windows.pck"
-				$ExecutableDownload.request(update_url)
-				
-				update_downloading=true
-				return
-			else:
-				var update_url:String
-				if update_source=="github":
-					update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/android.pck"
-				else:
-					update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/android.pck"
-				$ExecutableDownload.download_file="user://update.pck"
-				$ExecutableDownload.request(update_url)
-				update_downloading=true
-				#OS.shell_open(update_url)
-				return
+			download_update()
+			return	
+		
 	OS.alert("已是最新版本","提示")
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text="检查"
@@ -158,6 +148,8 @@ func _on_executable_download_request_completed(result: int, response_code: int, 
 	$VBoxContainer/Exit.disabled=false
 	update_downloading=false
 	if result==HTTPRequest.RESULT_SUCCESS and response_code==200:
+		var dir_access=DirAccess.open("user://")
+		dir_access.copy("user://update-download.pck","user://update.pck")
 		OS.alert("更新完成，请重启","提示")
 		OS.create_instance([])
 		get_tree().quit()
@@ -173,6 +165,18 @@ func fail_update():
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.text="检查"
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
 	$VBoxContainer/Exit.disabled=false
+
+func download_update():
+	var platform:Dictionary={"Android":"android","Windows":"windows","Linux":"linux"}
+	$ExecutableDownload.download_file="user://update-download.pck"
+	var update_url:String
+	if update_source=="github":
+		update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/"+platform.get(OS.get_name())+".pck"
+	else:
+		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/"+platform.get(OS.get_name())+".pck"
+	$ExecutableDownload.request(update_url)
+	
+	update_downloading=true
 
 func _on_option_button_item_selected(index: int) -> void:
 	if index==0:
