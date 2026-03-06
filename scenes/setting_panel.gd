@@ -108,7 +108,7 @@ func _on_check_update_pressed() -> void:
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	print(result)
-	if result!=HTTPRequest.RESULT_SUCCESS or response_code==522:
+	if result!=HTTPRequest.RESULT_SUCCESS:
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
