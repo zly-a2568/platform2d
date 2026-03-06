@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dskfgefbsxmba"]
+[gd_scene format=3 uid="uid://dskfgefbsxmba"]
 
 [ext_resource type="Script" uid="uid://jvu5qysr8l1n" path="res://scenes/save_point.gd" id="1_wiums"]
 [ext_resource type="Texture2D" uid="uid://dqr1ntdkynfks" path="res://assets/Items/Checkpoints/Checkpoint/save_point_anim_strip_9.png" id="2_wiums"]
@@ -232,26 +232,24 @@ fill_to = Vector2(0.875, 0.125)
 metadata/_snap_enabled = true
 metadata/_snap_count = 16
 
-[node name="SavePoint" type="Area2D" groups=["save_points"]]
+[node name="SavePoint" type="Area2D" unique_id=1176941908 groups=["save_points"]]
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("1_wiums")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=753003877]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_n0rt3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_d5l6q")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=220411667]
+libraries/ = SubResource("AnimationLibrary_d5l6q")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952166099]
 position = Vector2(0, -10)
 texture = ExtResource("2_wiums")
 hframes = 9
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=522707325]
 position = Vector2(0, -16)
 energy = 0.0
 texture = SubResource("GradientTexture2D_wiums")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://civi8ij2ymwj5"]
+[gd_scene format=3 uid="uid://civi8ij2ymwj5"]
 
 [ext_resource type="Script" uid="uid://cbduc5wpeelx3" path="res://scenes/game_over_panel.gd" id="1_idwo0"]
 [ext_resource type="FontFile" uid="uid://d22d1ht8sxf5i" path="res://themes/fonts/fusion.ttf" id="2_vv8jq"]
@@ -64,7 +64,7 @@ _data = {
 &"show": SubResource("Animation_qb32g")
 }
 
-[node name="GameOverPanel" type="Control"]
+[node name="GameOverPanel" type="Control" unique_id=1307044320]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +73,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_idwo0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1975829534]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.498039)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=487317473]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,7 +104,5 @@ theme_override_font_sizes/font_size = 24
 text = "游戏结束"
 visible_characters = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6eiqd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=192457830]
+libraries/ = SubResource("AnimationLibrary_6eiqd")

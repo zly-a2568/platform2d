@@ -35,7 +35,7 @@ jobs:
           mkdir -v -p build/windows-pck
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          echo "${{ github.sha }}" >> ./sha.txt
+          echo "${{ github.sha }}" > ./sha.txt
           godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
           godot --headless --verbose --export-pack "Windows Desktop" "$EXPORT_DIR/windows-pck/windows.pck"
       - name: Upload Artifact
@@ -77,7 +77,7 @@ jobs:
           mkdir -v -p build/linux-pck
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          echo "${{ github.sha }}" >> ./sha.txt
+          echo "${{ github.sha }}" > ./sha.txt
           godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
           godot --headless --verbose --export-pack "Linux" "$EXPORT_DIR/linux-pck/linux.pck"
       - name: Upload Artifact
@@ -220,7 +220,7 @@ jobs:
           sed -i '/\[preset.1.options\]/a keystore\/release="\/root\/release.keystore"' export_presets.cfg
           sed -i '/keystore\/release="\/root\/release.keystore"/a keystore\/release_user="mygame"' export_presets.cfg
           sed -i '/keystore\/release_user="mygame"/a keystore\/release_password=123456' export_presets.cfg
-          echo "$LATEST_SHA" >> ./sha.txt
+          echo "${{ github.sha }}" > ./sha.txt
           godot --headless --verbose --export-release "Android" "$EXPORT_DIR/android/$EXPORT_NAME.apk"
           godot --headless --verbose --export-pack "Android" "$EXPORT_DIR/android/android.pck"
       - name: Release 

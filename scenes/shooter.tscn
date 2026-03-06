@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://birko4vphtwjn"]
+[gd_scene format=3 uid="uid://birko4vphtwjn"]
 
 [ext_resource type="PackedScene" uid="uid://6dvkj6pnnxxt" path="res://scenes/puzzle.tscn" id="1_1e8ai"]
 [ext_resource type="Texture2D" uid="uid://mcoht4lw2qno" path="res://assets/Traps/Rock Head/Blink (42x42).png" id="2_lynhg"]
@@ -118,21 +118,19 @@ _data = {
 &"idle": SubResource("Animation_mger4")
 }
 
-[node name="Shooter" instance=ExtResource("1_1e8ai")]
+[node name="Shooter" unique_id=119032085 instance=ExtResource("1_1e8ai")]
 collision_mask = 0
 script = ExtResource("2_mger4")
 direction = 2
 delta_time = 1.5
 bullet_limit = 500.0
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" parent="." index="0" unique_id=580416308]
 shape = SubResource("RectangleShape2D_lynhg")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="1" unique_id=830084192]
 texture = ExtResource("2_lynhg")
 hframes = 4
 
-[node name="AnimationPlayer" parent="." index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_ld1l8")
-}
+[node name="AnimationPlayer" parent="." index="2" unique_id=154224525]
+libraries/ = SubResource("AnimationLibrary_ld1l8")

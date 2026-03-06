@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvnhm5vric1gy"]
+[gd_scene format=3 uid="uid://cvnhm5vric1gy"]
 
 [ext_resource type="Script" uid="uid://d0aup3qahsasg" path="res://scenes/slime_bullet.gd" id="1_nvs0k"]
 [ext_resource type="Texture2D" uid="uid://3knwv2j2x2dy" path="res://assets/Main Characters/Slimer/slime_bullets.png" id="2_nvs0k"]
@@ -212,34 +212,32 @@ _data = {
 &"hit": SubResource("Animation_6codh")
 }
 
-[node name="slime_bullet" type="CharacterBody2D"]
+[node name="slime_bullet" type="CharacterBody2D" unique_id=594704150]
 modulate = Color(0.920995, 0.920995, 0.920995, 1)
 z_index = 100
 collision_layer = 16
 collision_mask = 1025
 script = ExtResource("1_nvs0k")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1136910109]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_nvs0k")
 hframes = 11
 vframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=416242673]
 shape = SubResource("CircleShape2D_3xo4i")
 
-[node name="Hitter" type="Area2D" parent="."]
+[node name="Hitter" type="Area2D" parent="." unique_id=1441845394]
 collision_layer = 16
 collision_mask = 2
 monitorable = false
 script = ExtResource("3_6codh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter" unique_id=1638929549]
 shape = SubResource("CircleShape2D_viewh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_pbq8l")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1990628432]
+libraries/ = SubResource("AnimationLibrary_pbq8l")
 
 [connection signal="hit" from="Hitter" to="." method="_on_hitter_hit"]

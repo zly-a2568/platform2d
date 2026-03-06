@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbsmvov8u78q"]
+[gd_scene format=3 uid="uid://cbsmvov8u78q"]
 
 [ext_resource type="Script" uid="uid://xgidakgxje5w" path="res://addons/SignalVisualizer/Debugger/signal_debugger_panel.gd" id="1_66cpc"]
 [ext_resource type="Texture2D" uid="uid://e1dk6q8v2ebj" path="res://addons/SignalVisualizer/Play.svg" id="2_2wkuv"]
 [ext_resource type="Texture2D" uid="uid://b2i2v884cmctr" path="res://addons/SignalVisualizer/Stop.svg" id="3_bg5eu"]
 [ext_resource type="Texture2D" uid="uid://chjqejq7fj51h" path="res://addons/SignalVisualizer/Clear.svg" id="4_vg63r"]
 
-[node name="SignalDebugger" type="Control"]
+[node name="SignalDebugger" type="Control" unique_id=562816589]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -17,7 +17,7 @@ script = ExtResource("1_66cpc")
 start_icon = ExtResource("2_2wkuv")
 stop_icon = ExtResource("3_bg5eu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=733715870]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -26,38 +26,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1373018457]
 custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ActionButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ActionButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1237948543]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Start"
 icon = ExtResource("2_2wkuv")
 
-[node name="ClearAllButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ClearAllButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=885108207]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Clear All"
 icon = ExtResource("4_vg63r")
 
-[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1339457608]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ClearLogsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ClearLogsButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=922587691]
 layout_mode = 2
 text = "Clear Logs"
 icon = ExtResource("4_vg63r")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer" unique_id=693061636]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SignalTree" type="Tree" parent="VBoxContainer/HSplitContainer"]
+[node name="SignalTree" type="Tree" parent="VBoxContainer/HSplitContainer" unique_id=1121221133]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 2.08165e-12)
 layout_mode = 2
@@ -66,17 +66,17 @@ allow_reselect = true
 allow_rmb_select = true
 hide_root = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer" unique_id=1563689127]
 layout_mode = 2
 
-[node name="TabBar" type="TabBar" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="TabBar" type="TabBar" parent="VBoxContainer/HSplitContainer/VBoxContainer" unique_id=2024494658]
 layout_mode = 2
 current_tab = 0
 tab_count = 2
 tab_0/title = "Signal Log"
 tab_1/title = "Signal Graph"
 
-[node name="LogLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="LogLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/VBoxContainer" unique_id=2054114747]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -85,7 +85,7 @@ theme_override_colors/default_color = Color(0.690196, 0.690196, 0.690196, 1)
 bbcode_enabled = true
 scroll_following = true
 
-[node name="Graph" type="GraphEdit" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="Graph" type="GraphEdit" parent="VBoxContainer/HSplitContainer/VBoxContainer" unique_id=80415501]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

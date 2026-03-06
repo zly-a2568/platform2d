@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3b43sqwhi7cp"]
+[gd_scene format=3 uid="uid://c3b43sqwhi7cp"]
 
 [ext_resource type="PackedScene" uid="uid://6dvkj6pnnxxt" path="res://scenes/puzzle.tscn" id="1_nytqh"]
 [ext_resource type="Texture2D" uid="uid://bsbqlbvkvm7a4" path="res://assets/Traps/Trampoline/Idle.png" id="2_1ne3y"]
@@ -173,30 +173,28 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64cc3"]
 size = Vector2(24.0002, 19)
 
-[node name="Trampoline" instance=ExtResource("1_nytqh")]
+[node name="Trampoline" unique_id=225283654 instance=ExtResource("1_nytqh")]
 script = ExtResource("2_5gay0")
 amount = 650.0
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" parent="." index="0" unique_id=580416308]
 position = Vector2(-1, 10)
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="1" unique_id=830084192]
 texture = ExtResource("2_1ne3y")
 
-[node name="AnimationPlayer" parent="." index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_oqe70")
-}
+[node name="AnimationPlayer" parent="." index="2" unique_id=154224525]
+libraries/ = SubResource("AnimationLibrary_oqe70")
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
+[node name="Area2D" type="Area2D" parent="." index="3" unique_id=750298843]
 collision_layer = 1024
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1267015731]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_64cc3")
 
-[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
+[node name="RayCast2D" type="RayCast2D" parent="." index="4" unique_id=1688828465]
 target_position = Vector2(0, -179)
 collision_mask = 0
 

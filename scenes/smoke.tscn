@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj386ecx2xrmq"]
+[gd_scene format=3 uid="uid://bj386ecx2xrmq"]
 
 [ext_resource type="Texture2D" uid="uid://bjhgcc0d6mrdx" path="res://assets/Main Characters/Virtual Guy/smoke.png" id="1_acmqr"]
 
@@ -52,7 +52,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Smoke" type="AnimatedSprite2D"]
+[node name="Smoke" type="AnimatedSprite2D" unique_id=177487257]
 sprite_frames = SubResource("SpriteFrames_jmh0c")
 autoplay = "default"
 frame = 5

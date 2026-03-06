@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bephgxrkhh3e2"]
+[gd_scene format=3 uid="uid://bephgxrkhh3e2"]
 
 [ext_resource type="Script" uid="uid://c1o57esbvbwai" path="res://addons/godot_state_charts/utilities/editor_sidebar.gd" id="1_7kcy8"]
 [ext_resource type="Texture2D" uid="uid://vbvx3607y206" path="res://addons/godot_state_charts/atomic_state.svg" id="2_0k4pg"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cem8i84qt0d38" path="res://addons/godot_state_charts/transition.svg" id="6_72e5q"]
 [ext_resource type="Texture2D" uid="uid://bwso8nl6abfnv" path="res://addons/godot_state_charts/toggle_sidebar.svg" id="9_dqcj0"]
 
-[node name="EditorSidebar" type="MarginContainer"]
+[node name="EditorSidebar" type="MarginContainer" unique_id=1924537172]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,21 +19,21 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("1_7kcy8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=493457019]
 layout_mode = 2
 
-[node name="AddSection" type="VBoxContainer" parent="VBoxContainer"]
+[node name="AddSection" type="VBoxContainer" parent="VBoxContainer" unique_id=1691485587]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="AddLabel" type="Label" parent="VBoxContainer/AddSection"]
+[node name="AddLabel" type="Label" parent="VBoxContainer/AddSection" unique_id=880221011]
 layout_mode = 2
 text = "Add"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AddNodeNameLineEdit" type="LineEdit" parent="VBoxContainer/AddSection"]
+[node name="AddNodeNameLineEdit" type="LineEdit" parent="VBoxContainer/AddSection" unique_id=696506559]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Name"
@@ -43,14 +43,14 @@ select_all_on_focus = true
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="AddGridContainer" type="HFlowContainer" parent="VBoxContainer/AddSection"]
+[node name="AddGridContainer" type="HFlowContainer" parent="VBoxContainer/AddSection" unique_id=218204157]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 alignment = 1
 
-[node name="CompoundState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" groups=["statebutton"]]
+[node name="CompoundState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" unique_id=1789616461 groups=["statebutton"]]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -58,7 +58,7 @@ tooltip_text = "CompoundState"
 icon = ExtResource("3_b4okj")
 icon_alignment = 1
 
-[node name="ParallelState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" groups=["statebutton"]]
+[node name="ParallelState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" unique_id=1519618797 groups=["statebutton"]]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -66,7 +66,7 @@ tooltip_text = "ParallelState"
 icon = ExtResource("4_lmfic")
 icon_alignment = 1
 
-[node name="AtomicState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" groups=["statebutton"]]
+[node name="AtomicState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" unique_id=671251627 groups=["statebutton"]]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -74,7 +74,7 @@ tooltip_text = "AtomicState"
 icon = ExtResource("2_0k4pg")
 icon_alignment = 1
 
-[node name="HistoryState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" groups=["statebutton"]]
+[node name="HistoryState" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" unique_id=896958059 groups=["statebutton"]]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -82,7 +82,7 @@ tooltip_text = "HistoryState"
 icon = ExtResource("5_oj1t0")
 icon_alignment = 1
 
-[node name="Transition" type="Button" parent="VBoxContainer/AddSection/AddGridContainer"]
+[node name="Transition" type="Button" parent="VBoxContainer/AddSection/AddGridContainer" unique_id=558207282]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -90,7 +90,7 @@ tooltip_text = "Transition"
 icon = ExtResource("6_72e5q")
 icon_alignment = 1
 
-[node name="NoOptionsLabel" type="Label" parent="VBoxContainer"]
+[node name="NoOptionsLabel" type="Label" parent="VBoxContainer" unique_id=690365300]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -99,11 +99,11 @@ text = "This node cannot have further child nodes."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=190523640]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ToggleSidebarButton" type="Button" parent="VBoxContainer"]
+[node name="ToggleSidebarButton" type="Button" parent="VBoxContainer" unique_id=1915215903]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "Toggle sidebar location"

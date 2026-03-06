@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx2ln2keqwjdl"]
+[gd_scene format=3 uid="uid://dx2ln2keqwjdl"]
 
 [ext_resource type="Script" uid="uid://b5b4i8vmd46mu" path="res://scenes/pausepanel.gd" id="1_atgni"]
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="3_48igd"]
@@ -17,7 +17,7 @@ shader_parameter/color_over = Color(0, 0, 0, 1)
 content_margin_top = 10.0
 content_margin_bottom = 10.0
 
-[node name="pausepanel" type="Control"]
+[node name="pausepanel" type="Control" unique_id=1710545730]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -30,7 +30,7 @@ size_flags_vertical = 4
 theme = ExtResource("3_48igd")
 script = ExtResource("1_atgni")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=738686293]
 material = SubResource("ShaderMaterial_rwpda")
 layout_mode = 1
 anchors_preset = 15
@@ -40,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="V" type="VBoxContainer" parent="."]
+[node name="V" type="VBoxContainer" parent="." unique_id=1749288882]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -56,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_48igd")
 
-[node name="title" type="Label" parent="V"]
+[node name="title" type="Label" parent="V" unique_id=2123217066]
 layout_mode = 2
 size_flags_vertical = 10
 theme = ExtResource("3_48igd")
@@ -64,56 +64,56 @@ text = "暂停"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Audio" type="PanelContainer" parent="V"]
+[node name="Audio" type="PanelContainer" parent="V" unique_id=1594626518]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../Actions")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_d6uqa")
 
-[node name="G" type="GridContainer" parent="V/Audio"]
+[node name="G" type="GridContainer" parent="V/Audio" unique_id=507982181]
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("3_48igd")
 columns = 2
 
-[node name="Volume" type="Label" parent="V/Audio/G"]
+[node name="Volume" type="Label" parent="V/Audio/G" unique_id=1651046455]
 layout_mode = 2
 theme = ExtResource("3_48igd")
 text = "主音量"
 
-[node name="Slider" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+[node name="Slider" parent="V/Audio/G" unique_id=2019192739 instance=ExtResource("3_dh7wr")]
 layout_mode = 2
 
-[node name="Volume2" type="Label" parent="V/Audio/G"]
+[node name="Volume2" type="Label" parent="V/Audio/G" unique_id=492795250]
 layout_mode = 2
 theme = ExtResource("3_48igd")
 text = "音效"
 
-[node name="Slider2" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+[node name="Slider2" parent="V/Audio/G" unique_id=1499059072 instance=ExtResource("3_dh7wr")]
 layout_mode = 2
 bus = &"SFX"
 
-[node name="Volume3" type="Label" parent="V/Audio/G"]
+[node name="Volume3" type="Label" parent="V/Audio/G" unique_id=933461565]
 layout_mode = 2
 theme = ExtResource("3_48igd")
 text = "背景音乐"
 
-[node name="Slider3" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+[node name="Slider3" parent="V/Audio/G" unique_id=585751309 instance=ExtResource("3_dh7wr")]
 layout_mode = 2
 bus = &"BGM"
 
-[node name="Actions" type="PanelContainer" parent="V"]
+[node name="Actions" type="PanelContainer" parent="V" unique_id=381408887]
 layout_mode = 2
 size_flags_vertical = 2
 focus_neighbor_top = NodePath("../Audio")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rwpda")
 
-[node name="H" type="HBoxContainer" parent="V/Actions"]
+[node name="H" type="HBoxContainer" parent="V/Actions" unique_id=24841656]
 layout_mode = 2
 theme = ExtResource("3_48igd")
 alignment = 1
 
-[node name="Resume" type="Button" parent="V/Actions/H"]
+[node name="Resume" type="Button" parent="V/Actions/H" unique_id=368976711]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../../../Audio/G/Slider2")
@@ -122,7 +122,7 @@ theme = ExtResource("3_48igd")
 text = "继续"
 flat = true
 
-[node name="Quit" type="Button" parent="V/Actions/H"]
+[node name="Quit" type="Button" parent="V/Actions/H" unique_id=1361821401]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Resume")

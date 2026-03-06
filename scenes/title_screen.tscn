@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dj0b7cwm84d7y"]
+[gd_scene format=3 uid="uid://dj0b7cwm84d7y"]
 
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://batb7erkde71v" path="res://scenes/title_screen.gd" id="1_sa3yf"]
@@ -15,12 +15,12 @@ shader_parameter/color_over = Color(0, 0, 0, 1)
 shader_parameter/mix_amount = 0.5
 shader_parameter/alpha = 1.0
 
-[node name="TitleScreen" type="CanvasLayer"]
+[node name="TitleScreen" type="CanvasLayer" unique_id=1292268808]
 process_mode = 3
 layer = 2
 script = ExtResource("1_sa3yf")
 
-[node name="Panel" type="Control" parent="."]
+[node name="Panel" type="Control" parent="." unique_id=1939856204]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=117947912]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ grow_vertical = 2
 texture = ExtResource("2_3yumr")
 stretch_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="Panel"]
+[node name="ColorRect" type="ColorRect" parent="Panel" unique_id=422476121]
 material = SubResource("ShaderMaterial_sa3yf")
 layout_mode = 1
 anchors_preset = 15
@@ -47,7 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="VBoxContainer" parent="Panel"]
+[node name="Panel" type="VBoxContainer" parent="Panel" unique_id=1275778769]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,33 +61,33 @@ offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="New" type="Button" parent="Panel/Panel"]
+[node name="New" type="Button" parent="Panel/Panel" unique_id=1941235101]
 layout_mode = 2
 theme = ExtResource("1_fgkus")
 text = "新游戏"
 
-[node name="Start" type="Button" parent="Panel/Panel"]
+[node name="Start" type="Button" parent="Panel/Panel" unique_id=1877423499]
 layout_mode = 2
 theme = ExtResource("1_fgkus")
 text = "开始"
 
-[node name="Exit" type="Button" parent="Panel/Panel"]
+[node name="Exit" type="Button" parent="Panel/Panel" unique_id=1443324760]
 layout_mode = 2
 theme = ExtResource("1_fgkus")
 text = "退出"
 
-[node name="Settings" type="Button" parent="Panel/Panel"]
+[node name="Settings" type="Button" parent="Panel/Panel" unique_id=386764872]
 layout_mode = 2
 theme = ExtResource("1_fgkus")
 text = "设置"
 
-[node name="SettingPanel" parent="." instance=ExtResource("4_dc4i4")]
+[node name="SettingPanel" parent="." unique_id=1955357177 instance=ExtResource("4_dc4i4")]
 visible = false
 
-[node name="JoyPadEditable" parent="." instance=ExtResource("6_e54dn")]
+[node name="JoyPadEditable" parent="." unique_id=145651922 instance=ExtResource("6_e54dn")]
 visible = false
 
-[node name="KeyBoardSettings" parent="." instance=ExtResource("7_3yumr")]
+[node name="KeyBoardSettings" parent="." unique_id=29982663 instance=ExtResource("7_3yumr")]
 visible = false
 
 [connection signal="pressed" from="Panel/Panel/New" to="." method="_on_new_pressed"]

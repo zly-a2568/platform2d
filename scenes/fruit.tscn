@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bwntdiifnevcj"]
+[gd_scene format=3 uid="uid://bwntdiifnevcj"]
 
 [ext_resource type="Texture2D" uid="uid://dupf6c8ax6ua" path="res://assets/Items/Fruits/Apple.png" id="1_lfepc"]
 [ext_resource type="Script" uid="uid://cyt1rynw21nvm" path="res://scenes/fruit.gd" id="1_yvtr8"]
@@ -311,24 +311,24 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_5awxm"]
 radius = 7.0
 
-[node name="Fruit" type="CharacterBody2D" groups=["fruits"]]
+[node name="Fruit" type="CharacterBody2D" unique_id=505010890 groups=["fruits"]]
 collision_layer = 64
 script = ExtResource("1_yvtr8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1363037677]
 sprite_frames = SubResource("SpriteFrames_el8rx")
 animation = &"collected"
 autoplay = "apple"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=525002231]
 shape = SubResource("CircleShape2D_5awxm")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=296709999]
 collision_layer = 64
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=182278480]
 shape = SubResource("CircleShape2D_5awxm")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

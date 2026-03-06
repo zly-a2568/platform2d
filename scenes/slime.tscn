@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c78bswp0urruk"]
+[gd_scene format=3 uid="uid://c78bswp0urruk"]
 
 [ext_resource type="PackedScene" uid="uid://c0if24aritjfw" path="res://scenes/enemy.tscn" id="1_gt117"]
 [ext_resource type="Script" uid="uid://crwd1niab5nd" path="res://scenes/slime.gd" id="2_1e8ai"]
@@ -428,124 +428,122 @@ _data = {
 &"walk": SubResource("Animation_tyl0w")
 }
 
-[node name="Slime" groups=["enemies"] instance=ExtResource("1_gt117")]
+[node name="Slime" unique_id=22344084 groups=["enemies"] instance=ExtResource("1_gt117")]
 script = ExtResource("2_1e8ai")
 direction = 1
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="0"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="0" unique_id=652658554]
 tree_root = SubResource("AnimationNodeStateMachine_2v7ff")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="1" unique_id=1659681723]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_gstla")
 
-[node name="AnimationPlayer" parent="." index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_fur4c")
-}
+[node name="AnimationPlayer" parent="." index="2" unique_id=141800555]
+libraries/ = SubResource("AnimationLibrary_fur4c")
 
-[node name="Status" parent="." index="3"]
+[node name="Status" parent="." index="3" unique_id=2102222075]
 health = 6
 max_health = 6
 
-[node name="Hitter" parent="Graphics" index="0"]
+[node name="Hitter" parent="Graphics" parent_id_path=PackedInt32Array(431059873) index="0" unique_id=603421660]
 collision_mask = 18
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter" index="0" unique_id=808480613]
 position = Vector2(1.43051e-06, 5)
 rotation = 1.56823
 shape = SubResource("SeparationRayShape2D_gstla")
 disabled = true
 
-[node name="Wall" parent="Graphics" index="1"]
+[node name="Wall" parent="Graphics" parent_id_path=PackedInt32Array(431059873) index="1" unique_id=1448770266]
 position = Vector2(0, 5)
 target_position = Vector2(-13, 0)
 
-[node name="PlayerChecker" parent="Graphics" index="2"]
+[node name="PlayerChecker" parent="Graphics" parent_id_path=PackedInt32Array(431059873) index="2" unique_id=783147640]
 position = Vector2(0, 5)
 target_position = Vector2(-72, 0)
 
-[node name="Floor" parent="Graphics" index="3"]
+[node name="Floor" parent="Graphics" parent_id_path=PackedInt32Array(431059873) index="3" unique_id=1528020732]
 position = Vector2(-13, 11)
 
-[node name="Hurter" parent="Graphics" index="4"]
+[node name="Hurter" parent="Graphics" parent_id_path=PackedInt32Array(431059873) index="4" unique_id=531775937]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0" unique_id=107931334]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_v5wyi")
 
-[node name="Sprite2D" parent="Graphics" index="5"]
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(431059873) index="5" unique_id=963412623]
 position = Vector2(0, -5)
 texture = ExtResource("7_v5wyi")
 hframes = 8
 frame = 1
 
-[node name="Root" type="Node" parent="StateChart" index="0"]
+[node name="Root" type="Node" parent="StateChart" parent_id_path=PackedInt32Array(1465699426) index="0" unique_id=375915342]
 script = ExtResource("6_v5wyi")
 initial_state = NodePath("Living")
 
-[node name="Living" type="Node" parent="StateChart/Root" index="0"]
+[node name="Living" type="Node" parent="StateChart/Root" index="0" unique_id=506562828]
 script = ExtResource("6_v5wyi")
 initial_state = NodePath("Idle")
 
-[node name="On Shoot" type="Node" parent="StateChart/Root/Living" index="0"]
+[node name="On Shoot" type="Node" parent="StateChart/Root/Living" index="0" unique_id=504099000]
 script = ExtResource("7_0l8pv")
 to = NodePath("../Shoot")
 event = &"shoot"
 delay_in_seconds = "0.0"
 
-[node name="On Dying" type="Node" parent="StateChart/Root/Living" index="1"]
+[node name="On Dying" type="Node" parent="StateChart/Root/Living" index="1" unique_id=1834362592]
 script = ExtResource("7_0l8pv")
 to = NodePath("../../Dying")
 event = &"dying"
 delay_in_seconds = "0.0"
 
-[node name="On Hurt" type="Node" parent="StateChart/Root/Living" index="2"]
+[node name="On Hurt" type="Node" parent="StateChart/Root/Living" index="2" unique_id=884294351]
 script = ExtResource("7_0l8pv")
 to = NodePath("../Hurt")
 event = &"hurt"
 delay_in_seconds = "0.0"
 
-[node name="Idle" type="Node" parent="StateChart/Root/Living" index="3"]
+[node name="Idle" type="Node" parent="StateChart/Root/Living" index="3" unique_id=1027777432]
 script = ExtResource("8_vnioy")
 
-[node name="On Walk" type="Node" parent="StateChart/Root/Living/Idle" index="0"]
+[node name="On Walk" type="Node" parent="StateChart/Root/Living/Idle" index="0" unique_id=69918064]
 script = ExtResource("7_0l8pv")
 to = NodePath("../../Walk")
 delay_in_seconds = "randf_range(1,4)"
 
-[node name="Walk" type="Node" parent="StateChart/Root/Living" index="4"]
+[node name="Walk" type="Node" parent="StateChart/Root/Living" index="4" unique_id=1272359973]
 script = ExtResource("8_vnioy")
 
-[node name="On Idle" type="Node" parent="StateChart/Root/Living/Walk" index="0"]
+[node name="On Idle" type="Node" parent="StateChart/Root/Living/Walk" index="0" unique_id=1114915550]
 script = ExtResource("7_0l8pv")
 to = NodePath("../../Idle")
 event = &"idle"
 delay_in_seconds = "0.0"
 
-[node name="Shoot" type="Node" parent="StateChart/Root/Living" index="5"]
+[node name="Shoot" type="Node" parent="StateChart/Root/Living" index="5" unique_id=1844576830]
 script = ExtResource("8_vnioy")
 
-[node name="On Walk" type="Node" parent="StateChart/Root/Living/Shoot" index="0"]
+[node name="On Walk" type="Node" parent="StateChart/Root/Living/Shoot" index="0" unique_id=1898643358]
 script = ExtResource("7_0l8pv")
 to = NodePath("../../Walk")
 delay_in_seconds = "0.7"
 
-[node name="Hurt" type="Node" parent="StateChart/Root/Living" index="6"]
+[node name="Hurt" type="Node" parent="StateChart/Root/Living" index="6" unique_id=580070301]
 script = ExtResource("8_vnioy")
 
-[node name="On Shoot" type="Node" parent="StateChart/Root/Living/Hurt" index="0"]
+[node name="On Shoot" type="Node" parent="StateChart/Root/Living/Hurt" index="0" unique_id=761202767]
 script = ExtResource("7_0l8pv")
 to = NodePath("../../Shoot")
 delay_in_seconds = "0.4"
 
-[node name="Dying" type="Node" parent="StateChart/Root" index="1"]
+[node name="Dying" type="Node" parent="StateChart/Root" index="1" unique_id=1292582794]
 script = ExtResource("8_vnioy")
 
-[node name="DyingTimer" type="Timer" parent="StateChart/Root/Dying" index="0"]
+[node name="DyingTimer" type="Timer" parent="StateChart/Root/Dying" index="0" unique_id=1110764968]
 wait_time = 0.9
 one_shot = true
 

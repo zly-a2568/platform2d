@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfboddryo7yt0"]
+[gd_scene format=3 uid="uid://dfboddryo7yt0"]
 
 [ext_resource type="Script" uid="uid://bmr1d40yp3kny" path="res://scenes/globals/game_processor.gd" id="1_stpdn"]
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="2_ggton"]
 
-[node name="GameProcesser" type="CanvasLayer"]
+[node name="GameProcesser" type="CanvasLayer" unique_id=635564079]
 process_mode = 3
 layer = 3
 script = ExtResource("1_stpdn")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=919022417]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,7 +17,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Tip" type="Label" parent="."]
+[node name="Tip" type="Label" parent="." unique_id=544780995]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

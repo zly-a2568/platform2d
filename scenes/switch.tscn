@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://67t6gka723tc"]
+[gd_scene format=3 uid="uid://67t6gka723tc"]
 
 [ext_resource type="Script" uid="uid://dlcodi2durnk1" path="res://scenes/switch.gd" id="1_nnoiq"]
 [ext_resource type="Texture2D" uid="uid://c1tkm8p5n4vwd" path="res://assets/Items/Switch/Blue_To_Red.png" id="2_nnoiq"]
@@ -171,21 +171,19 @@ _data = {
 &"untoogle": SubResource("Animation_abvb2")
 }
 
-[node name="Switch" type="Area2D" groups=["switches"]]
+[node name="Switch" type="Area2D" unique_id=1289563868 groups=["switches"]]
 collision_layer = 256
 collision_mask = 2
 script = ExtResource("1_nnoiq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1956912411]
 position = Vector2(-1, -11.5)
 shape = SubResource("RectangleShape2D_n0rt3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_d5l6q")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1823891018]
+libraries/ = SubResource("AnimationLibrary_d5l6q")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690984745]
 position = Vector2(0, -10)
 texture = ExtResource("2_nnoiq")
 hframes = 4

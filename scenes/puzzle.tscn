@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://6dvkj6pnnxxt"]
+[gd_scene format=3 uid="uid://6dvkj6pnnxxt"]
 
 [ext_resource type="Script" uid="uid://kg7jh6avwcp5" path="res://scenes/puzzle.gd" id="1_64ty3"]
 
-[node name="Puzzle" type="CharacterBody2D"]
+[node name="Puzzle" type="CharacterBody2D" unique_id=1544606141]
 collision_layer = 512
 collision_mask = 2
 script = ExtResource("1_64ty3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=580416308]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=830084192]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=154224525]

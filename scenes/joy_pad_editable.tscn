@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc0nc4xa5f6sw"]
+[gd_scene format=3 uid="uid://cc0nc4xa5f6sw"]
 
 [ext_resource type="Script" uid="uid://cugme85ja85ib" path="res://scenes/joy_pad_editable.gd" id="1_hyd27"]
 [ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="2_jlh06"]
@@ -50,7 +50,7 @@ region = Rect2(140, 204, 24, 24)
 atlas = ExtResource("2_tbr7s")
 region = Rect2(140, 108, 24, 24)
 
-[node name="JoyPadEditable" type="Control"]
+[node name="JoyPadEditable" type="Control" unique_id=211317510]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hyd27")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1406815311]
 material = SubResource("ShaderMaterial_armiw")
 layout_mode = 1
 anchors_preset = 15
@@ -68,7 +68,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="JoyPad" type="Control" parent="."]
+[node name="JoyPad" type="Control" parent="." unique_id=1575397926]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +77,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_horizontal_guides_ = [492.0, 160.0]
 
-[node name="Control" type="Control" parent="JoyPad"]
+[node name="Control" type="Control" parent="JoyPad" unique_id=1221262321]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -89,14 +89,14 @@ offset_bottom = 24.0
 grow_horizontal = 0
 pivot_offset = Vector2(24, -24)
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="JoyPad/Control"]
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="JoyPad/Control" unique_id=1605860217]
 position = Vector2(-6, -6)
 texture_normal = SubResource("AtlasTexture_hyd27")
 shape = SubResource("CircleShape2D_tbr7s")
 action = "ui_cancel"
 visibility_mode = 1
 
-[node name="Control2" type="Control" parent="JoyPad"]
+[node name="Control2" type="Control" parent="JoyPad" unique_id=1499295938]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = 2
@@ -109,16 +109,16 @@ offset_bottom = -56.0
 grow_vertical = 0
 pivot_offset = Vector2(-62, 56)
 
-[node name="TextureRect" type="TouchScreenButton" parent="JoyPad/Control2"]
+[node name="TextureRect" type="TouchScreenButton" parent="JoyPad/Control2" unique_id=1908398951]
 position = Vector2(-39, -39)
 scale = Vector2(1.5, 1.5)
 texture_normal = SubResource("AtlasTexture_jlh06")
 visibility_mode = 1
 
-[node name="Knob" parent="JoyPad/Control2" instance=ExtResource("3_jlh06")]
+[node name="Knob" parent="JoyPad/Control2" unique_id=2131345012 instance=ExtResource("3_jlh06")]
 scale = Vector2(1.5, 1.5)
 
-[node name="Control4" type="Control" parent="JoyPad"]
+[node name="Control4" type="Control" parent="JoyPad" unique_id=326719283]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = 3
@@ -134,42 +134,42 @@ grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(56, 56)
 
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="JoyPad/Control4"]
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="JoyPad/Control4" unique_id=834339247]
 position = Vector2(-32, 8)
 texture_normal = SubResource("AtlasTexture_armiw")
 shape = SubResource("RectangleShape2D_5vpdp")
 action = "attack"
 visibility_mode = 1
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="JoyPad/Control4"]
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="JoyPad/Control4" unique_id=231367844]
 position = Vector2(8, 8)
 texture_normal = SubResource("AtlasTexture_y75kr")
 shape = SubResource("RectangleShape2D_sicvn")
 action = "jump"
 visibility_mode = 1
 
-[node name="TouchScreenButton5" type="TouchScreenButton" parent="JoyPad/Control4"]
+[node name="TouchScreenButton5" type="TouchScreenButton" parent="JoyPad/Control4" unique_id=1703341253]
 position = Vector2(8, -32)
 texture_normal = SubResource("AtlasTexture_ay1b3")
 shape = SubResource("RectangleShape2D_sicvn")
 action = "shoot"
 visibility_mode = 1
 
-[node name="TouchScreenButton6" type="TouchScreenButton" parent="JoyPad/Control4"]
+[node name="TouchScreenButton6" type="TouchScreenButton" parent="JoyPad/Control4" unique_id=87179223]
 position = Vector2(-32, -32)
 texture_normal = SubResource("AtlasTexture_m6eoy")
 shape = SubResource("RectangleShape2D_sicvn")
 action = "flash"
 visibility_mode = 1
 
-[node name="TouchScreenButton7" type="TouchScreenButton" parent="JoyPad/Control4"]
+[node name="TouchScreenButton7" type="TouchScreenButton" parent="JoyPad/Control4" unique_id=138386486]
 position = Vector2(-72, 8)
 texture_normal = SubResource("AtlasTexture_tmxl0")
 shape = SubResource("RectangleShape2D_sicvn")
 action = "enter"
 visibility_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=828361550]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -180,15 +180,15 @@ offset_bottom = 16.0
 grow_horizontal = 2
 theme = ExtResource("4_tbr7s")
 
-[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer" unique_id=2056154171]
 layout_mode = 2
 columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1590867282]
 layout_mode = 2
 text = "大小"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=1494369730]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -197,21 +197,21 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=763657525]
 layout_mode = 2
 alignment = 1
 
-[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1794502636]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "保存"
 
-[node name="Exit" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Exit" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=440553905]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "退出"
 
-[node name="MessageView" type="CanvasLayer" parent="."]
+[node name="MessageView" type="CanvasLayer" parent="." unique_id=1819107476]
 layer = 3
 
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

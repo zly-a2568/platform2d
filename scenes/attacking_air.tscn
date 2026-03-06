@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8n4s0ynmx5sx"]
+[gd_scene format=3 uid="uid://8n4s0ynmx5sx"]
 
 [ext_resource type="Texture2D" uid="uid://dskjjojunoxux" path="res://assets/Main Characters/Virtual Guy/Attacking.png" id="1_rw1l1"]
 
@@ -52,7 +52,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="AttackingAir" type="AnimatedSprite2D"]
+[node name="AttackingAir" type="AnimatedSprite2D" unique_id=1847323185]
 sprite_frames = SubResource("SpriteFrames_3l8kw")
 autoplay = "default"
 frame = 5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cia1qymus5xtg"]
+[gd_scene format=3 uid="uid://cia1qymus5xtg"]
 
 [ext_resource type="Script" uid="uid://bx4rmethejjhf" path="res://scenes/status_panel.gd" id="1_27we0"]
 [ext_resource type="Texture2D" uid="uid://bcaedxvwl4q71" path="res://assets/Main Characters/Virtual Guy/Idle (32x32).png" id="1_rqlg0"]
@@ -41,26 +41,26 @@ region = Rect2(307, 6, 58, 4)
 atlas = ExtResource("3_fqsbo")
 region = Rect2(308, 39, 56, 2)
 
-[node name="StatusPanel" type="HBoxContainer"]
+[node name="StatusPanel" type="HBoxContainer" unique_id=1383923645]
 theme_override_constants/separation = 3
 script = ExtResource("1_27we0")
 
-[node name="AvatarBox" type="PanelContainer" parent="."]
+[node name="AvatarBox" type="PanelContainer" parent="." unique_id=1326138175]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_27we0")
 
-[node name="Avatar" type="TextureRect" parent="AvatarBox"]
+[node name="Avatar" type="TextureRect" parent="AvatarBox" unique_id=1636485592]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ncrt1")
 stretch_mode = 3
 
-[node name="V" type="VBoxContainer" parent="."]
+[node name="V" type="VBoxContainer" parent="." unique_id=1162901344]
 layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="HealthBar" type="TextureProgressBar" parent="V"]
+[node name="HealthBar" type="TextureProgressBar" parent="V" unique_id=423752375]
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_27we0")
@@ -71,7 +71,7 @@ texture_over = SubResource("AtlasTexture_ghfl5")
 texture_progress = SubResource("AtlasTexture_jclqc")
 texture_progress_offset = Vector2(1, 1)
 
-[node name="EasedHealthBar" type="TextureProgressBar" parent="V/HealthBar"]
+[node name="EasedHealthBar" type="TextureProgressBar" parent="V/HealthBar" unique_id=698542524]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -87,7 +87,7 @@ value = 1.0
 texture_progress = SubResource("AtlasTexture_alt5q")
 texture_progress_offset = Vector2(1, 1)
 
-[node name="EnergyBar" type="TextureProgressBar" parent="V"]
+[node name="EnergyBar" type="TextureProgressBar" parent="V" unique_id=427688460]
 layout_mode = 2
 theme = ExtResource("2_27we0")
 max_value = 1.0

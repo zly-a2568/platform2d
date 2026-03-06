@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dppfamjc0ji40"]
+[gd_scene format=3 uid="uid://dppfamjc0ji40"]
 
 [ext_resource type="Script" uid="uid://bi8ljikvnehrv" path="res://addons/SignalVisualizer/Visualizer/signal_visualizer_dock.gd" id="1_akar5"]
 [ext_resource type="Texture2D" uid="uid://chjqejq7fj51h" path="res://addons/SignalVisualizer/Clear.svg" id="2_m8bsv"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ae0jg"]
 
-[node name="SignalVisualizerDock" type="Control"]
+[node name="SignalVisualizerDock" type="Control" unique_id=845742719]
 clip_contents = true
 custom_minimum_size = Vector2(2.08165e-12, 200)
 layout_mode = 3
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_akar5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1806662798]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -27,49 +27,49 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=748656266]
 clip_contents = true
 custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="ArrangeNodesCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="ArrangeNodesCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer" unique_id=1457856919]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Arrange Nodes"
 
-[node name="SignalDetailsCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="SignalDetailsCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer" unique_id=742107198]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Signal Details"
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=2111020557]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ae0jg")
 
-[node name="ClearGraphButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ClearGraphButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=672051669]
 layout_mode = 2
 text = "Clear Graph"
 icon = ExtResource("2_m8bsv")
 
-[node name="GenerateGraphButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="GenerateGraphButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1028699139]
 layout_mode = 2
 text = "Generate Graph"
 icon = ExtResource("3_dtmqs")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer" unique_id=2121939482]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SignalTree" type="Tree" parent="VBoxContainer/HSplitContainer"]
+[node name="SignalTree" type="Tree" parent="VBoxContainer/HSplitContainer" unique_id=2130184501]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
 column_titles_visible = true
 
-[node name="Graph" type="GraphEdit" parent="VBoxContainer/HSplitContainer"]
+[node name="Graph" type="GraphEdit" parent="VBoxContainer/HSplitContainer" unique_id=980845613]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

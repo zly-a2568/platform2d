@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0ugxc5ghfetg"]
+[gd_scene format=3 uid="uid://d0ugxc5ghfetg"]
 
 [ext_resource type="Texture2D" uid="uid://htb33tp5orde" path="res://assets/Traps/Saw/On (38x38).png" id="1_sxjcd"]
 [ext_resource type="Script" uid="uid://bwdvdwqy7dx64" path="res://scenes/puzzle_bullet.gd" id="1_tc3o5"]
@@ -74,25 +74,25 @@ radius = 15.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1lsi"]
 radius = 19.0
 
-[node name="puzzle_bullet" type="CharacterBody2D"]
+[node name="puzzle_bullet" type="CharacterBody2D" unique_id=1195969969]
 scale = Vector2(0.4, 0.4)
 collision_layer = 1024
 script = ExtResource("1_tc3o5")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=41894727]
 sprite_frames = SubResource("SpriteFrames_3l06g")
 frame_progress = 0.222617
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1412175325]
 shape = SubResource("CircleShape2D_31vod")
 
-[node name="Hitter" type="Area2D" parent="."]
+[node name="Hitter" type="Area2D" parent="." unique_id=196892380]
 collision_layer = 512
 collision_mask = 2
 script = ExtResource("2_tc3o5")
 metadata/_custom_type_script = "uid://bujr4o6vperxe"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter" unique_id=1298467799]
 shape = SubResource("CircleShape2D_a1lsi")
 
 [connection signal="body_entered" from="Hitter" to="." method="_on_hitter_body_entered"]
