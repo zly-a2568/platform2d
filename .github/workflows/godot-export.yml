@@ -79,7 +79,7 @@ jobs:
           cd $PROJECT_PATH
           echo "${{ github.sha }}" >> ./sha.txt
           godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
-          godot --headless --verbose --export-pack "Linux" "$EXPORT_DIR/linux/linux.pck"
+          godot --headless --verbose --export-pack "Linux" "$EXPORT_DIR/linux-pck/linux.pck"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -97,6 +97,7 @@ jobs:
           tag_name: ${{ env.RELEASE_VERSION }}
           files: | 
               ./build/linux-x64.zip
+              ./build/linux-pck/linux.pck
           
 
   export-web:
