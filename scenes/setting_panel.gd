@@ -97,7 +97,7 @@ func _on_check_update_pressed() -> void:
 	$VBoxContainer/Exit.disabled=true
 	var update_url:String
 	if update_source=="github":
-		update_url=proxy_input.text+"https://api.github.com/repos/zly-a2568/platform2d/branches/master"
+		update_url=proxy_input.text+"https://github.com/zly-a2568/platform2d/releases/latest/download/version-note.txt"
 	else:
 		update_url="https://gitee.com/zly-k/platformer2d/releases/download/latest/version-note.txt"
 	var error = $VersionCheck.request(update_url)
@@ -112,25 +112,17 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		OS.alert("网络请求错误："+str(result))
 		fail_update()
 		return
-	if update_source=="gitee":
-		var remote_version=body.get_string_from_utf8().substr(1)
-		ver=remote_version
-		var current_version=GameProcesser.get_game_version() as String
-		var cur_ver_array=current_version.split(".")
-		var rem_ver_array=remote_version.split(".")
-		for a in range(4):
-			if int(rem_ver_array[a])>int(cur_ver_array[a]):
-				print("update avivable")
-				download_update()
-				return
-	else:
-		var version_commit_data=body.get_string_from_utf8()
-		var json_data=JSON.parse_string(version_commit_data)
-		var file=FileAccess.open("user://sha.txt",FileAccess.READ)
-		if (json_data["commit"] as Dictionary)["sha"]!=file.get_as_text():
+
+	var remote_version=body.get_string_from_utf8().substr(1)
+	ver=remote_version
+	var current_version=GameProcesser.get_game_version() as String
+	var cur_ver_array=current_version.split(".")
+	var rem_ver_array=remote_version.split(".")
+	for a in range(4):
+		if int(rem_ver_array[a])>int(cur_ver_array[a]):
 			print("update avivable")
 			download_update()
-			return	
+			return
 		
 	OS.alert("已是最新版本","提示")
 	$VBoxContainer/ScrollContainer/GridContainer/CheckUpdate.disabled=false
